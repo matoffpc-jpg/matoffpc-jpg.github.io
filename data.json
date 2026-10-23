@@ -22,7 +22,7 @@
     {
       "name": "M.Standart (R5+3060)",
       "price": 65000,
-      "priceText": "65 000 ₽",
+      "priceText": "64 990 ₽",
       "specs": ["CPU: R5 5500","GPU: RTX 3060","RAM: 16GB DDR4 3200MHz","SSD: 512GB M.2","Cooler: ID-Cooling SE-214-XT","PSU: 550W"],
       "filterRange": "low",
       "gpuType": "nvidia",
@@ -35,7 +35,7 @@
     {
       "name": "M.Standart (R7+3060Ti)",
       "price": 72000,
-      "priceText": "72 000 ₽",
+      "priceText": "71 990 ₽",
       "specs": ["CPU: R7 5700X","GPU: RTX 3060 Ti","RAM: 16GB DDR4 3200MHz","SSD: 512GB M.2","Cooler: Deepcool AK400","PSU: 600W"],
       "filterRange": "low",
       "gpuType": "nvidia",
@@ -48,7 +48,7 @@
     {
       "name": "M.Standart (i5+5060)",
       "price": 88000,
-      "priceText": "от 88 000 ₽",
+      "priceText": "87 990 ₽",
       "specs": ["CPU: i5-12400F","GPU: RTX 5060","RAM: 16GB DDR4 3200MHz","SSD: 512GB M.2","Cooler: Deepcool AK400","PSU: 600W"],
       "filterRange": "low",
       "gpuType": "nvidia",
@@ -61,7 +61,7 @@
     {
       "name": "M.Optima (i5+5060Ti)",
       "price": 120000,
-      "priceText": "120 000 ₽",
+      "priceText": "119 990 ₽",
       "specs": ["CPU: i5-13400F","GPU: RTX 5060 Ti 8GB","RAM: 32GB DDR4 3200MHz","SSD: 1TB M.2","Cooler: Deepcool AK500","PSU: 650W"],
       "filterRange": "mid",
       "gpuType": "nvidia",
@@ -74,7 +74,7 @@
     {
       "name": "M.Optima (R5+5060Ti)",
       "price": 125000,
-      "priceText": "125 000 ₽",
+      "priceText": "124 990 ₽",
       "specs": ["CPU: R5 7500F","GPU: RTX 5060 Ti 8GB","RAM: 16GB DDR5 5200MHz","SSD: 1TB M.2","Cooler: Deepcool AK500","PSU: 700W"],
       "filterRange": "mid",
       "gpuType": "nvidia",
@@ -87,7 +87,7 @@
     {
       "name": "M.Optima (i5+5070)",
       "price": 160000,
-      "priceText": "от 160 000 ₽",
+      "priceText": "159 990 ₽",
       "specs": ["CPU: i5-13600K","GPU: RTX 5070","RAM: 32GB DDR4","SSD: 1TB M.2","Cooler: Liquid Cooling 240mm","PSU: 750W"],
       "filterRange": "mid",
       "gpuType": "nvidia",
@@ -100,7 +100,7 @@
     {
       "name": "M.Master (R7+5070)",
       "price": 185000,
-      "priceText": "185 000 ₽",
+      "priceText": "184 990 ₽",
       "specs": ["CPU: R7 7700","GPU: RTX 5070","RAM: 32GB DDR5 5600MHz","SSD: 1TB M.2","Cooler: Liquid Cooling 240mm","PSU: 800W"],
       "filterRange": "mid",
       "gpuType": "nvidia",
@@ -113,7 +113,7 @@
     {
       "name": "M.Master (7800X3D+5060Ti)",
       "price": 190000,
-      "priceText": "190 000 ₽",
+      "priceText": "189 990 ₽",
       "specs": ["CPU: Ryzen 7 7800X3D","GPU: RTX 5060 Ti 16GB","RAM: 32GB DDR5 6000MHz","SSD: 1TB M.2","Cooler: Liquid Cooling 240mm","PSU: 750W"],
       "filterRange": "mid",
       "gpuType": "nvidia",
@@ -126,7 +126,7 @@
     {
       "name": "M.Master (9800X3D+5080)",
       "price": 300000,
-      "priceText": "300 000 ₽",
+      "priceText": "299 990 ₽",
       "specs": ["CPU: Ryzen 7 9800X3D","GPU: RTX 5080","RAM: 32GB DDR5 6000MHz","SSD: 1TB M.2","Cooler: Liquid Cooling 360mm","PSU: 850W"],
       "filterRange": "high",
       "gpuType": "nvidia",
