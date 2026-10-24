@@ -1,14 +1,8 @@
 {
   "slides": [
-    {
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide1.png"
-    },
-    {
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide2.png"
-    },
-    {
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide3.png"
-    }
+    { "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide1.png" },
+    { "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide2.png" },
+    { "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/slide3.png" }
   ],
   "services": [
     { "name": "Индивидуальная сборка", "desc": "Соберём ПК под ваши задачи. Настроим, проведем стресс-тесты, идеальный кабельменеджмент.", "btn": "Заказать сборку" },
@@ -135,24 +129,30 @@
       "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/master_closed.png",
       "imageHover": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/master_open.png",
       "fps": "300+ FPS"
+    },
+    {
+      "name": "M.Used (i5-10400F + GTX 1660 Super)",
+      "price": 35000,
+      "priceText": "35 000 ₽",
+      "specs": ["CPU: i5-10400F","GPU: GTX 1660 Super","RAM: 16GB DDR4","SSD: 512GB","PSU: 500W"],
+      "condition": "used",
+      "image": "https://placehold.co/400x300/2a2a35/9b4dff?text=Used+PC",
+      "imageHover": "https://placehold.co/400x300/2a2a35/9b4dff?text=Used+PC"
+    },
+    {
+      "name": "M.Used (R5 3600 + RTX 2060)",
+      "price": 42000,
+      "priceText": "42 000 ₽",
+      "specs": ["CPU: R5 3600","GPU: RTX 2060","RAM: 16GB DDR4","SSD: 1TB","PSU: 550W"],
+      "condition": "used",
+      "image": "https://placehold.co/400x300/2a2a35/9b4dff?text=Used+PC",
+      "imageHover": "https://placehold.co/400x300/2a2a35/9b4dff?text=Used+PC"
     }
   ],
   "reviews": [
-    {
-      "name": "Михаил",
-      "text": "Все супер) Рекомендую обратиться в эту компанию!",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review1.png"
-    },
-    {
-      "name": "Алексей",
-      "text": "Отличная компьютерная мастерская! Сделали все на высшем уровне.",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review2.png"
-    },
-    {
-      "name": "Василиса",
-      "text": "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review3.png"
-    }
+    { "name": "Михаил", "text": "Все супер) Рекомендую обратиться в эту компанию!", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review1.png" },
+    { "name": "Алексей", "text": "Отличная компьютерная мастерская! Сделали все на высшем уровне.", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review2.png" },
+    { "name": "Василиса", "text": "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review3.png" }
   ],
   "counters": [
     { "number": 528, "label": "Собранных ПК" },
@@ -160,30 +160,10 @@
     { "number": 4, "label": "Года на рынке" }
   ],
   "promos": [
-    {
-      "text": "🎁 Скидка 10% на первую сборку!",
-      "endDate": "2026-06-05",
-      "enabled": true,
-      "priority": 1
-    },
-    {
-      "text": "🔥 Бесплатная доставка при заказе от 50 000 ₽",
-      "endDate": "2026-06-05",
-      "enabled": true,
-      "priority": 2
-    },
-    {
-      "text": "💫 Трейд-ин: скидка до 90% на новую технику",
-      "endDate": "2026-06-01",
-      "enabled": true,
-      "priority": 3
-    },
-    {
-      "text": "🎮 При заказе игрового ПК — игровая мышь в подарок!",
-      "endDate": "2026-06-05",
-      "enabled": true,
-      "priority": 4
-    }
+    { "text": "🎁 Скидка 10% на первую сборку!", "endDate": "2026-06-05", "enabled": true, "priority": 1 },
+    { "text": "🔥 Бесплатная доставка при заказе от 50 000 ₽", "endDate": "2026-06-05", "enabled": true, "priority": 2 },
+    { "text": "💫 Трейд-ин: скидка до 90% на новую технику", "endDate": "2026-06-01", "enabled": true, "priority": 3 },
+    { "text": "🎮 При заказе игрового ПК — игровая мышь в подарок!", "endDate": "2026-06-05", "enabled": true, "priority": 4 }
   ],
   "socials": {
     "vk": "https://vk.com/matoffpc",
@@ -211,252 +191,21 @@
     { "title": "Как обслужить и почистить ПК", "url": "https://www.youtube.com/shorts/8cFKlPablbo", "preview": "https://img.youtube.com/vi/8cFKlPablbo/maxresdefault.jpg" }
   ],
   "components": [
-    {
-      "id": 1,
-      "category": "gpu",
-      "categoryName": "Видеокарты",
-      "name": "Palit Jetstream RTX 3070 8GB",
-      "price": 24990,
-      "priceText": "24 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, использовалась для игр, без майнинга, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 2,
-      "category": "gpu",
-      "categoryName": "Видеокарты",
-      "name": "Palit Gaming Pro RTX 3070 Ti 8GB",
-      "price": 25990,
-      "priceText": "25 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, использовалась для игр, без майнинга, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3070ti.jpg",
-      "inStock": true
-    },
-    {
-      "id": 3,
-      "category": "cpu",
-      "categoryName": "Процессоры",
-      "name": "AMD Ryzen 9 9900x",
-      "price": 26990,
-      "priceText": "26 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, использовался для игр, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/r5_5600.jpg",
-      "inStock": true
-    },
-    {
-      "id": 4,
-      "category": "ram",
-      "categoryName": "Оперативная память",
-      "name": "G.Skill Trident Z5 32GB DDR5 6400MHZ",
-      "price": 26990,
-      "priceText": "26 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "Good",
-      "description": "1 планка на 32GB, коробка, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/ram_kingston.jpg",
-      "inStock": true
-    },
-    {
-      "id": 5,
-      "category": "gpu",
-      "categoryName": "Видеокарты",
-      "name": "Palit RTX 4070 Super 12GB",
-      "price": 45990,
-      "priceText": "45 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличная карта для 2K гейминга, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rx6700xt.jpg",
-      "inStock": true
-    },
-    {
-      "id": 6,
-      "category": "gpu",
-      "categoryName": "Видеокарты",
-      "name": "Gainward RTX 3080 10GB",
-      "price": 28990,
-      "priceText": "28 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, использовалась для игр, без майнинга, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 7,
-      "category": "psu",
-      "categoryName": "Блоки питания",
-      "name": "Cougar STC500",
-      "price": 1990,
-      "priceText": "1 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 8,
-      "category": "psu",
-      "categoryName": "Блоки питания",
-      "name": "Cougar Formula 600w",
-      "price": 1990,
-      "priceText": "1 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 9,
-      "category": "psu",
-      "categoryName": "Блоки питания",
-      "name": "Cougar Cougar GEX1050w",
-      "price": 4990,
-      "priceText": "4 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 10,
-      "category": "motherboard",
-      "categoryName": "Материнские платы",
-      "name": "MSI Pro X670-P WiFi",
-      "price": 13990,
-      "priceText": "13 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, полный комплект, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 11,
-      "category": "motherboard",
-      "categoryName": "Материнские платы",
-      "name": "AsRock B365 Pro 4",
-      "price": 3490,
-      "priceText": "3 490 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 12,
-      "category": "motherboard",
-      "categoryName": "Материнские платы",
-      "name": "AsRock B360 Pro 4",
-      "price": 3490,
-      "priceText": "3 490 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 12,
-      "category": "motherboard",
-      "categoryName": "Материнские платы",
-      "name": "Gigabyte B650M Aorus Elite AX",
-      "price": 12990,
-      "priceText": "12 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, полный комплект, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 13,
-      "category": "case",
-      "categoryName": "Корпуса",
-      "name": "Lian Li Lancool Mesh C Black",
-      "price": 5990,
-      "priceText": "5 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 14,
-      "category": "case",
-      "categoryName": "Корпуса",
-      "name": "Lian Li O11 Dynamic Evo XL",
-      "price": 6990,
-      "priceText": "6 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 15,
-      "category": "case",
-      "categoryName": "Корпуса",
-      "name": "1STPLAYER Uview UV6 WH",
-      "price": 3490,
-      "priceText": "3 490 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 16,
-      "category": "case",
-      "categoryName": "Корпуса",
-      "name": "Zalman N4 Black",
-      "price": 2490,
-      "priceText": "2 490 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "Отличное состояние, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg",
-      "inStock": true
-    },
-    {
-      "id": 17,
-      "category": "cooler",
-      "categoryName": "Системы охлаждения",
-      "name": "Lial li Galahand AIO 360 RGB UNI FAN SL120 Edition",
-      "price": 7990,
-      "priceText": "7 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "СЖО, отличное состояние, полный комлект, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/cooler_ak400.jpg",
-      "inStock": true
-    },
-    {
-      "id": 18,
-      "category": "cooler",
-      "categoryName": "Системы охлаждения",
-      "name": "ID-Cooling DashFlow 360XT Lite Black",
-      "price": 3990,
-      "priceText": "3 990 ₽",
-      "condition": "Б/У",
-      "conditionBadge": "good",
-      "description": "СЖО, отличное состояние, полный комлект, гарантия 3 мес",
-      "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/cooler_ak400.jpg",
-      "inStock": true
-    }
-  ]
-}
+    { "id": 1, "category": "gpu", "categoryName": "Видеокарты", "name": "Palit Jetstream RTX 3070 8GB", "price": 24990, "priceText": "24 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, использовалась для игр, без майнинга, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 2, "category": "gpu", "categoryName": "Видеокарты", "name": "Palit Gaming Pro RTX 3070 Ti 8GB", "price": 25990, "priceText": "25 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, использовалась для игр, без майнинга, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3070ti.jpg", "inStock": true },
+    { "id": 3, "category": "cpu", "categoryName": "Процессоры", "name": "AMD Ryzen 9 9900x", "price": 26990, "priceText": "26 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, использовался для игр, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/r5_5600.jpg", "inStock": true },
+    { "id": 4, "category": "ram", "categoryName": "Оперативная память", "name": "G.Skill Trident Z5 32GB DDR5 6400MHZ", "price": 26990, "priceText": "26 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "1 планка на 32GB, коробка, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/ram_kingston.jpg", "inStock": true },
+    { "id": 5, "category": "gpu", "categoryName": "Видеокарты", "name": "Palit RTX 4070 Super 12GB", "price": 45990, "priceText": "45 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличная карта для 2K гейминга, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rx6700xt.jpg", "inStock": true },
+    { "id": 6, "category": "gpu", "categoryName": "Видеокарты", "name": "Gainward RTX 3080 10GB", "price": 28990, "priceText": "28 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, использовалась для игр, без майнинга, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 7, "category": "psu", "categoryName": "Блоки питания", "name": "Cougar STC500", "price": 1990, "priceText": "1 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 8, "category": "psu", "categoryName": "Блоки питания", "name": "Cougar Formula 600w", "price": 1990, "priceText": "1 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 9, "category": "psu", "categoryName": "Блоки питания", "name": "Cougar GEX1050w", "price": 4990, "priceText": "4 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 10, "category": "motherboard", "categoryName": "Материнские платы", "name": "MSI Pro X670-P WiFi", "price": 13990, "priceText": "13 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, полный комплект, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 11, "category": "motherboard", "categoryName": "Материнские платы", "name": "AsRock B365 Pro 4", "price": 3490, "priceText": "3 490 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 12, "category": "motherboard", "categoryName": "Материнские платы", "name": "AsRock B360 Pro 4", "price": 3490, "priceText": "3 490 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 19, "category": "motherboard", "categoryName": "Материнские платы", "name": "Gigabyte B650M Aorus Elite AX", "price": 12990, "priceText": "12 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, полный комплект, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 13, "category": "case", "categoryName": "Корпуса", "name": "Lian Li Lancool Mesh C Black", "price": 5990, "priceText": "5 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 14, "category": "case", "categoryName": "Корпуса", "name": "Lian Li O11 Dynamic Evo XL", "price": 6990, "priceText": "6 990 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 15, "category": "case", "categoryName": "Корпуса", "name": "1STPLAYER Uview UV6 WH", "price": 3490, "priceText": "3 490 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 16, "category": "case", "categoryName": "Корпуса", "name": "Zalman N4 Black", "price": 2490, "priceText": "2 490 ₽", "condition": "Б/У", "conditionBadge": "good", "description": "Отличное состояние, гарантия 3 мес", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/components/rtx3060.jpg", "inStock": true },
+    { "id": 17, "category": "cooler", "categoryName": "Системы охлаждения", "
