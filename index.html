@@ -2,738 +2,112 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде</title>
     <meta name="description" content="Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде. Индивидуальные ПК под любые задачи. Апгрейд, настройка, доставка по РФ. Гарантия 1 год.">
-    <meta name="keywords" content="сборка пк, ремонт компьютеров, компьютерная мастерская, игровой компьютер, апгрейд ПК, Нижний Новгород">
-    <meta name="author" content="Matoff PC">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде">
-    <meta property="og:description" content="Профессиональная сборка и ремонт компьютеров. Индивидуальные ПК под любые задачи. Гарантия 1 год.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://matoffpc.ru">
-    <meta property="og:image" content="https://matoffpc-jpg.github.io/favicon.png">
-    <meta property="og:site_name" content="Matoff PC">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/favicon.png">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/favicon.png">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ComputerStore",
-      "name": "Matoff PC",
-      "url": "https://matoffpc.ru",
-      "logo": "https://matoffpc-jpg.github.io/favicon.png",
-      "description": "Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Нижний Новгород",
-        "addressCountry": "RU"
-      },
-      "openingHours": "Mo-Su 10:00-22:00",
-      "priceRange": "₽₽"
-    }
-    </script>
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-        ym(108527337, 'init', {webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/108527337" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    
+    <link rel="stylesheet" href="/common.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: rgba(22, 22, 28, 0.9);
-            --text-primary: #ededee;
-            --text-secondary: #bbb;
-            --border-color: rgba(155, 77, 255, 0.25);
-            --card-bg: rgba(22, 22, 28, 0.85);
-            --header-bg: rgba(10, 10, 15, 0.85);
-            --grid-color: rgba(255, 255, 255, 0.12);
-            --promo-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
-            --btn-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
-            --btn-shadow: #4a1d8a;
-            --price-color: #ffaa66;
-            --accent-purple: #9b4dff;
-            --accent-orange: #e68a2e;
-            --particle-color: rgba(155,77,255,0.5);
-            --input-bg: rgba(31, 31, 40, 0.9);
-            --gradient-light: #fff;
-            --gradient-dark: #9b4dff;
-            --fps-bg: rgba(0,0,0,0.3);
-            --fps-border: rgba(255,170,68,0.3);
-            --fps-text: #fff;
-        }
-        body.light-theme {
-            --bg-primary: #f0f2f5;
-            --bg-secondary: rgba(255, 255, 255, 0.95);
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a5a;
-            --border-color: rgba(155, 77, 255, 0.35);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --header-bg: rgba(240, 242, 245, 0.9);
-            --grid-color: rgba(0, 0, 0, 0.08);
-            --promo-bg: linear-gradient(135deg, #7c3aed, #9b4dff);
-            --btn-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
-            --btn-shadow: #6d28d9;
-            --price-color: #e68a2e;
-            --particle-color: rgba(155,77,255,0.2);
-            --input-bg: rgba(255, 255, 255, 0.95);
-            --gradient-light: #1a1a2e;
-            --gradient-dark: #9b4dff;
-            --fps-bg: rgba(230,138,46,0.1);
-            --fps-border: rgba(230,138,46,0.5);
-            --fps-text: #e68a2e;
-        }
-        body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg-primary); color: var(--text-primary); scroll-behavior: smooth; background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px); background-size: 45px 45px; position: relative; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
-        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
-        .hex-grid { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='none' stroke='rgba(155,77,255,0.08)' stroke-width='1' d='M25,12.5 L50,0 L75,12.5 L75,37.5 L50,50 L25,37.5 Z M0,37.5 L25,25 L50,37.5 L50,62.5 L25,75 L0,62.5 Z M50,37.5 L75,25 L100,37.5 L100,62.5 L75,75 L50,62.5 Z'/%3E%3C/svg%3E"); background-size: 80px 80px; animation: rotateHex 60s linear infinite; opacity: 0.3; }
-        @keyframes rotateHex { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .particles { position: absolute; width: 100%; height: 100%; }
-        .particle { position: absolute; background: radial-gradient(circle, var(--particle-color), transparent); border-radius: 50%; filter: blur(2px); animation: floatParticle 15s infinite ease-in-out; }
-        @keyframes floatParticle { 0% { transform: translateY(0) translateX(0); opacity: 0; } 20% { opacity: 0.6; } 80% { opacity: 0.6; } 100% { transform: translateY(-100vh) translateX(100px); opacity: 0; } }
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; background: radial-gradient(circle at 20% 30%, rgba(155,77,255,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255,170,68,0.05) 0%, transparent 50%); z-index: 0; animation: subtleGlow 8s ease-in-out infinite alternate; }
-        @keyframes subtleGlow { 0% { opacity: 0.5; } 100% { opacity: 1; } }
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
-        .promo-bar { background: var(--promo-bg); padding: 12px 20px; text-align: center; position: relative; z-index: 101; box-shadow: 0 8px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2); }
-        .promo-content { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .promo-text { font-weight: 800; font-size: 1rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3); letter-spacing: 0.5px; }
-        .promo-timer { background: rgba(0,0,0,0.35); padding: 6px 16px; border-radius: 50px; font-family: monospace; font-size: 1rem; font-weight: 800; letter-spacing: 3px; backdrop-filter: blur(4px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 2px 5px rgba(0,0,0,0.2); }
-        .promo-close { background: rgba(0,0,0,0.3); border: none; color: white; cursor: pointer; font-size: 1.1rem; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        .promo-close:hover { background: rgba(0,0,0,0.5); transform: scale(1.1); }
-        .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.8s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-        html { scroll-behavior: smooth; }
-        
-        .header { background: var(--header-bg); backdrop-filter: blur(20px); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); z-index: 100; padding: 10px 0; }
-        .header .container { display: flex; justify-content: space-between; align-items: center; padding: 0 32px; flex-wrap: wrap; gap: 15px; }
-        .logo { font-family: 'Orbitron', monospace; font-size: 1.6rem; font-weight: 800; white-space: nowrap; }
-        .logo a { text-decoration: none; }
-        .logo-matoff { color: var(--accent-purple); text-shadow: 0 0 15px rgba(155,77,255,0.4); }
-        .logo-pc { color: var(--accent-orange); text-shadow: 0 0 15px rgba(230,138,46,0.3); }
-        .nav { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-        .nav a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; white-space: nowrap; }
-        .nav a:hover { color: var(--accent-purple); }
-        
-        .cart-link { position: relative; text-decoration: none; color: var(--text-secondary); display: inline-flex; align-items: center; gap: 4px; }
-        .cart-link:hover { color: var(--accent-purple); }
-        .cart-count { position: absolute; top: -8px; right: -12px; background: var(--accent-orange); color: white; font-size: 0.65rem; font-weight: bold; padding: 2px 5px; border-radius: 50%; min-width: 16px; text-align: center; }
-        
-        .manager-wrapper { display: flex; align-items: center; }
-        .manager-header-btn { background: var(--btn-bg); border: none; padding: 8px 20px; border-radius: 50px; color: white; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 3px 0 var(--btn-shadow); }
-        .manager-header-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
-        
-        .theme-toggle { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 50px; padding: 4px; cursor: pointer; display: flex; gap: 4px; }
-        .theme-toggle span { padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; transition: 0.2s; cursor: pointer; }
-        .theme-toggle .active { background: var(--accent-purple); color: white; }
-        
-        .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-bg); color: white; font-weight: 700; font-size: 0.95rem; padding: 12px 24px; min-height: 48px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s; text-align: center; box-shadow: 0 3px 0 var(--btn-shadow); text-decoration: none; }
-        .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--btn-shadow); }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
-        .btn-outline { background: transparent; border: 2px solid var(--accent-purple); color: var(--accent-purple); box-shadow: none; }
-        .btn-outline:hover { background: var(--btn-bg); color: white; }
-        
-        .scroll-top { position: fixed; bottom: 30px; left: 30px; width: 45px; height: 45px; border-radius: 50%; background: var(--accent-purple); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; z-index: 99; opacity: 0; visibility: hidden; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        .scroll-top.show { opacity: 1; visibility: visible; }
-        
-        .hero-slider { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .slider-container { position: relative; width: 100%; overflow: hidden; }
-        .slider-track { display: flex; transition: transform 0.4s ease-in-out; }
-        .slider-slide { flex-shrink: 0; width: 100%; }
-        .slider-slide img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 450px; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; z-index: 10; transition: 0.2s; }
-        .slider-btn:hover { background: var(--accent-purple); }
-        .slider-prev { left: 15px; }
-        .slider-next { right: 15px; }
-        .slider-dots { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; z-index: 10; }
-        .slider-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; }
-        .slider-dot.active { background: var(--accent-purple); }
-        
-        .hero-text { margin-top: 25px; font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; text-align: center; margin-left: auto; margin-right: auto; }
-        section { padding: 70px 0; }
-        .section-title { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 700; margin-bottom: 50px; text-align: center; }
-        .section-title span { background: linear-gradient(120deg, var(--accent-purple), var(--accent-orange)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        
-        .counters-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
-        .counter-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 35px 20px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s; }
-        .counter-card:hover { border-color: var(--accent-purple); transform: translateY(-3px); }
-        .counter-number { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--gradient-light), var(--gradient-dark)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .counter-label { margin-top: 10px; color: var(--text-secondary); font-size: 0.95rem; }
-        
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .service-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 30px 24px; border: 1px solid var(--border-color); transition: all 0.3s; text-align: center; display: flex; flex-direction: column; }
-        .service-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
-        .service-card h3 { font-family: 'Orbitron', monospace; font-size: 1.3rem; margin-bottom: 15px; background: linear-gradient(135deg, var(--gradient-light), var(--gradient-dark)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .service-card p { color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; flex: 1; font-size: 0.9rem; }
-        .service-card .btn { margin-top: auto; width: 100%; }
-        
-        .filter-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 30px; }
-        .filter-btn { background: var(--bg-secondary); backdrop-filter: blur(5px); border: 1px solid var(--border-color); padding: 8px 24px; border-radius: 50px; color: var(--text-primary); cursor: pointer; transition: all 0.3s; font-size: 0.85rem; }
-        .filter-btn.active, .filter-btn:hover { background: var(--accent-purple); border-color: var(--accent-purple); color: white; transform: translateY(-2px); }
-        
-        .builds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .build-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 20px; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.3s ease; transform-style: preserve-3d; border: 1px solid var(--border-color); }
-        .build-card:hover { border-color: var(--accent-purple); box-shadow: 0 20px 35px rgba(0,0,0,0.2); }
-        .pc-image-container { position: relative; width: 100%; height: 200px; margin-bottom: 15px; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.2); }
-        .pc-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.3s ease; }
-        .pc-image-default { opacity: 1; z-index: 1; }
-        .pc-image-hover { opacity: 0; z-index: 2; }
-        .build-card:hover .pc-image-default { opacity: 0; }
-        .build-card:hover .pc-image-hover { opacity: 1; }
-        .build-card h3 { font-family: 'Orbitron', monospace; font-size: 1.3rem; text-align: center; background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .price { font-size: 1.7rem; font-weight: 800; margin: 12px 0; text-align: center; color: var(--price-color); text-shadow: 0 0 10px rgba(255,170,102,0.3); transition: all 0.3s; }
-        .build-card:hover .price { transform: scale(1.05); text-shadow: 0 0 15px rgba(255,170,102,0.6); }
-        .specs-title { font-size: 0.75rem; color: var(--accent-purple); margin: 12px 0 8px; text-align: center; font-weight: 600; letter-spacing: 2px; }
-        .specs-two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
-        .spec-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-secondary); background: rgba(155,77,255,0.05); padding: 5px 8px; border-radius: 10px; transition: all 0.2s; }
-        .spec-item:hover { background: rgba(155,77,255,0.15); transform: translateX(5px); color: var(--accent-purple); }
-        .spec-icon { font-size: 0.9rem; min-width: 24px; }
-        .fps-block { background: var(--fps-bg); border-radius: 14px; padding: 8px; margin: 8px 0; text-align: center; border: 1px solid var(--fps-border); }
-        .fps-title { font-size: 0.65rem; color: var(--price-color); letter-spacing: 1px; margin-bottom: 3px; }
-        .fps-value { font-size: 0.9rem; font-weight: 700; color: var(--fps-text); }
-        .build-card .btn-buy { margin-top: auto; width: 100%; padding: 10px; font-size: 0.85rem; }
-        
-        .calculator-block { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 35px; text-align: center; border: 1px solid var(--border-color); margin-top: 30px; }
-        .calculator-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 25px 0; }
-        .calc-select { background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px 14px; border-radius: 50px; font-size: 0.85rem; cursor: pointer; width: 100%; }
-        .calculator-result { margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; border: 1px solid var(--border-color); }
-        
-        .steps-grid, .advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .step-card, .advantage-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 28px; text-align: center; display: flex; flex-direction: column; transition: all 0.3s; }
-        .step-card:hover, .advantage-card:hover { border-color: var(--accent-purple); transform: translateY(-3px); box-shadow: 0 0 20px rgba(155,77,255,0.2); }
-        .step-card h3, .advantage-card h3 { font-family: 'Orbitron', monospace; font-size: 1.2rem; margin-bottom: 12px; color: var(--accent-purple); }
-        .step-card p, .advantage-card p { font-size: 0.9rem; flex: 1; color: var(--text-secondary); }
-        
-        .social-block { text-align: center; }
-        .social-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 35px; }
-        .social-icon { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--btn-bg); color: white; font-weight: 700; font-size: 0.9rem; padding: 12px 24px; min-width: 120px; border-radius: 50px; text-decoration: none; transition: all 0.3s; box-shadow: 0 3px 0 var(--btn-shadow); }
-        .social-icon:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--btn-shadow); }
-        .social-icon:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
-        .social-icon.vk:hover { background: linear-gradient(135deg, #2787F5, #1a6bc9); }
-        .social-icon.tg:hover { background: linear-gradient(135deg, #26A5E4, #1a7eb3); }
-        .social-icon.yt:hover { background: linear-gradient(135deg, #FF0000, #cc0000); }
-        .social-icon.tt:hover { background: linear-gradient(135deg, #000000, #333333); }
-        .social-icon.ig:hover { background: linear-gradient(135deg, #E4405F, #c13584); }
-        
-        .telegram-block { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 35px; text-align: center; border: 1px solid var(--border-color); margin-top: 30px; }
-        .telegram-preview { max-width: 450px; margin: 20px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .telegram-preview img { width: 100%; display: block; }
-        
-        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 35px; }
-        .review-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 24px; display: flex; flex-direction: column; transition: all 0.3s; }
-        .review-card:hover { border-color: var(--accent-purple); transform: translateY(-3px); box-shadow: 0 0 20px rgba(155,77,255,0.2); }
-        .review-image { width: 100%; height: 160px; object-fit: cover; border-radius: 16px; margin-bottom: 12px; border: 1px solid var(--accent-purple); }
-        .review-card strong { color: var(--price-color); font-size: 1rem; display: block; margin-bottom: 8px; }
-        .review-card p { font-size: 0.85rem; line-height: 1.4; color: var(--text-secondary); }
-        
-        .avito-link { text-align: center; margin-top: 20px; }
-        .not-found-block { background: linear-gradient(135deg, rgba(155,77,255,0.15), rgba(124,58,237,0.08)); border-radius: 35px; padding: 45px; text-align: center; border: 1px solid var(--border-color); margin: 35px 0; }
-        .not-found-block h3 { font-size: 1.8rem; margin-bottom: 15px; }
-        .not-found-block p { margin-bottom: 25px; font-size: 1rem; }
-        
-        .shorts-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
-        .short-card { width: 250px; cursor: pointer; transition: all 0.3s; border-radius: 18px; overflow: hidden; background: var(--card-bg); border: 1px solid var(--border-color); }
-        .short-card:hover { transform: translateY(-5px); border-color: var(--accent-purple); box-shadow: 0 15px 25px rgba(155,77,255,0.2); }
-        .short-card img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; }
-        .short-card p { padding: 12px; text-align: center; font-weight: 600; font-size: 0.85rem; background: linear-gradient(135deg, var(--gradient-light), var(--gradient-dark)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        
-        .order-form { max-width: 550px; margin: 0 auto; background: var(--card-bg); backdrop-filter: blur(8px); padding: 35px; border-radius: 35px; border: 1px solid var(--border-color); }
-        .contact-type-buttons { display: flex; gap: 12px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
-        .contact-type-btn { background: var(--bg-secondary); padding: 10px 22px; border-radius: 50px; cursor: pointer; transition: all 0.3s; font-weight: 600; font-size: 0.85rem; border: 1px solid var(--border-color); color: var(--text-primary); }
-        .contact-type-btn.active { background: var(--accent-purple); color: white; box-shadow: 0 0 15px rgba(155,77,255,0.3); }
-        .order-form input, .order-form textarea { width: 100%; padding: 12px 16px; margin-bottom: 15px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 28px; font-size: 0.9rem; transition: 0.2s; }
-        .order-form input:focus, .order-form textarea:focus { outline: none; border-color: var(--accent-purple); box-shadow: 0 0 10px rgba(155,77,255,0.3); }
-        .order-form .btn { width: 100%; }
-        
-        .consent-checkbox { margin: 15px 0; text-align: left; }
-        .consent-checkbox label { display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; line-height: 1.4; }
-        .consent-checkbox input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; margin-top: 2px; accent-color: var(--accent-purple); cursor: pointer; }
-        .consent-checkbox a { color: var(--accent-purple); text-decoration: underline; }
-        .consent-checkbox a:hover { color: var(--accent-orange); }
-        
-        .admin-login-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
-        .admin-login-box { background: #16161c; padding: 35px; border-radius: 35px; text-align: center; border: 1px solid var(--accent-purple); min-width: 300px; }
-        .admin-login-box input { width: 100%; padding: 12px; margin: 18px 0; background: #1f1f28; border: 1px solid var(--accent-purple); color: white; border-radius: 28px; }
-        .admin-panel { display: none; background: #0c0c12; border-top: 2px solid var(--accent-purple); margin-top: 50px; padding: 45px 0; }
-        .admin-panel.visible { display: block; }
-        .admin-form { max-width: 850px; margin: 0 auto; background: #13131a; padding: 25px; border-radius: 35px; }
-        .admin-form p { color: var(--text-secondary); }
-        .admin-form a { color: var(--accent-purple); }
-        
-        footer { text-align: center; padding: 35px; border-top: 1px solid var(--border-color); }
-        .work-hours { font-size: 0.7rem; color: var(--text-secondary); margin-top: 10px; }
-        .meta-warning { font-size: 0.65rem; color: var(--text-secondary); opacity: 0.7; margin-top: 8px; }
-        .legal-links { margin-top: 15px; font-size: 0.7rem; }
-        .legal-links a { color: var(--text-secondary); text-decoration: none; margin: 0 8px; }
-        .legal-links a:hover { color: var(--accent-purple); }
-        .admin-link { margin-top: 15px; font-size: 0.65rem; color: var(--text-secondary); cursor: pointer; }
-        .admin-link:hover { color: var(--accent-purple); }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 1000; }
-        .modal-content { background: #16161c; padding: 35px; border-radius: 35px; text-align: center; min-width: 280px; border: 1px solid var(--accent-purple); }
-        
-        .team-single { display: flex; justify-content: center; margin: 40px 0; }
-        .team-card-single { max-width: 550px; width: 100%; background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 32px; padding: 35px 30px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s; }
-        .team-card-single:hover { border-color: var(--accent-purple); transform: translateY(-5px); box-shadow: 0 0 25px rgba(155,77,255,0.2); }
-        .team-avatar-single { font-size: 4rem; margin-bottom: 15px; }
-        .team-card-single h3 { font-family: 'Orbitron', monospace; font-size: 1.5rem; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .team-roles-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 25px; }
-        .team-role-item { background: rgba(155,77,255,0.15); border: 1px solid rgba(155,77,255,0.3); border-radius: 50px; padding: 8px 18px; font-size: 0.9rem; font-weight: 500; color: var(--text-primary); transition: all 0.2s; }
-        .team-role-item:hover { background: rgba(155,77,255,0.3); transform: translateY(-2px); }
-        .team-footer-single { margin-top: 15px; padding: 15px; background: rgba(155,77,255,0.08); border-radius: 40px; font-size: 0.95rem; color: var(--text-secondary); }
-        .team-footer-single strong { color: var(--accent-purple); }
-        
-        @media (max-width: 1000px) {
-            .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid, .counters-grid { grid-template-columns: repeat(2, 1fr); }
-            .section-title { font-size: 1.8rem; }
-            .short-card { width: 210px; }
-            .social-icon { padding: 10px 20px; min-width: 110px; font-size: 0.85rem; }
-        }
-        @media (max-width: 768px) {
-            .team-card-single { padding: 25px 20px; }
-            .team-avatar-single { font-size: 3rem; }
-            .team-card-single h3 { font-size: 1.2rem; }
-            .team-role-item { padding: 5px 12px; font-size: 0.75rem; }
-            .team-footer-single { font-size: 0.8rem; }
-            .container { padding: 0 20px; }
-            .header .container { flex-direction: column; padding: 12px 20px; gap: 12px; }
-            .nav { justify-content: center; gap: 15px; }
-            .nav a { font-size: 0.8rem; }
-            .logo { font-size: 1.4rem; }
-            .section-title { font-size: 1.5rem; }
-            section { padding: 50px 0; }
-            .hero-slider { border-radius: 16px; }
-            .short-card { width: 170px; }
-            .social-icons { gap: 15px; }
-            .social-icon { padding: 8px 16px; min-width: 90px; font-size: 0.75rem; }
-            .counters-grid { grid-template-columns: 1fr; gap: 20px; }
-            .promo-text { font-size: 0.75rem; }
-            .promo-timer { font-size: 0.8rem; padding: 4px 10px; }
-            .calculator-filters { grid-template-columns: 1fr; }
-            .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; }
-            .pc-image-container { height: 160px; }
-            .review-image { height: 140px; }
-        }
-        @media (max-width: 640px) {
-            .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid { grid-template-columns: 1fr; }
-            .logo { font-size: 1.3rem; }
-            .short-card { width: 150px; }
-            .social-icons { gap: 12px; }
-            .social-icon { padding: 6px 12px; min-width: 70px; font-size: 0.7rem; }
-            .pc-image-container { height: 160px; }
-            .review-image { height: 120px; }
-            .not-found-block { padding: 25px; }
-            .not-found-block h3 { font-size: 1.3rem; }
-        }
+        /* Стили только для главной */
+        .hero { padding: 60px 0 40px; text-align: center; }
+        .hero h1 { font-family: 'Orbitron', monospace; font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero h1 span { background: linear-gradient(120deg, var(--accent-purple), var(--accent-orange)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 30px; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-top: 40px; }
+        .feature-card { background: var(--card-bg); border-radius: 24px; padding: 25px; text-align: center; border: 1px solid var(--border-color); transition: 0.3s; }
+        .feature-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.85rem; color: var(--text-secondary); }
+        @media (max-width: 1000px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .hero h1 { font-size: 2rem; } .features-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-<div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
-<div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
 
 <header class="header">
     <div class="container">
         <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
         <div class="nav">
-            <a href="#services">Услуги</a>
-            <a href="#builds">Сборки</a>
-            <a href="#steps">Этапы</a>
-            <a href="#advantages">Преимущества</a>
-            <a href="#reviews">Отзывы</a>
-            <a href="#order">Заявка</a>
+            <a href="/">Главная</a>
+            <a href="/builds.html">Сборки</a>
+            <a href="/services.html">Услуги</a>
+            <a href="/components.html">Комплектующие</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Контакты</a>
+            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
             <div class="theme-toggle" id="themeToggle">
                 <span class="active" data-theme="dark">🌙</span>
                 <span data-theme="light">☀️</span>
-            </div>
-            <div class="manager-wrapper">
-                <button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button>
             </div>
         </div>
     </div>
 </header>
 
 <main>
-    <section class="hero" style="padding: 40px 0 20px 0;">
+    <section class="hero">
         <div class="container">
-            <div class="hero-slider" id="heroSlider">
-                <div class="slider-container">
-                    <div class="slider-track" id="sliderTrack"></div>
-                    <button class="slider-btn slider-prev" id="sliderPrev">❮</button>
-                    <button class="slider-btn slider-next" id="sliderNext">❯</button>
-                    <div class="slider-dots" id="sliderDots"></div>
-                </div>
-            </div>
-            <div class="hero-text">
-                <p>✨ Профессиональная сборка, ремонт и апгрейд компьютеров в Нижнем Новгороде ✨</p>
+            <h1>Соберём <span>игровой ПК</span> под ваш бюджет за 3 дня</h1>
+            <p>Индивидуальная сборка, ремонт и апгрейд компьютеров в Нижнем Новгороде. Гарантия 1 год. Доставка по всей России.</p>
+            <div class="hero-buttons">
+                <a href="/builds.html" class="btn">🎮 Смотреть сборки</a>
+                <a href="/contacts.html" class="btn btn-outline">📞 Связаться</a>
             </div>
         </div>
     </section>
 
-    <section id="counters"><div class="container"><h2 class="section-title fade-up">Matoff PC <span>в цифрах</span></h2><div class="counters-grid" id="countersContainer"></div></div></section>
-    <section id="services"><div class="container"><h2 class="section-title fade-up">Наши <span>услуги</span></h2><div id="servicesContainer" class="services-grid"></div></div></section>
-    <section id="builds"><div class="container"><h2 class="section-title fade-up">Лучшее <span>решение</span> для вас</h2><div class="filter-buttons" id="filterGroup"><button class="filter-btn active" data-filter="all">Все</button><button class="filter-btn" data-filter="low">до 100 000 ₽</button><button class="filter-btn" data-filter="mid">100 000 – 200 000 ₽</button><button class="filter-btn" data-filter="high">от 200 000 ₽</button></div><div class="filter-buttons" id="gpuFilterGroup"><button class="filter-btn active" data-gpu="all">Все видеокарты</button><button class="filter-btn" data-gpu="nvidia">NVIDIA</button><button class="filter-btn" data-gpu="amd">AMD</button></div><div id="buildsContainer" class="builds-grid"></div></div></section>
-    <section id="calculator"><div class="container"><h2 class="section-title fade-up">Подберите <span>сборку</span></h2><div class="calculator-block"><h3>🎮 Калькулятор сборки</h3><p>Ответьте на несколько вопросов, и мы подберем оптимальный ПК</p><div class="calculator-filters"><select id="calcPurpose" class="calc-select"><option value="games">🎮 Для игр</option><option value="work">💼 Для работы/офиса</option><option value="video">🎬 Для видеомонтажа/3D</option><option value="universal">⭐ Универсальная</option></select><select id="calcCpu" class="calc-select"><option value="any">🖥️ Любой процессор</option><option value="intel">💙 Intel</option><option value="amd">❤️ AMD</option></select><select id="calcGpu" class="calc-select"><option value="any">🎮 Любая видеокарта</option><option value="nvidia">💚 NVIDIA</option><option value="amd">🧡 AMD</option></select><select id="calcBudget" class="calc-select"><option value="70000">💰 до 70 000 ₽</option><option value="90000">💰 70 000 – 90 000 ₽</option><option value="120000">💰 90 000 – 120 000 ₽</option><option value="160000">💰 120 000 – 160 000 ₽</option><option value="200000">💰 160 000 – 200 000 ₽</option><option value="260000">💰 200 000 – 260 000 ₽</option><option value="999999">💰 260 000+ ₽</option></select></div><button id="calcButton" class="btn">Подобрать сборку</button><div id="calculatorResult" class="calculator-result"></div></div></div></section>
-    <section id="steps"><div class="container"><h2 class="section-title fade-up">Этапы <span>работы</span></h2><div id="stepsContainer" class="steps-grid"></div></div></section>
-    <section id="advantages"><div class="container"><h2 class="section-title fade-up">Наши <span>преимущества</span></h2><div id="advantagesContainer" class="advantages-grid"></div></div></section>
-    <section id="social"><div class="container"><h2 class="section-title fade-up">Мы в <span>соцсетях</span></h2><div class="social-block"><div class="social-icons" id="socialIconsContainer"></div></div></div></section>
-    <section id="telegram"><div class="container"><h2 class="section-title fade-up">Актуальные <span>комплектующие в наличии</span></h2><div class="telegram-block"><h3>📢 Наш Telegram канал</h3><p style="margin-bottom: 15px;">Подписывайтесь, чтобы быть в курсе актуальных цен на комплектующие, периферию и готовые компьютеры</p><div class="telegram-preview"><img src="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/telegram-preview.png" alt="Telegram канал Matoff PC" onerror="this.src='https://placehold.co/600x300/1a1a2a/9b4dff?text=Telegram'"></div><a href="https://t.me/matoffpctg?start=site_main_button" target="_blank" class="btn telegram-channel-link" style="display: inline-flex; margin-top: 20px;">📱 Перейти в Telegram канал</a></div></div></section>
-    <section id="shorts"><div class="container"><h2 class="section-title fade-up">Видео <span>обзоры</span></h2><div id="shortsContainer" class="shorts-grid"></div></div></section>
-    
-    <!-- КОМАНДА MATOFF PC -->
-    <section id="team">
+    <section>
         <div class="container">
-            <h2 class="section-title fade-up">Кто <span>работает</span> над проектом</h2>
-            <div class="team-single">
-                <div class="team-card-single">
-                    <div class="team-avatar-single">🧑‍💻</div>
-                    <h3>Александр (Matoff)</h3>
-                    <div class="team-roles-list">
-                        <div class="team-role-item">🚀 Основатель</div>
-                        <div class="team-role-item">🔧 Сборщик ПК</div>
-                        <div class="team-role-item">🚚 Курьер</div>
-                        <div class="team-role-item">🎬 Монтажёр</div>
-                        <div class="team-role-item">📞 Менеджер</div>
-                        <div class="team-role-item">📱 SMM-менеджер</div>
-                        <div class="team-role-item">💰 Бухгалтер</div>
-                    </div>
-                    <p class="team-footer-single">🤝 <strong>Один человек</strong>, который любит своё дело и делает его качественно!</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Сборка за 3 дня</h3>
+                    <p>Быстро и качественно</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Гарантия 1 год</h3>
+                    <p>На все сборки и работы</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Доставка по РФ</h3>
+                    <p>Бережная упаковка</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Поддержка 24/7</h3>
+                    <p>Поможем с настройкой</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section id="reviews"><div class="container"><h2 class="section-title fade-up">Клиенты <span>о нас</span></h2><div id="reviewsContainer" class="reviews-grid"></div><div class="avito-link"><a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">📱 Смотреть все отзывы на Авито</a></div></div></section>
-    <section id="notFound"><div class="container"><div class="not-found-block fade-up"><h3>🤔 Не нашли свой идеальный ПК?</h3><p>Соберём компьютер специально под ваши задачи и бюджет</p><button class="btn" id="notFoundBtn">Связаться с менеджером</button></div></div></section>
-    <section id="order"><div class="container"><h2 class="section-title fade-up">Оставить <span>заявку</span></h2><div class="order-form"><div class="contact-type-buttons"><div class="contact-type-btn active" data-contact="phone">📞 Телефон</div><div class="contact-type-btn" data-contact="tg">💬 Telegram</div><div class="contact-type-btn" data-contact="vk">📱 VK</div></div><form id="requestForm"><input type="text" id="clientName" placeholder="Ваше имя" required><div id="contactFieldContainer"><input type="tel" id="clientContact" placeholder="Номер телефона" required></div><textarea id="clientComment" rows="3" placeholder="Что вас интересует? (сборка, апгрейд, ремонт...)"></textarea>
-<div class="consent-checkbox">
-    <label>
-        <input type="checkbox" id="clientConsent" required>
-        <span>Я даю <a href="/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="/privacy.html" target="_blank">Политикой обработки персональных данных</a></span>
-    </label>
-</div>
 
-<button type="submit" class="btn">📨 Отправить заявку</button></form><p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p></div></div></section>
+    <section>
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Готовы <span>начать?</span></h2>
+            <p style="margin-bottom: 25px; color: var(--text-secondary);">Оставьте заявку, и мы подберём идеальную сборку под ваши задачи</p>
+            <a href="/contacts.html" class="btn">📨 Оставить заявку</a>
+        </div>
+    </section>
 </main>
 
-<footer><p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p><div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div><div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div> <div class="legal-links">
-    <a href="/privacy.html">Политика обработки персональных данных</a>
-    |
-    <a href="/consent.html">Согласие на обработку персональных данных</a>
-</div><div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div><p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p></footer>
+<footer>
+    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
+    <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
+    <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
+    <div class="legal-links">
+        <a href="/privacy.html">Политика обработки персональных данных</a>
+        |
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+    <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
+    <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
+</footer>
 
-<button class="scroll-top" id="scrollTopBtn">↑</button>
-<div id="socialModal" class="modal"><div class="modal-content"><h3 style="margin-bottom: 20px;">Связь с менеджером</h3><button id="modalVk" class="btn" style="margin: 8px;">📱 VK</button><button id="modalTg" class="btn" style="margin: 8px;">💬 Telegram</button><button id="closeModal" class="btn-outline btn" style="margin: 8px;">Закрыть</button></div></div>
-<div id="adminLoginOverlay" class="admin-login-overlay"><div class="admin-login-box"><h3>🔐 Вход в админ-панель</h3><input type="password" id="adminPassword" placeholder="Введите пароль"><button id="adminLoginBtn" class="btn">Войти</button><button id="adminLoginClose" class="btn-outline btn" style="margin-top: 10px;">Отмена</button></div></div>
-<div id="adminPanel" class="admin-panel"><div class="container"><h3 style="text-align:center; margin-bottom: 25px; color:#9b4dff;">⚙️ АДМИН-ПАНЕЛЬ</h3><div class="admin-form"><p style="margin-bottom: 20px;">📌 <strong>Все данные хранятся в файле data.json в вашем репозитории.</strong> Чтобы изменить услуги, сборки, отзывы или акцию, отредактируйте файл <code>data.json</code> в репозитории <code>matoffpc.github.io</code>.</p><p style="margin-bottom: 20px;">🔗 <a href="https://github.com/matoffpc-jpg/matoffpc.github.io/edit/main/data.json" target="_blank" style="color:#9b4dff;">Открыть data.json для редактирования</a></p><button id="logoutAdminBtn" class="btn-outline btn" style="margin-top: 12px; width:100%;">🚪 Выйти из админ-панели</button></div></div></div>
-
-<script>
-    const ADMIN_PASSWORD = "matoff2025";
-    let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [] };
-    let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
-
-    function saveCart() {
-        localStorage.setItem('matoff_cart', JSON.stringify(cart));
-        updateCartCounters();
-    }
-
-    function updateCartCounters() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const cartCountSpans = document.querySelectorAll('#headerCartCount, #cartCount');
-        cartCountSpans.forEach(span => { if (span) span.textContent = totalItems; });
-    }
-
-    function addToCart(component) {
-        const existing = cart.find(item => item.id === component.id);
-        if (existing) {
-            existing.quantity++;
-        } else {
-            cart.push({
-                id: component.id,
-                name: component.name,
-                price: component.price,
-                priceText: component.priceText,
-                image: component.image,
-                quantity: 1
-            });
-        }
-        saveCart();
-        alert(`✅ ${component.name} добавлен в корзину!`);
-    }
-
-    async function loadData() {
-        try {
-            const response = await fetch('/data.json?t=' + Date.now());
-            if (!response.ok) throw new Error('Ошибка загрузки data.json: ' + response.status);
-            siteData = await response.json();
-            console.log('✅ Данные загружены успешно');
-            renderAll();
-            initSlider();
-        } catch(e) {
-            console.error('❌ Ошибка загрузки:', e);
-        }
-    }
-
-    function initSlider() {
-        const slides = siteData.slides || [];
-        if (slides.length === 0) return;
-        const track = document.getElementById('sliderTrack');
-        const dotsContainer = document.getElementById('sliderDots');
-        if (!track || !dotsContainer) return;
-        let currentIndex = 0, interval;
-        track.innerHTML = slides.map(slide => `<div class="slider-slide"><img src="${slide.image}" alt="Слайд" onerror="this.src='https://placehold.co/1200x500/2a2a35/9b4dff?text=Slide'"></div>`).join('');
-        dotsContainer.innerHTML = slides.map((_, i) => `<div class="slider-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></div>`).join('');
-        function updateSlider() { track.style.transform = `translateX(-${currentIndex * 100}%)`; document.querySelectorAll('.slider-dot').forEach((dot, i) => dot.classList.toggle('active', i === currentIndex)); }
-        function nextSlide() { currentIndex = (currentIndex + 1) % slides.length; updateSlider(); }
-        function prevSlide() { currentIndex = (currentIndex - 1 + slides.length) % slides.length; updateSlider(); }
-        const nextBtn = document.getElementById('sliderNext'), prevBtn = document.getElementById('sliderPrev');
-        if (nextBtn) nextBtn.onclick = () => { nextSlide(); resetInterval(); };
-        if (prevBtn) prevBtn.onclick = () => { prevSlide(); resetInterval(); };
-        document.querySelectorAll('.slider-dot').forEach(dot => { dot.onclick = () => { currentIndex = parseInt(dot.dataset.index); updateSlider(); resetInterval(); }; });
-        function startInterval() { interval = setInterval(nextSlide, 5000); }
-        function resetInterval() { clearInterval(interval); startInterval(); }
-        startInterval();
-    }
-
-    function getSpecIcon(spec) {
-        if(spec.includes("CPU")) return "🖥️";
-        if(spec.includes("GPU")) return "🎮";
-        if(spec.includes("RAM")) return "💾";
-        if(spec.includes("SSD")) return "⚡";
-        if(spec.includes("Cooler")) return "🌀";
-        if(spec.includes("PSU")) return "🔌";
-        return "🔧";
-    }
-
-    function scrollToOrder() { const orderSection = document.getElementById('order'); if (orderSection) orderSection.scrollIntoView({ behavior: 'smooth' }); }
-
-    function animateCounters() {
-        const counters = document.querySelectorAll('.counter-number');
-        counters.forEach(c => { let target = parseInt(c.dataset.target); if (isNaN(target)) return; let current = 0, increment = target / 50; function update() { current += increment; if(current < target) { c.textContent = Math.floor(current); requestAnimationFrame(update); } else c.textContent = target; } update(); });
-    }
-
-    function renderCounters() { if(!siteData.counters || !siteData.counters.length) return; const container = document.getElementById('countersContainer'); if (container) { container.innerHTML = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.number}">0</div><div class="counter-label">${c.label}</div></div>`).join(''); animateCounters(); } }
-    function renderServices() { if(!siteData.services || !siteData.services.length) return; const container = document.getElementById('servicesContainer'); if (container) { container.innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = scrollToOrder); } }
-    function renderSteps() { const container = document.getElementById('stepsContainer'); if (container && siteData.steps && siteData.steps.length) { container.innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join(''); } }
-    function renderAdvantages() { const container = document.getElementById('advantagesContainer'); if (container && siteData.advantages && siteData.advantages.length) { container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join(''); } }
-    function renderShorts() { const container = document.getElementById('shortsContainer'); if (container && siteData.shorts && siteData.shorts.length) { container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join(''); } }
-    function renderReviews() { const container = document.getElementById('reviewsContainer'); if (container && siteData.reviews && siteData.reviews.length) { container.innerHTML = siteData.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join(''); } }
-    function renderSocialBlock() { let s = siteData.socials || {}; let html = ''; if(s.vk) html += `<a href="${s.vk}" target="_blank" class="social-icon vk">📱 VK</a>`; if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="social-icon tg">💬 Telegram</a>`; if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="social-icon yt">📺 YouTube</a>`; if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="social-icon tt">🎵 TikTok</a>`; if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="social-icon ig">📷 Instagram</a>`; const container = document.getElementById('socialIconsContainer'); if (container) container.innerHTML = html; }
-    
-    let promoInterval;
-    
-    function renderPromo() { 
-        const promoBar = document.getElementById('promoBar');
-        if (!promoBar) return;
-        
-        if (!siteData.promos || siteData.promos.length === 0) {
-            if (promoInterval) clearInterval(promoInterval);
-            promoBar.style.display = 'none';
-            return;
-        }
-        
-        const activePromos = siteData.promos.filter(p => p.enabled === true);
-        
-        if (activePromos.length === 0) {
-            if (promoInterval) clearInterval(promoInterval);
-            promoBar.style.display = 'none';
-            return;
-        }
-        
-        if (typeof window.currentPromoIndex === 'undefined') {
-            window.currentPromoIndex = 0;
-        }
-        
-        const currentPromo = activePromos[window.currentPromoIndex % activePromos.length];
-        window.currentPromoIndex++;
-        
-        promoBar.style.display = 'block';
-        const promoText = document.getElementById('promoText');
-        if (promoText) promoText.textContent = currentPromo.text;
-        
-        if (currentPromo.endDate) {
-            startTimer(currentPromo.endDate);
-        }
-    }
-    
-    function startPromoRotation() {
-        if (promoInterval) clearInterval(promoInterval);
-        promoInterval = setInterval(() => {
-            renderPromo();
-        }, 8000);
-    }
-    
-    function startTimer(endDate) { if(!endDate) return; let end = new Date(endDate); function update() { let diff = end - new Date(); if(diff <= 0) { const promoBar = document.getElementById('promoBar'); if (promoBar) promoBar.style.display = 'none'; return; } let d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); const promoTimer = document.getElementById('promoTimer'); if (promoTimer) promoTimer.textContent = `${d}д ${h}ч ${m}м ${s}с`; } update(); setInterval(update, 1000); }
-
-    let currentFilter = "all", currentGpuFilter = "all";
-    function renderBuilds() {
-        if(!siteData.builds || !siteData.builds.length) return;
-        let filtered = [...siteData.builds];
-        if(currentFilter !== "all") filtered = filtered.filter(b => b.filterRange === currentFilter);
-        if(currentGpuFilter !== "all") filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
-        const container = document.getElementById('buildsContainer');
-        if (!container) return;
-        if (filtered.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;">🤔 Нет сборок под выбранные фильтры</div>'; return; }
-        container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn btn-buy">💰 Купить</button></div>`).join('');
-        document.querySelectorAll('.build-card').forEach(card => {
-            card.onmousemove = (e) => { 
-                let r = card.getBoundingClientRect(); 
-                let x = e.clientX - r.left, y = e.clientY - r.top; 
-                let rx = (y - r.height/2)/35, ry = (r.width/2 - x)/35; 
-                card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; 
-            };
-            card.onmouseleave = () => card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-        });
-        document.querySelectorAll('.btn-buy').forEach(btn => btn.onclick = scrollToOrder);
-    }
-
-    function initCalculator() {
-        const calcButton = document.getElementById('calcButton');
-        if (!calcButton) return;
-        calcButton.onclick = () => {
-            if (!siteData.builds || siteData.builds.length === 0) { const resultDiv = document.getElementById('calculatorResult'); if (resultDiv) resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>⏳ Данные загружаются...</p></div>`; return; }
-            let purpose = document.getElementById('calcPurpose').value, cpuPref = document.getElementById('calcCpu').value, gpuPref = document.getElementById('calcGpu').value, budget = parseInt(document.getElementById('calcBudget').value);
-            let filtered = [...siteData.builds];
-            if(budget === 70000) filtered = filtered.filter(b => b.price <= 70000);
-            else if(budget === 90000) filtered = filtered.filter(b => b.price > 70000 && b.price <= 90000);
-            else if(budget === 120000) filtered = filtered.filter(b => b.price > 90000 && b.price <= 120000);
-            else if(budget === 160000) filtered = filtered.filter(b => b.price > 120000 && b.price <= 160000);
-            else if(budget === 200000) filtered = filtered.filter(b => b.price > 160000 && b.price <= 200000);
-            else if(budget === 260000) filtered = filtered.filter(b => b.price > 200000 && b.price <= 260000);
-            else filtered = filtered.filter(b => b.price > 260000);
-            if(purpose !== 'any') { let f = filtered.filter(b => b.purpose === purpose); if(f.length) filtered = f; }
-            if(cpuPref !== 'any') { let f = filtered.filter(b => b.cpuType === cpuPref); if(f.length) filtered = f; }
-            if(gpuPref !== 'any') { let f = filtered.filter(b => b.gpuType === gpuPref); if(f.length) filtered = f; }
-            filtered.sort((a,b) => a.price - b.price);
-            let selected = filtered[0];
-            let resultDiv = document.getElementById('calculatorResult');
-            if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn" onclick="scrollToOrder()">📝 Оставить заявку</button></div></div></div>`; }
-            else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><button class="btn" onclick="scrollToOrder()">Связаться</button></div>`; }
-        };
-    }
-
-    async function sendToTelegram(name, contact, type, comment) {
-        if (!name || !contact) return false;
-
-        const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
-        const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
-        const CHAT_ID = "1065465753";
-
-        const url = `https://bot-gate.ru/api/v1/bots/${BOT_PUBLIC_ID}/sendMessage`;
-
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${BOTGATE_API_KEY}`
-                },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`
-                })
-            });
-
-            const result = await response.json();
-            console.log("Ответ от BotGate:", result);
-            return !!result.ok;
-        } catch (e) { 
-            console.error("Ошибка отправки через BotGate:", e);
-            return false; 
-        }
-    }
-
-    function createParticles() { 
-        const particlesContainer = document.getElementById('particles');
-        if (!particlesContainer) return;
-        for(let i=0;i<50;i++) { 
-            let p = document.createElement('div'); p.className = 'particle'; 
-            let s = Math.random()*5+2; 
-            p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`; 
-            particlesContainer.appendChild(p); 
-        } 
-    }
-
-    function checkVisibility() { document.querySelectorAll('.fade-up').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add('visible'); }); }
-    function initScrollTop() { let btn = document.getElementById('scrollTopBtn'); if (btn) { window.onscroll = () => btn.classList.toggle('show', window.scrollY > 300); btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); } }
-    function initTheme() { let toggle = document.getElementById('themeToggle'); if (!toggle) return; let saved = localStorage.getItem('matoff_theme') || 'dark'; if(saved === 'light') document.body.classList.add('light-theme'); const spans = toggle.querySelectorAll('span'); spans.forEach(span => { span.classList.toggle('active', span.dataset.theme === saved); span.onclick = (e) => { e.stopPropagation(); let theme = span.dataset.theme; if (theme === 'light') document.body.classList.add('light-theme'); else document.body.classList.remove('light-theme'); localStorage.setItem('matoff_theme', theme); spans.forEach(s => s.classList.remove('active')); span.classList.add('active'); }; }); }
-    function showAdminLogin() { const overlay = document.getElementById('adminLoginOverlay'); if (overlay) overlay.style.display = 'flex'; }
-    function hideAdminLogin() { const overlay = document.getElementById('adminLoginOverlay'); if (overlay) overlay.style.display = 'none'; }
-    function showAdminPanel() { const panel = document.getElementById('adminPanel'); if (panel) panel.classList.add('visible'); }
-    function hideAdminPanel() { const panel = document.getElementById('adminPanel'); if (panel) panel.classList.remove('visible'); }
-
-    function renderAll() { 
-        renderCounters(); renderServices(); renderBuilds(); renderSteps(); renderAdvantages(); renderSocialBlock(); renderShorts(); renderReviews(); renderPromo();
-        startPromoRotation();
-        setTimeout(() => checkVisibility(), 100); initCalculator(); 
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        createParticles(); loadData(); initScrollTop(); initTheme();
-        window.addEventListener('scroll', checkVisibility); checkVisibility();
-        
-        document.getElementById('promoClose').onclick = () => { const promoBar = document.getElementById('promoBar'); if (promoBar) promoBar.style.display = 'none'; };
-        document.getElementById('notFoundBtn').onclick = scrollToOrder;
-        
-        document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; renderBuilds(); });
-        document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentGpuFilter = this.dataset.gpu; renderBuilds(); });
-        
-        document.getElementById('adminLink').onclick = showAdminLogin;
-        document.getElementById('adminLoginBtn').onclick = () => { const adminPassword = document.getElementById('adminPassword'); if(adminPassword && adminPassword.value === ADMIN_PASSWORD) { hideAdminLogin(); showAdminPanel(); if (adminPassword) adminPassword.value = ''; } else alert("Неверный пароль!"); };
-        document.getElementById('adminLoginClose').onclick = hideAdminLogin;
-        document.getElementById('logoutAdminBtn').onclick = hideAdminPanel;
-        
-        let modal = document.getElementById('socialModal');
-        document.getElementById('managerHeaderBtn').onclick = () => { if (modal) modal.style.display = 'flex'; };
-        document.getElementById('closeModal').onclick = () => { if (modal) modal.style.display = 'none'; };
-        document.getElementById('modalVk').onclick = () => { window.open(siteData.socials?.vk || "#", '_blank'); if (modal) modal.style.display = 'none'; };
-        document.getElementById('modalTg').onclick = () => { window.open(siteData.socials?.telegram || "#", '_blank'); if (modal) modal.style.display = 'none'; };
-        
-        let contactType = 'phone';
-        document.querySelectorAll('.contact-type-btn').forEach(btn => btn.onclick = function() { document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); contactType = this.dataset.contact; let c = document.getElementById('contactFieldContainer'); if(c) { if(contactType === 'phone') c.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; else if(contactType === 'tg') c.innerHTML = '<input type="text" id="clientContact" placeholder="Ваш Telegram (@username)" required>'; else c.innerHTML = '<input type="text" id="clientContact" placeholder="Ссылка на VK" required>'; } });
-        
-        document.getElementById('requestForm').onsubmit = async (e) => { 
-            e.preventDefault(); 
-            let name = document.getElementById('clientName').value, 
-                contact = document.getElementById('clientContact').value, 
-                comment = document.getElementById('clientComment').value; 
-            const consent = document.getElementById('clientConsent');
-            
-            if(!name || !contact) { alert("Заполните имя и контакт!"); return; } 
-            if (!consent.checked) { alert("Необходимо дать согласие на обработку персональных данных!"); return; }
-            
-            let btn = e.target.querySelector('button'), orig = btn.textContent; 
-            btn.textContent = "Отправка..."; 
-            btn.disabled = true; 
-            const success = await sendToTelegram(name, contact, contactType, comment); 
-            if (success) { 
-                alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами.`); 
-                e.target.reset(); 
-                const contactField = document.getElementById('contactFieldContainer');
-                if (contactField) contactField.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; 
-                const phoneBtn = document.querySelector('.contact-type-btn[data-contact="phone"]');
-                const tgBtn = document.querySelector('.contact-type-btn[data-contact="tg"]');
-                const vkBtn = document.querySelector('.contact-type-btn[data-contact="vk"]');
-                if (phoneBtn) phoneBtn.classList.add('active');
-                if (tgBtn) tgBtn.classList.remove('active');
-                if (vkBtn) vkBtn.classList.remove('active');
-                contactType = 'phone'; 
-            } else { 
-                alert('❌ Ошибка отправки. Напишите нам в Telegram: @matoffpcforclientsbot'); 
-            } 
-            btn.textContent = orig; 
-            btn.disabled = false; 
-        };
-    });
-</script>
+<script src="/common.js"></script>
 </body>
 </html>
-```
