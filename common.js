@@ -6,8 +6,7 @@ const SOCIAL_ICONS = {
     ig: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>'
 };
 
-const ADMIN_PASSWORD = "matoff2025";
-let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [] };
+let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [], components: [] };
 
 async function loadData() {
     try {
@@ -33,6 +32,19 @@ function renderFooterSocials() {
     if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt" title="YouTube">${SOCIAL_ICONS.yt}</a>`;
     if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt" title="TikTok">${SOCIAL_ICONS.tt}</a>`;
     if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig" title="Instagram">${SOCIAL_ICONS.ig}</a>`;
+    container.innerHTML = html;
+}
+
+function renderManagerModal() {
+    const container = document.getElementById('modalSocials');
+    if (!container) return;
+    const s = siteData.socials || {};
+    let html = '';
+    if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="tg">${SOCIAL_ICONS.tg} Telegram</a>`;
+    if(s.vk) html += `<a href="${s.vk}" target="_blank" class="vk">${SOCIAL_ICONS.vk} ВКонтакте</a>`;
+    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt">${SOCIAL_ICONS.yt} YouTube</a>`;
+    if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt">${SOCIAL_ICONS.tt} TikTok</a>`;
+    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig">${SOCIAL_ICONS.ig} Instagram</a>`;
     container.innerHTML = html;
 }
 
@@ -180,19 +192,23 @@ function initManagerModal() {
     if (btn) btn.onclick = () => { if (modal) modal.style.display = 'flex'; };
     const close = document.getElementById('closeModal');
     if (close) close.onclick = () => { if (modal) modal.style.display = 'none'; };
-}
-
-function renderManagerModal() {
-    const container = document.getElementById('modalSocials');
-    if (!container) return;
-    const s = siteData.socials || {};
-    let html = '';
-    if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="tg">${SOCIAL_ICONS.tg} Telegram</a>`;
-    if(s.vk) html += `<a href="${s.vk}" target="_blank" class="vk">${SOCIAL_ICONS.vk} ВКонтакте</a>`;
-    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt">${SOCIAL_ICONS.yt} YouTube</a>`;
-    if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt">${SOCIAL_ICONS.tt} TikTok</a>`;
-    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig">${SOCIAL_ICONS.ig} Instagram</a>`;
-    container.innerHTML = html;
+    const quickForm = document.getElementById('quickRequestForm');
+    if (quickForm) {
+        quickForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('quickName').value;
+            const phone = document.getElementById('quickPhone').value;
+            const comment = document.getElementById('quickComment').value;
+            if (!name || !phone) { alert('Заполните имя и телефон!'); return; }
+            const b = quickForm.querySelector('button');
+            const orig = b.textContent;
+            b.textContent = 'Отправка...'; b.disabled = true;
+            const success = await sendToTelegram(name, phone, 'телефон', comment);
+            if (success) { alert('✅ Заявка принята!'); quickForm.reset(); if (modal) modal.style.display = 'none'; }
+            else { alert('❌ Ошибка. Напишите в Telegram: @matoffpcforclientsbot'); }
+            b.textContent = orig; b.disabled = false;
+        };
+    }
 }
 
 function initRequestForm() {
@@ -206,25 +222,16 @@ function initRequestForm() {
         let tg = document.getElementById('clientTg')?.value || '';
         let email = document.getElementById('clientEmail')?.value || '';
         let comment = document.getElementById('clientComment').value;
-        
         if(!name || !phone) { alert("Заполните имя и телефон!"); return; }
-        
         let contactInfo = phone;
         if (tg) contactInfo += ` / ${tg}`;
         if (email) contactInfo += ` / ${email}`;
-        
         let btn = e.target.querySelector('button'), orig = btn.textContent;
         btn.textContent = "Отправка..."; btn.disabled = true;
-        
         const fullComment = (purpose ? `Цель: ${purpose}\n` : '') + comment;
         const success = await sendToTelegram(name, contactInfo, 'контакт', fullComment);
-        
-        if (success) {
-            alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами.`);
-            e.target.reset();
-        } else {
-            alert('❌ Ошибка отправки. Напишите нам в Telegram: @matoffpcforclientsbot');
-        }
+        if (success) { alert(`✅ Заявка принята, ${name}!`); e.target.reset(); }
+        else { alert('❌ Ошибка. Напишите в Telegram: @matoffpcforclientsbot'); }
         btn.textContent = orig; btn.disabled = false;
     };
 }
