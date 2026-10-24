@@ -29,4 +29,53 @@
             <a href="/">Главная</a>
             <a href="/builds.html">Сборки</a>
             <a href="/services.html">Услуги</a>
-            <a
+            <a href="/components.html">Комплектующие</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Контакты</a>
+            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section>
+        <div class="container">
+            <h1 class="section-title">Клиенты <span>о нас</span></h1>
+            <div id="reviewsContainer" class="reviews-grid"></div>
+            <div class="avito-link">
+                <a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">📱 Смотреть все отзывы на Авито</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
+    <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
+    <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
+    <div class="legal-links">
+        <a href="/privacy.html">Политика обработки персональных данных</a>
+        |
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+    <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
+    <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
+</footer>
+
+<script src="/common.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const data = await loadData();
+        if (data && data.reviews) {
+            const container = document.getElementById('reviewsContainer');
+            container.innerHTML = data.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join('');
+        }
+    });
+</script>
+</body>
+</html>
