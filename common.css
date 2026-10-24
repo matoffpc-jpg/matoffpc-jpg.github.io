@@ -274,4 +274,19 @@ body.light-theme footer { background: rgba(240, 242, 245, 0.5); }
     .review-image { height: 120px; }
     .not-found-block { padding: 25px; }
     .not-found-block h3 { font-size: 1.3rem; }
+    /* Прижимаем подвал к низу */
+html, body {
+    min-height: 100%;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex: 1 0 auto;
+}
+footer {
+    flex-shrink: 0;
+}
+
