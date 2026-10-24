@@ -2,45 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина - Matoff PC</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Корзина | Matoff PC</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/common.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: rgba(22, 22, 28, 0.9);
-            --text-primary: #ededee;
-            --text-secondary: #bbb;
-            --border-color: rgba(155, 77, 255, 0.25);
-            --card-bg: rgba(22, 22, 28, 0.85);
-            --header-bg: rgba(10, 10, 15, 0.85);
-            --btn-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
-            --btn-shadow: #4a1d8a;
-            --price-color: #ffaa66;
-            --accent-purple: #9b4dff;
-            --accent-orange: #e68a2e;
-            --input-bg: rgba(31, 31, 40, 0.9);
-        }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        .header { background: var(--header-bg); backdrop-filter: blur(10px); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); padding: 12px 0; }
-        .header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        .logo { font-family: 'Orbitron', monospace; font-size: 1.5rem; font-weight: 800; white-space: nowrap; }
-        .logo a { text-decoration: none; }
-        .logo-matoff { color: var(--accent-purple); }
-        .logo-pc { color: var(--accent-orange); }
-        .nav { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
-        .nav a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
-        .nav a:hover { color: var(--accent-purple); }
-        
-        .btn { display: inline-flex; align-items: center; justify-content: center; background: var(--btn-bg); color: white; font-weight: 700; padding: 12px 24px; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; box-shadow: 0 3px 0 var(--btn-shadow); transition: 0.3s; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
-        
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 30px; text-align: center; }
-        .cart-section { padding: 40px 0; }
         .cart-items { background: var(--card-bg); border-radius: 28px; padding: 25px; margin-bottom: 25px; border: 1px solid var(--border-color); }
         .cart-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); align-items: center; flex-wrap: wrap; }
         .cart-item-img { width: 80px; height: 80px; object-fit: contain; }
@@ -53,32 +20,14 @@
         .cart-total { text-align: right; padding: 20px; font-size: 1.3rem; font-weight: 700; }
         .cart-total span { color: var(--price-color); font-size: 1.8rem; }
         .empty-cart { text-align: center; padding: 50px; }
-        
         .order-form { background: var(--card-bg); border-radius: 28px; padding: 30px; border: 1px solid var(--border-color); margin-top: 30px; }
-        .order-form h3 { margin-bottom: 20px; font-family: 'Orbitron', monospace; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         .order-form input, .order-form select, .order-form textarea { width: 100%; padding: 12px 16px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 28px; font-size: 0.9rem; }
-        .order-form input:focus, .order-form select:focus { outline: none; border-color: var(--accent-purple); }
-        
         .delivery-price { background: rgba(155,77,255,0.1); border-radius: 16px; padding: 15px; margin: 15px 0; text-align: center; border: 1px solid var(--accent-purple); }
         .delivery-price span { font-size: 1.5rem; font-weight: 800; color: var(--price-color); }
-        
         .total-price { font-size: 1.4rem; text-align: right; padding: 15px; border-top: 1px solid var(--border-color); margin-top: 15px; }
         .total-price span { color: var(--price-color); font-size: 1.8rem; font-weight: 800; }
-        
-        .theme-toggle { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 50px; padding: 4px; display: inline-flex; gap: 4px; margin-left: 15px; }
-        .theme-toggle span { padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; cursor: pointer; }
-        .theme-toggle .active { background: var(--accent-purple); color: white; }
-        
-        footer { text-align: center; padding: 30px; border-top: 1px solid var(--border-color); margin-top: 50px; }
-        
-        @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; }
-            .header .container { flex-direction: column; }
-            .nav { justify-content: center; }
-            .cart-item { flex-direction: column; text-align: center; }
-            .cart-item-quantity { justify-content: center; }
-        }
+        @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } .cart-item { flex-direction: column; text-align: center; } }
     </style>
 </head>
 <body>
@@ -87,11 +36,14 @@
     <div class="container">
         <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
         <div class="nav">
-            <a href="/#services">Услуги</a>
-            <a href="/#builds">Сборки</a>
+            <a href="/">Главная</a>
+            <a href="/builds.html">Сборки</a>
+            <a href="/services.html">Услуги</a>
             <a href="/components.html">Комплектующие</a>
-            <a href="/#reviews">Отзывы</a>
-            <a href="/#order">Заявка</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Контакты</a>
+            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
             <div class="theme-toggle" id="themeToggle">
                 <span class="active" data-theme="dark">🌙</span>
                 <span data-theme="light">☀️</span>
@@ -101,30 +53,25 @@
 </header>
 
 <main>
-    <section class="cart-section">
+    <section>
         <div class="container">
             <h1 class="section-title">🛒 Корзина</h1>
             <div id="cartItemsContainer" class="cart-items"></div>
-            
             <div id="orderFormContainer" style="display: none;">
                 <div class="order-form">
                     <h3>📋 Оформление заказа</h3>
-                    
                     <div class="form-row">
                         <input type="text" id="orderFio" placeholder="Ваше ФИО" required>
                         <input type="tel" id="orderPhone" placeholder="Номер телефона" required>
                     </div>
-                    
                     <div class="form-row">
                         <input type="text" id="orderTg" placeholder="Telegram (@username или номер телефона)" required>
                         <input type="text" id="orderCity" placeholder="Город" required>
                     </div>
-                    
                     <div class="form-row">
                         <input type="text" id="orderIndex" placeholder="Почтовый индекс">
                         <input type="text" id="orderAddress" placeholder="Улица, дом, квартира" required>
                     </div>
-                    
                     <div class="form-row">
                         <select id="orderDelivery">
                             <option value="СДЭК">🚚 СДЭК (до ПВЗ)</option>
@@ -133,18 +80,9 @@
                         </select>
                         <input type="text" id="orderPvz" placeholder="Адрес ПВЗ или номер отделения">
                     </div>
-                    
                     <textarea id="orderComment" rows="2" placeholder="Комментарий к заказу (необязательно)"></textarea>
-                    
-                    <div class="delivery-price">
-                        🚚 Примерная стоимость доставки: <span id="deliveryCost">0</span> ₽<br>
-                        <small style="font-size: 0.7rem;">* Точную стоимость рассчитает менеджер при подтверждении заказа</small>
-                    </div>
-                    
-                    <div class="total-price">
-                        Итого с доставкой: <span id="totalWithDelivery">0</span> ₽
-                    </div>
-                    
+                    <div class="delivery-price">🚚 Примерная стоимость доставки: <span id="deliveryCost">0</span> ₽<br><small style="font-size: 0.7rem;">* Точную стоимость рассчитает менеджер при подтверждении заказа</small></div>
+                    <div class="total-price">Итого с доставкой: <span id="totalWithDelivery">0</span> ₽</div>
                     <button id="submitOrderBtn" class="btn" style="width: 100%; margin-top: 20px;">✅ Подтвердить заказ</button>
                 </div>
             </div>
@@ -153,232 +91,41 @@
 </main>
 
 <footer>
-    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — продажа комплектующих</p>
-    <p style="margin-top: 10px; font-size: 12px;">© Matoff PC</p>
+    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
+    <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
+    <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
+    <div class="legal-links">
+        <a href="/privacy.html">Политика обработки персональных данных</a>
+        |
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+    <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
+    <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
 </footer>
 
+<script src="/common.js"></script>
 <script>
-    const TELEGRAM_BOT_TOKEN = "8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0";
-    const TELEGRAM_CHAT_ID = "1065465753";
-    
-    let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
-    let siteData = { components: [] };
-    
-    const deliveryRates = {
-        'СДЭК': 500,
-        'Яндекс Доставка': 450,
-        'Почта России': 350
-    };
-    
-    async function loadData() {
-        try {
-            const response = await fetch('/data.json?t=' + Date.now());
-            if (response.ok) {
-                siteData = await response.json();
-            }
-        } catch(e) { console.error(e); }
-        renderCartPage();
-    }
-    
-    function saveCart() {
-        localStorage.setItem('matoff_cart', JSON.stringify(cart));
-    }
-    
-    function removeFromCart(componentId) {
-        cart = cart.filter(item => item.id !== componentId);
-        saveCart();
-        renderCartPage();
-    }
-    
-    function updateQuantity(componentId, delta) {
-        const item = cart.find(item => item.id === componentId);
-        if (item) {
-            item.quantity += delta;
-            if (item.quantity <= 0) {
-                removeFromCart(componentId);
-            } else {
-                saveCart();
-                renderCartPage();
-            }
-        }
-    }
-    
-    function getCartTotal() {
-        return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    }
-    
+    const deliveryRates = { 'СДЭК': 500, 'Яндекс Доставка': 450, 'Почта России': 350 };
+    function getCartTotal() { return cart.reduce((sum, item) => sum + item.price * item.quantity, 0); }
     function updateDeliveryAndTotal() {
         const deliverySelect = document.getElementById('orderDelivery');
         const deliveryCostSpan = document.getElementById('deliveryCost');
         const totalSpan = document.getElementById('totalWithDelivery');
-        
         if (deliverySelect && deliveryCostSpan && totalSpan) {
             const deliveryType = deliverySelect.value;
             const deliveryCost = deliveryRates[deliveryType] || 500;
-            const cartTotal = getCartTotal();
-            
             deliveryCostSpan.textContent = deliveryCost;
-            totalSpan.textContent = (cartTotal + deliveryCost).toLocaleString();
+            totalSpan.textContent = (getCartTotal() + deliveryCost).toLocaleString();
         }
     }
-    
     function renderCartPage() {
         const container = document.getElementById('cartItemsContainer');
         const orderFormContainer = document.getElementById('orderFormContainer');
-        
         if (!container) return;
-        
         if (cart.length === 0) {
-            container.innerHTML = `
-                <div class="empty-cart">
-                    <h3>🛒 Корзина пуста</h3>
-                    <p>Добавьте товары из <a href="/components.html" style="color:var(--accent-purple);">каталога комплектующих</a></p>
-                    <a href="/" class="btn" style="margin-top: 20px;">На главную</a>
-                </div>
-            `;
+            container.innerHTML = `<div class="empty-cart"><h3>🛒 Корзина пуста</h3><p>Добавьте товары из <a href="/components.html" style="color:var(--accent-purple);">каталога комплектующих</a></p><a href="/" class="btn" style="margin-top: 20px;">На главную</a></div>`;
             if (orderFormContainer) orderFormContainer.style.display = 'none';
             return;
         }
-        
         let total = getCartTotal();
-        
-        container.innerHTML = cart.map(item => {
-            return `
-                <div class="cart-item" data-id="${item.id}">
-                    <img class="cart-item-img" src="${item.image}" onerror="this.src='https://placehold.co/80x80/2a2a35/9b4dff?text=PC'">
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">${item.priceText}</div>
-                    </div>
-                    <div class="cart-item-quantity">
-                        <button class="cart-qty-minus" data-id="${item.id}">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="cart-qty-plus" data-id="${item.id}">+</button>
-                    </div>
-                    <button class="cart-item-remove" data-id="${item.id}">🗑️</button>
-                </div>
-            `;
-        }).join('');
-        
-        container.innerHTML += `
-            <div class="cart-total">
-                Товаров на сумму: <span>${total.toLocaleString()} ₽</span>
-            </div>
-        `;
-        
-        if (orderFormContainer) orderFormContainer.style.display = 'block';
-        
-        updateDeliveryAndTotal();
-        
-        document.querySelectorAll('.cart-qty-minus').forEach(btn => {
-            btn.onclick = () => updateQuantity(parseInt(btn.dataset.id), -1);
-        });
-        document.querySelectorAll('.cart-qty-plus').forEach(btn => {
-            btn.onclick = () => updateQuantity(parseInt(btn.dataset.id), 1);
-        });
-        document.querySelectorAll('.cart-item-remove').forEach(btn => {
-            btn.onclick = () => removeFromCart(parseInt(btn.dataset.id));
-        });
-        
-        const deliverySelect = document.getElementById('orderDelivery');
-        if (deliverySelect) {
-            deliverySelect.onchange = updateDeliveryAndTotal;
-        }
-    }
-    
-    async function submitOrder() {
-        const fio = document.getElementById('orderFio')?.value.trim();
-        const phone = document.getElementById('orderPhone')?.value.trim();
-        const tg = document.getElementById('orderTg')?.value.trim();
-        const city = document.getElementById('orderCity')?.value.trim();
-        const index = document.getElementById('orderIndex')?.value.trim();
-        const address = document.getElementById('orderAddress')?.value.trim();
-        const delivery = document.getElementById('orderDelivery')?.value;
-        const pvz = document.getElementById('orderPvz')?.value.trim();
-        const comment = document.getElementById('orderComment')?.value.trim();
-        
-        if (!fio || !phone || !tg || !city || !address) {
-            alert('Заполните все обязательные поля: ФИО, телефон, Telegram, город и адрес!');
-            return;
-        }
-        
-        const cartTotal = getCartTotal();
-        const deliveryCost = deliveryRates[delivery] || 500;
-        const total = cartTotal + deliveryCost;
-        
-        let msg = `🛍️ НОВЫЙ ЗАКАЗ КОМПЛЕКТУЮЩИХ\n\n`;
-        msg += `👤 ФИО: ${fio}\n`;
-        msg += `📞 Телефон: ${phone}\n`;
-        msg += `💬 Telegram: ${tg}\n`;
-        msg += `🏙️ Город: ${city}\n`;
-        if (index) msg += `📮 Индекс: ${index}\n`;
-        msg += `📍 Адрес: ${address}\n`;
-        msg += `📦 ТК: ${delivery}\n`;
-        if (pvz) msg += `🏢 ПВЗ/отделение: ${pvz}\n`;
-        if (comment) msg += `💬 Комментарий: ${comment}\n`;
-        msg += `\n📋 ТОВАРЫ:\n`;
-        
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            msg += `• ${item.name} x${item.quantity} = ${itemTotal.toLocaleString()} ₽\n`;
-        });
-        
-        msg += `\n💰 Стоимость товаров: ${cartTotal.toLocaleString()} ₽\n`;
-        msg += `🚚 Доставка (${delivery}): ${deliveryCost.toLocaleString()} ₽\n`;
-        msg += `💵 ИТОГО К ОПЛАТЕ: ${total.toLocaleString()} ₽\n`;
-        msg += `\n🕐 ${new Date().toLocaleString()}`;
-        
-        const btn = document.getElementById('submitOrderBtn');
-        const originalText = btn.textContent;
-        btn.textContent = '⏳ Отправка...';
-        btn.disabled = true;
-        
-        try {
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(msg)}`;
-            const response = await fetch(url);
-            const result = await response.json();
-            
-            if (result.ok) {
-                alert('✅ Заказ отправлен! Менеджер свяжется с вами в Telegram.');
-                localStorage.removeItem('matoff_cart');
-                cart = [];
-                renderCartPage();
-            } else {
-                alert('❌ Ошибка отправки. Пожалуйста, напишите нам в Telegram: @matoffpctg');
-            }
-        } catch(e) {
-            alert('❌ Ошибка отправки. Пожалуйста, напишите нам в Telegram: @matoffpctg');
-        } finally {
-            btn.textContent = originalText;
-            btn.disabled = false;
-        }
-    }
-    
-    function initTheme() {
-        let toggle = document.getElementById('themeToggle');
-        if (!toggle) return;
-        let saved = localStorage.getItem('matoff_theme') || 'dark';
-        if (saved === 'light') document.body.classList.add('light-theme');
-        const spans = toggle.querySelectorAll('span');
-        spans.forEach(span => {
-            span.classList.toggle('active', span.dataset.theme === saved);
-            span.onclick = () => {
-                let theme = span.dataset.theme;
-                if (theme === 'light') document.body.classList.add('light-theme');
-                else document.body.classList.remove('light-theme');
-                localStorage.setItem('matoff_theme', theme);
-                spans.forEach(s => s.classList.remove('active'));
-                span.classList.add('active');
-            };
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        initTheme();
-        loadData();
-        const submitBtn = document.getElementById('submitOrderBtn');
-        if (submitBtn) submitBtn.onclick = submitOrder;
-    });
-</script>
-</body>
-</html>
+        container.innerHTML = cart.map(item => `<div class="cart-item" data
