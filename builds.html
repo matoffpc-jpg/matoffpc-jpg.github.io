@@ -5,22 +5,31 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Готовые сборки ПК | Matoff PC</title>
+    <meta name="description" content="Готовые сборки компьютеров под любые задачи. Игровые ПК, рабочие станции, бюджетные варианты. Гарантия 1 год.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
 </head>
 <body>
 <div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
+<div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
+
 <header class="header">
     <div class="container">
         <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
         <div class="nav">
+            <a href="/">Главная</a>
             <a href="/services.html">Услуги</a>
             <a href="/builds.html">Сборки</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
-            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
-            <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button></div>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
+            <div class="manager-wrapper">
+                <button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button>
+            </div>
         </div>
     </div>
 </header>
@@ -30,12 +39,18 @@
     <section id="calculator"><div class="container"><h2 class="section-title fade-up">Подберите <span>сборку</span></h2><div class="calculator-block"><h3>🎮 Калькулятор сборки</h3><p>Ответьте на несколько вопросов, и мы подберем оптимальный ПК</p><div class="calculator-filters"><select id="calcPurpose" class="calc-select"><option value="games">🎮 Для игр</option><option value="work">💼 Для работы/офиса</option><option value="video">🎬 Для видеомонтажа/3D</option><option value="universal">⭐ Универсальная</option></select><select id="calcCpu" class="calc-select"><option value="any">🖥️ Любой процессор</option><option value="intel">💙 Intel</option><option value="amd">❤️ AMD</option></select><select id="calcGpu" class="calc-select"><option value="any">🎮 Любая видеокарта</option><option value="nvidia">💚 NVIDIA</option><option value="amd">🧡 AMD</option></select><select id="calcBudget" class="calc-select"><option value="70000">💰 до 70 000 ₽</option><option value="90000">💰 70 000 – 90 000 ₽</option><option value="120000">💰 90 000 – 120 000 ₽</option><option value="160000">💰 120 000 – 160 000 ₽</option><option value="200000">💰 160 000 – 200 000 ₽</option><option value="260000">💰 200 000 – 260 000 ₽</option><option value="999999">💰 260 000+ ₽</option></select></div><button id="calcButton" class="btn">Подобрать сборку</button><div id="calculatorResult" class="calculator-result"></div></div></div></section>
 </main>
 
-<footer><p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p><div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div><div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div><div class="legal-links"><a href="/privacy.html">Политика обработки персональных данных</a> | <a href="/consent.html">Согласие на обработку персональных данных</a></div><div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div><p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p></footer>
+<footer>
+    <div class="footer-copy">© 2026 Matoff PC — магазин компьютеров в Нижнем Новгороде. Все права защищены.</div>
+    <div class="footer-desc">Интернет-магазин компьютерной техники | Продажа и сборка компьютеров на заказ | Игровые и офисные системные блоки | Компьютерные комплектующие | Ремонт и настройка ПК</div>
+    <div class="footer-socials" id="footerSocials"></div>
+    <div class="footer-legal">
+        <a href="/privacy.html">Политика в отношении обработки персональных данных</a>
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+</footer>
 
 <button class="scroll-top" id="scrollTopBtn">↑</button>
 <div id="socialModal" class="modal"><div class="modal-content"><h3 style="margin-bottom: 20px;">Связь с менеджером</h3><button id="modalVk" class="btn" style="margin: 8px;">📱 VK</button><button id="modalTg" class="btn" style="margin: 8px;">💬 Telegram</button><button id="closeModal" class="btn-outline btn" style="margin: 8px;">Закрыть</button></div></div>
-<div id="adminLoginOverlay" class="admin-login-overlay"><div class="admin-login-box"><h3>🔐 Вход в админ-панель</h3><input type="password" id="adminPassword" placeholder="Введите пароль"><button id="adminLoginBtn" class="btn">Войти</button><button id="adminLoginClose" class="btn-outline btn" style="margin-top: 10px;">Отмена</button></div></div>
-<div id="adminPanel" class="admin-panel"><div class="container"><h3 style="text-align:center; margin-bottom: 25px; color:#9b4dff;">⚙️ АДМИН-ПАНЕЛЬ</h3><div class="admin-form"><p style="margin-bottom: 20px;">📌 <strong>Все данные хранятся в файле data.json в вашем репозитории.</strong></p><p style="margin-bottom: 20px;">🔗 <a href="https://github.com/matoffpc-jpg/matoffpc.github.io/edit/main/data.json" target="_blank" style="color:#9b4dff;">Открыть data.json для редактирования</a></p><button id="logoutAdminBtn" class="btn-outline btn" style="margin-top: 12px; width:100%;">🚪 Выйти из админ-панели</button></div></div></div>
 
 <script src="/common.js"></script>
 <script>
@@ -48,7 +63,6 @@
             startPromoRotation();
             document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; renderBuilds(); });
             document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentGpuFilter = this.dataset.gpu; renderBuilds(); });
-            document.querySelectorAll('.btn-buy').forEach(btn => btn.onclick = () => window.location.href = '/contacts.html');
             setTimeout(() => checkVisibility(), 100);
         }
     });
