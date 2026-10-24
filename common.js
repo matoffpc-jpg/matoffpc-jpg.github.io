@@ -47,6 +47,33 @@ function initMobileNav() {
     updateMobileCartCount();
 }
 
+/* ===== БУРГЕР-МЕНЮ ===== */
+function initBurger() {
+    const burger = document.getElementById('burgerBtn');
+    const nav = document.querySelector('.nav');
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        burger.classList.toggle('active');
+        nav.classList.toggle('open');
+    });
+
+    nav.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            burger.classList.remove('active');
+            nav.classList.remove('open');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+            burger.classList.remove('active');
+            nav.classList.remove('open');
+        }
+    });
+}
+
 /* ===== ЗАГРУЗКА ДАННЫХ ===== */
 async function loadData() {
     try {
@@ -388,6 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     highlightActiveNav();
     renderHeaderCartCount();
     initMobileNav();
+    initBurger();
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
 });
