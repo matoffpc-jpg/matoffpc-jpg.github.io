@@ -1,44 +1,11 @@
-// ========== ДАННЫЕ ==========
 let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [] };
-let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
 
-// ========== КОРЗИНА ==========
-function saveCart() {
-    localStorage.setItem('matoff_cart', JSON.stringify(cart));
-    updateCartCounters();
-}
-
-function updateCartCounters() {
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountSpans = document.querySelectorAll('#headerCartCount, #cartCount');
-    cartCountSpans.forEach(span => { if (span) span.textContent = totalItems; });
-}
-
-function addToCart(component) {
-    const existing = cart.find(item => item.id === component.id);
-    if (existing) {
-        existing.quantity++;
-    } else {
-        cart.push({
-            id: component.id,
-            name: component.name,
-            price: component.price,
-            priceText: component.priceText,
-            image: component.image,
-            quantity: 1
-        });
-    }
-    saveCart();
-    alert(`✅ ${component.name} добавлен в корзину!`);
-}
-
-// ========== ЗАГРУЗКА ДАННЫХ ==========
 async function loadData() {
     try {
         const response = await fetch('/data.json?t=' + Date.now());
         if (!response.ok) throw new Error('Ошибка загрузки data.json: ' + response.status);
         siteData = await response.json();
-        console.log('✅ Данные загружены успешно');
+        console.log('✅ Данные загружены');
         return siteData;
     } catch(e) {
         console.error('❌ Ошибка загрузки:', e);
@@ -46,7 +13,6 @@ async function loadData() {
     }
 }
 
-// ========== ТЕМА ==========
 function initTheme() {
     let toggle = document.getElementById('themeToggle');
     if (!toggle) return;
@@ -67,14 +33,41 @@ function initTheme() {
     });
 }
 
-// ========== НАВИГАЦИЯ ==========
 function scrollToOrder() {
     const orderSection = document.getElementById('order');
     if (orderSection) orderSection.scrollIntoView({ behavior: 'smooth' });
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ ==========
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+    for(let i=0;i<50;i++) {
+        let p = document.createElement('div');
+        p.className = 'particle';
+        let s = Math.random()*5+2;
+        p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`;
+        particlesContainer.appendChild(p);
+    }
+}
+
+function checkVisibility() {
+    document.querySelectorAll('.fade-up').forEach(el => {
+        if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add('visible');
+    });
+}
+
+function initScrollTop() {
+    let btn = document.getElementById('scrollTopBtn');
+    if (btn) {
+        window.onscroll = () => btn.classList.toggle('show', window.scrollY > 300);
+        btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
-    updateCartCounters();
+    createParticles();
+    initScrollTop();
+    window.addEventListener('scroll', checkVisibility);
+    checkVisibility();
 });
