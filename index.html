@@ -432,9 +432,6 @@
 <div id="adminLoginOverlay" class="admin-login-overlay"><div class="admin-login-box"><h3>🔐 Вход в админ-панель</h3><input type="password" id="adminPassword" placeholder="Введите пароль"><button id="adminLoginBtn" class="btn">Войти</button><button id="adminLoginClose" class="btn-outline btn" style="margin-top: 10px;">Отмена</button></div></div>
 <div id="adminPanel" class="admin-panel"><div class="container"><h3 style="text-align:center; margin-bottom: 25px; color:#9b4dff;">⚙️ АДМИН-ПАНЕЛЬ</h3><div class="admin-form"><p style="margin-bottom: 20px;">📌 <strong>Все данные хранятся в файле data.json в вашем репозитории.</strong> Чтобы изменить услуги, сборки, отзывы или акцию, отредактируйте файл <code>data.json</code> в репозитории <code>matoffpc.github.io</code>.</p><p style="margin-bottom: 20px;">🔗 <a href="https://github.com/matoffpc-jpg/matoffpc.github.io/edit/main/data.json" target="_blank" style="color:#9b4dff;">Открыть data.json для редактирования</a></p><button id="logoutAdminBtn" class="btn-outline btn" style="margin-top: 12px; width:100%;">🚪 Выйти из админ-панели</button></div></div></div>
 
-<button class="chat-button" id="chatButton">💬</button>
-<div id="chatWindow" class="chat-window"><div class="chat-header"><span>💬 Чат с менеджером</span><button class="chat-close" id="chatClose">×</button></div><div id="chatMessages" class="chat-messages"></div><div class="chat-input-area"><input type="text" id="chatInput" placeholder="Ваше сообщение..."><button id="chatSend">📤</button></div></div>
-
 <script>
     const ADMIN_PASSWORD = "matoff2025";
     let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [] };
