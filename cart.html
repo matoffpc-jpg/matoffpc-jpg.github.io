@@ -36,31 +36,22 @@
             <div id="cartItemsContainer" class="cart-items"></div>
             <div id="orderFormContainer" style="display: none;">
                 <div class="order-form">
-                    <h3>📋 Оформление заказа</h3>
+                    <h3 style="margin-bottom:15px;font-family:'Orbitron',monospace;color:var(--accent-purple);">📋 Оформление заказа</h3>
                     <div class="form-row">
-                        <input type="text" id="orderFio" placeholder="Ваше ФИО" required>
+                        <input type="text" id="orderName" placeholder="Ваше имя" required>
                         <input type="tel" id="orderPhone" placeholder="Номер телефона" required>
                     </div>
                     <div class="form-row">
                         <input type="text" id="orderTg" placeholder="Telegram (@username)" required>
                         <input type="text" id="orderCity" placeholder="Город" required>
                     </div>
-                    <div class="form-row">
-                        <input type="text" id="orderIndex" placeholder="Почтовый индекс">
-                        <input type="text" id="orderAddress" placeholder="Улица, дом, квартира" required>
+                    <textarea id="orderComment" rows="3" placeholder="Комментарий (необязательно)"></textarea>
+                    <div class="cart-note">
+                        💡 <strong>Доставка рассчитывается индивидуально.</strong><br>
+                        После оформления заявки менеджер свяжется с вами, уточнит адрес и рассчитает точную стоимость доставки.
                     </div>
-                    <div class="form-row">
-                        <select id="orderDelivery">
-                            <option value="СДЭК">🚚 СДЭК (до ПВЗ)</option>
-                            <option value="Яндекс Доставка">📦 Яндекс Доставка</option>
-                            <option value="Почта России">📮 Почта России</option>
-                        </select>
-                        <input type="text" id="orderPvz" placeholder="Адрес ПВЗ или номер отделения">
-                    </div>
-                    <textarea id="orderComment" rows="2" placeholder="Комментарий к заказу (необязательно)"></textarea>
-                    <div class="delivery-price">🚚 Примерная стоимость доставки: <span id="deliveryCost">0</span> ₽<br><small style="font-size: 0.7rem;">* Точную стоимость рассчитает менеджер</small></div>
-                    <div class="total-price">Итого с доставкой: <span id="totalWithDelivery">0</span> ₽</div>
-                    <button id="submitOrderBtn" class="btn" style="width: 100%; margin-top: 20px;">✅ Подтвердить заказ</button>
+                    <div class="total-price">Сумма товаров: <span id="cartTotalDisplay">0</span> ₽</div>
+                    <button id="submitOrderBtn" class="btn" style="width: 100%; margin-top: 20px;">✅ Оформить заявку</button>
                 </div>
             </div>
         </div>
@@ -82,28 +73,15 @@
 
 <script src="/common.js"></script>
 <script>
-const deliveryRates = { 'СДЭК': 500, 'Яндекс Доставка': 450, 'Почта России': 350 };
-
 function getCartTotal() { return cart.reduce((sum, item) => sum + item.price * item.quantity, 0); }
-
-function updateDeliveryAndTotal() {
-    const deliverySelect = document.getElementById('orderDelivery');
-    const deliveryCostSpan = document.getElementById('deliveryCost');
-    const totalSpan = document.getElementById('totalWithDelivery');
-    if (deliverySelect && deliveryCostSpan && totalSpan) {
-        const deliveryType = deliverySelect.value;
-        const deliveryCost = deliveryRates[deliveryType] || 500;
-        deliveryCostSpan.textContent = deliveryCost;
-        totalSpan.textContent = (getCartTotal() + deliveryCost).toLocaleString();
-    }
-}
 
 function renderCartPage() {
     const container = document.getElementById('cartItemsContainer');
     const orderFormContainer = document.getElementById('orderFormContainer');
+    const totalDisplay = document.getElementById('cartTotalDisplay');
     if (!container) return;
     if (cart.length === 0) {
-        container.innerHTML = `<div class="empty-cart"><h3>🛒 Корзина пуста</h3><p>Добавьте товары из <a href="/builds.html" style="color:var(--accent-purple);">каталога</a></p><a href="/" class="btn" style="margin-top: 20px;">На главную</a></div>`;
+        container.innerHTML = `<div class="empty-cart"><h3>🛒 Корзина пуста</h3><p style="margin:15px 0;color:var(--text-secondary);">Добавьте товары из <a href="/builds.html" style="color:var(--accent-purple);">каталога</a></p><a href="/" class="btn" style="margin-top: 20px;">На главную</a></div>`;
         if (orderFormContainer) orderFormContainer.style.display = 'none';
         renderHeaderCartCount();
         return;
@@ -125,7 +103,7 @@ function renderCartPage() {
         </div>`).join('');
     container.innerHTML += `<div class="cart-total">Товаров на сумму: <span>${total.toLocaleString()} ₽</span></div>`;
     if (orderFormContainer) orderFormContainer.style.display = 'block';
-    updateDeliveryAndTotal();
+    if (totalDisplay) totalDisplay.textContent = total.toLocaleString();
     renderHeaderCartCount();
     document.querySelectorAll('.cart-qty-minus').forEach(btn => {
         btn.onclick = () => {
@@ -142,32 +120,23 @@ function renderCartPage() {
     document.querySelectorAll('.cart-item-remove').forEach(btn => {
         btn.onclick = () => { cart = cart.filter(i => i.id !== parseInt(btn.dataset.id)); saveCart(); renderCartPage(); };
     });
-    const deliverySelect = document.getElementById('orderDelivery');
-    if (deliverySelect) deliverySelect.onchange = updateDeliveryAndTotal;
 }
 
 async function submitOrder() {
-    const fio = document.getElementById('orderFio')?.value.trim();
+    const name = document.getElementById('orderName')?.value.trim();
     const phone = document.getElementById('orderPhone')?.value.trim();
     const tg = document.getElementById('orderTg')?.value.trim();
     const city = document.getElementById('orderCity')?.value.trim();
-    const index = document.getElementById('orderIndex')?.value.trim();
-    const address = document.getElementById('orderAddress')?.value.trim();
-    const delivery = document.getElementById('orderDelivery')?.value;
-    const pvz = document.getElementById('orderPvz')?.value.trim();
     const comment = document.getElementById('orderComment')?.value.trim();
-    if (!fio || !phone || !tg || !city || !address) { alert('Заполните все обязательные поля!'); return; }
+    if (!name || !phone || !tg || !city) { alert('Заполните все обязательные поля!'); return; }
     const cartTotal = getCartTotal();
-    const deliveryCost = deliveryRates[delivery] || 500;
-    const total = cartTotal + deliveryCost;
-    let msg = `🛍️ НОВЫЙ ЗАКАЗ КОМПЛЕКТУЮЩИХ\n\n👤 ФИО: ${fio}\n📞 Телефон: ${phone}\n💬 Telegram: ${tg}\n🏙️ Город: ${city}\n`;
-    if (index) msg += `📮 Индекс: ${index}\n`;
-    msg += `📍 Адрес: ${address}\n📦 ТК: ${delivery}\n`;
-    if (pvz) msg += `🏢 ПВЗ: ${pvz}\n`;
+    let msg = `🛍️ НОВАЯ ЗАЯВКА (КОРЗИНА)\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n💬 Telegram: ${tg}\n🏙️ Город: ${city}\n`;
     if (comment) msg += `💬 Комментарий: ${comment}\n`;
     msg += `\n📋 ТОВАРЫ:\n`;
     cart.forEach(item => { msg += `• ${item.name} x${item.quantity} = ${(item.price * item.quantity).toLocaleString()} ₽\n`; });
-    msg += `\n💰 Товары: ${cartTotal.toLocaleString()} ₽\n🚚 Доставка: ${deliveryCost.toLocaleString()} ₽\n💵 ИТОГО: ${total.toLocaleString()} ₽\n\n🕐 ${new Date().toLocaleString()}`;
+    msg += `\n💰 Сумма товаров: ${cartTotal.toLocaleString()} ₽\n`;
+    msg += `🚚 Доставка: рассчитывается менеджером индивидуально\n`;
+    msg += `\n🕐 ${new Date().toLocaleString()}`;
     const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
     const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
     const CHAT_ID = "1065465753";
@@ -178,7 +147,7 @@ async function submitOrder() {
     try {
         const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${BOTGATE_API_KEY}` }, body: JSON.stringify({ chat_id: CHAT_ID, text: msg }) });
         const result = await response.json();
-        if (result.ok) { alert('✅ Заказ отправлен! Менеджер свяжется с вами.'); localStorage.removeItem('matoff_cart'); cart = []; renderCartPage(); }
+        if (result.ok) { alert('✅ Заявка отправлена! Менеджер свяжется с вами для расчёта доставки.'); localStorage.removeItem('matoff_cart'); cart = []; renderCartPage(); }
         else { alert('❌ Ошибка отправки. Напишите нам в Telegram.'); }
     } catch(e) { alert('❌ Ошибка отправки. Напишите нам в Telegram.'); }
     finally { btn.textContent = originalText; btn.disabled = false; }
