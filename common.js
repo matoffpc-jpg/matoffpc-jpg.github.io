@@ -1,3 +1,11 @@
+const SOCIAL_ICONS = {
+    vk: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.629-.145-1.241-.205-1.809-.205-2.273 0-3.841.953-2.95 1.119 1.571.293 1.42 3.692 1.054 5.16-.638 2.556-3.036-2.024-4.035-4.305-.241-.548-.315-.974-1.175-.974h-3.255c-.492 0-.787.16-.787.516 0 .602 2.96 6.72 5.786 9.77 2.756 2.975 5.575 2.389 7.067 2.389z"/></svg>',
+    tg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>',
+    yt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
+    tt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>',
+    ig: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>'
+};
+
 const ADMIN_PASSWORD = "matoff2025";
 let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [] };
 
@@ -19,19 +27,12 @@ function renderFooterSocials() {
     const container = document.getElementById('footerSocials');
     if (!container) return;
     const s = siteData.socials || {};
-    const icons = {
-        vk: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 4.157-5.336 2.073-5.336h-3.981c-.772 0-.828.435-1.103 1.083-.995 2.347-2.886 5.387-3.604 4.922-.751-.485-.407-2.406-.35-5.261.015-.754.011-1.271-1.141-1.539-.629-.145-1.241-.205-1.809-.205-2.273 0-3.841.953-2.95 1.119 1.571.293 1.42 3.692 1.054 5.16-.638 2.556-3.036-2.024-4.035-4.305-.241-.548-.315-.974-1.175-.974h-3.255c-.492 0-.787.16-.787.516 0 .602 2.96 6.72 5.786 9.77 2.756 2.975 5.575 2.389 7.067 2.389z"/></svg>',
-        tg: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>',
-        yt: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
-        tt: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>',
-        ig: '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>'
-    };
     let html = '';
-    if(s.vk) html += `<a href="${s.vk}" target="_blank" class="vk" title="VK">${icons.vk}</a>`;
-    if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="tg" title="Telegram">${icons.tg}</a>`;
-    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt" title="YouTube">${icons.yt}</a>`;
-    if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt" title="TikTok">${icons.tt}</a>`;
-    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig" title="Instagram">${icons.ig}</a>`;
+    if(s.vk) html += `<a href="${s.vk}" target="_blank" class="vk" title="VK">${SOCIAL_ICONS.vk}</a>`;
+    if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="tg" title="Telegram">${SOCIAL_ICONS.tg}</a>`;
+    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt" title="YouTube">${SOCIAL_ICONS.yt}</a>`;
+    if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt" title="TikTok">${SOCIAL_ICONS.tt}</a>`;
+    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig" title="Instagram">${SOCIAL_ICONS.ig}</a>`;
     container.innerHTML = html;
 }
 
@@ -87,7 +88,14 @@ function renderSteps() { const container = document.getElementById('stepsContain
 function renderAdvantages() { const container = document.getElementById('advantagesContainer'); if (container && siteData.advantages && siteData.advantages.length) { container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join(''); } }
 function renderShorts() { const container = document.getElementById('shortsContainer'); if (container && siteData.shorts && siteData.shorts.length) { container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join(''); } }
 function renderReviews() { const container = document.getElementById('reviewsContainer'); if (container && siteData.reviews && siteData.reviews.length) { container.innerHTML = siteData.reviews.map(r => `<div class="review-card"><img class="review-image" src="${r.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=Фото+ПК'"><strong>⭐ ${r.name}</strong><p>${r.text}</p></div>`).join(''); } }
-function renderSocialBlock() { let s = siteData.socials || {}; let html = ''; if(s.vk) html += `<a href="${s.vk}" target="_blank" class="social-icon vk">📱 VK</a>`; if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="social-icon tg">💬 Telegram</a>`; if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="social-icon yt">📺 YouTube</a>`; if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="social-icon tt">🎵 TikTok</a>`; if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="social-icon ig">📷 Instagram</a>`; const container = document.getElementById('socialIconsContainer'); if (container) container.innerHTML = html; }
+function renderSocialBlock() { let s = siteData.socials || {}; let html = ''; if(s.vk) html += `<a href="${s.vk}" target="_blank" class="social-icon vk">${SOCIAL_ICONS.vk} VK</a>`; if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="social-icon tg">${SOCIAL_ICONS.tg} Telegram</a>`; if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="social-icon yt">${SOCIAL_ICONS.yt} YouTube</a>`; if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="social-icon tt">${SOCIAL_ICONS.tt} TikTok</a>`; if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="social-icon ig">${SOCIAL_ICONS.ig} Instagram</a>`; const container = document.getElementById('socialIconsContainer'); if (container) container.innerHTML = html; }
+
+function renderHomeBuilds() {
+    const container = document.getElementById('homeBuildsContainer');
+    if (!container || !siteData.builds || !siteData.builds.length) return;
+    const popular = siteData.builds.slice(0, 3);
+    container.innerHTML = popular.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.slice(0,4).map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">Купить</a></div>`).join('');
+}
 
 let promoInterval;
 function renderPromo() {
@@ -115,8 +123,8 @@ function renderBuilds() {
     if(currentGpuFilter !== "all") filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
     const container = document.getElementById('buildsContainer');
     if (!container) return;
-    if (filtered.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;">🤔 Нет сборок под выбранные фильтры</div>'; return; }
-    container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">💰 Купить</a></div>`).join('');
+    if (filtered.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;">Нет сборок под выбранные фильтры</div>'; return; }
+    container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">Купить</a></div>`).join('');
     document.querySelectorAll('.build-card').forEach(card => {
         card.onmousemove = (e) => { let r = card.getBoundingClientRect(); let x = e.clientX - r.left, y = e.clientY - r.top; let rx = (y - r.height/2)/35, ry = (r.width/2 - x)/35; card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; };
         card.onmouseleave = () => card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
@@ -127,7 +135,7 @@ function initCalculator() {
     const calcButton = document.getElementById('calcButton');
     if (!calcButton) return;
     calcButton.onclick = () => {
-        if (!siteData.builds || siteData.builds.length === 0) { const resultDiv = document.getElementById('calculatorResult'); if (resultDiv) resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>⏳ Данные загружаются...</p></div>`; return; }
+        if (!siteData.builds || siteData.builds.length === 0) { const resultDiv = document.getElementById('calculatorResult'); if (resultDiv) resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>Данные загружаются...</p></div>`; return; }
         let purpose = document.getElementById('calcPurpose').value, cpuPref = document.getElementById('calcCpu').value, gpuPref = document.getElementById('calcGpu').value, budget = parseInt(document.getElementById('calcBudget').value);
         let filtered = [...siteData.builds];
         if(budget === 70000) filtered = filtered.filter(b => b.price <= 70000);
@@ -143,8 +151,8 @@ function initCalculator() {
         filtered.sort((a,b) => a.price - b.price);
         let selected = filtered[0];
         let resultDiv = document.getElementById('calculatorResult');
-        if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn">📝 Оставить заявку</a></div></div></div>`; }
-        else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><a href="/contacts.html" class="btn">Связаться</a></div>`; }
+        if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn">Оставить заявку</a></div></div></div>`; }
+        else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>Не нашли подходящую сборку. Напишите нам!</p><a href="/contacts.html" class="btn">Связаться</a></div>`; }
     };
 }
 
@@ -158,7 +166,7 @@ async function sendToTelegram(name, contact, type, comment) {
         const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${BOTGATE_API_KEY}` }, body: JSON.stringify({ chat_id: CHAT_ID, text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}` }) });
         const result = await response.json();
         return !!result.ok;
-    } catch (e) { console.error("Ошибка отправки через BotGate:", e); return false; }
+    } catch (e) { console.error("Ошибка отправки:", e); return false; }
 }
 
 function createParticles() { const particlesContainer = document.getElementById('particles'); if (!particlesContainer) return; for(let i=0;i<50;i++) { let p = document.createElement('div'); p.className = 'particle'; let s = Math.random()*5+2; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`; particlesContainer.appendChild(p); } }
@@ -172,28 +180,51 @@ function initManagerModal() {
     if (btn) btn.onclick = () => { if (modal) modal.style.display = 'flex'; };
     const close = document.getElementById('closeModal');
     if (close) close.onclick = () => { if (modal) modal.style.display = 'none'; };
-    const vk = document.getElementById('modalVk');
-    if (vk) vk.onclick = () => { window.open(siteData.socials?.vk || "#", '_blank'); if (modal) modal.style.display = 'none'; };
-    const tg = document.getElementById('modalTg');
-    if (tg) tg.onclick = () => { window.open(siteData.socials?.telegram || "#", '_blank'); if (modal) modal.style.display = 'none'; };
+}
+
+function renderManagerModal() {
+    const container = document.getElementById('modalSocials');
+    if (!container) return;
+    const s = siteData.socials || {};
+    let html = '';
+    if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="tg">${SOCIAL_ICONS.tg} Telegram</a>`;
+    if(s.vk) html += `<a href="${s.vk}" target="_blank" class="vk">${SOCIAL_ICONS.vk} ВКонтакте</a>`;
+    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt">${SOCIAL_ICONS.yt} YouTube</a>`;
+    if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt">${SOCIAL_ICONS.tt} TikTok</a>`;
+    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig">${SOCIAL_ICONS.ig} Instagram</a>`;
+    container.innerHTML = html;
 }
 
 function initRequestForm() {
     const form = document.getElementById('requestForm');
     if (!form) return;
-    let contactType = 'phone';
-    document.querySelectorAll('.contact-type-btn').forEach(btn => btn.onclick = function() { document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); contactType = this.dataset.contact; let c = document.getElementById('contactFieldContainer'); if(c) { if(contactType === 'phone') c.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; else if(contactType === 'tg') c.innerHTML = '<input type="text" id="clientContact" placeholder="Ваш Telegram (@username)" required>'; else c.innerHTML = '<input type="text" id="clientContact" placeholder="Ссылка на VK" required>'; } });
     form.onsubmit = async (e) => {
         e.preventDefault();
-        let name = document.getElementById('clientName').value, contact = document.getElementById('clientContact').value, comment = document.getElementById('clientComment').value;
-        const consent = document.getElementById('clientConsent');
-        if(!name || !contact) { alert("Заполните имя и контакт!"); return; }
-        if (!consent.checked) { alert("Необходимо дать согласие на обработку персональных данных!"); return; }
+        let purpose = document.getElementById('clientPurpose')?.value || '';
+        let name = document.getElementById('clientName').value;
+        let phone = document.getElementById('clientPhone').value;
+        let tg = document.getElementById('clientTg')?.value || '';
+        let email = document.getElementById('clientEmail')?.value || '';
+        let comment = document.getElementById('clientComment').value;
+        
+        if(!name || !phone) { alert("Заполните имя и телефон!"); return; }
+        
+        let contactInfo = phone;
+        if (tg) contactInfo += ` / ${tg}`;
+        if (email) contactInfo += ` / ${email}`;
+        
         let btn = e.target.querySelector('button'), orig = btn.textContent;
         btn.textContent = "Отправка..."; btn.disabled = true;
-        const success = await sendToTelegram(name, contact, contactType, comment);
-        if (success) { alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами.`); e.target.reset(); const cf = document.getElementById('contactFieldContainer'); if (cf) cf.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; const phoneBtn = document.querySelector('.contact-type-btn[data-contact="phone"]'); const tgBtn = document.querySelector('.contact-type-btn[data-contact="tg"]'); const vkBtn = document.querySelector('.contact-type-btn[data-contact="vk"]'); if (phoneBtn) phoneBtn.classList.add('active'); if (tgBtn) tgBtn.classList.remove('active'); if (vkBtn) vkBtn.classList.remove('active'); contactType = 'phone'; }
-        else { alert('❌ Ошибка отправки. Напишите нам в Telegram: @matoffpcforclientsbot'); }
+        
+        const fullComment = (purpose ? `Цель: ${purpose}\n` : '') + comment;
+        const success = await sendToTelegram(name, contactInfo, 'контакт', fullComment);
+        
+        if (success) {
+            alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами.`);
+            e.target.reset();
+        } else {
+            alert('❌ Ошибка отправки. Напишите нам в Telegram: @matoffpcforclientsbot');
+        }
         btn.textContent = orig; btn.disabled = false;
     };
 }
