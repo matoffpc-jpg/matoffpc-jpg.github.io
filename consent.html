@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Согласие на обработку персональных данных | Matoff PC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f; --text-primary: #ededee; --text-secondary: #bbb;
+            --border-color: rgba(155, 77, 255, 0.25); --card-bg: rgba(22, 22, 28, 0.85);
+            --accent-purple: #9b4dff; --accent-orange: #e68a2e; --btn-bg: linear-gradient(135deg, #9b4dff, #7c3aed);
+            --btn-shadow: #4a1d8a;
+        }
+        body.light-theme {
+            --bg-primary: #f0f2f5; --text-primary: #1a1a2e; --text-secondary: #4a4a5a;
+            --border-color: rgba(155, 77, 255, 0.35); --card-bg: rgba(255, 255, 255, 0.95);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding: 20px; transition: 0.3s; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid var(--border-color); backdrop-filter: blur(10px); }
+        h1 { font-family: 'Orbitron', monospace; font-size: 1.8rem; margin-bottom: 20px; color: var(--accent-purple); }
+        h2 { font-size: 1.2rem; margin: 25px 0 10px; color: var(--accent-orange); }
+        p, li { margin-bottom: 10px; color: var(--text-secondary); font-size: 0.95rem; }
+        .back-btn { display: inline-block; margin-top: 30px; padding: 12px 24px; background: var(--btn-bg); color: #fff; text-decoration: none; border-radius: 50px; font-weight: 700; box-shadow: 0 3px 0 var(--btn-shadow); transition: 0.2s; }
+        .back-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
+        .theme-toggle { text-align: right; margin-bottom: 15px; }
+        .theme-toggle button { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 5px 15px; border-radius: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="theme-toggle"><button onclick="toggleTheme()">🌙 / ☀️</button></div>
+    <h1>Согласие на обработку персональных данных</h1>
+    <p>Я, субъект персональных данных, действуя свободно, своей волей и в своём интересе, даю согласие <strong>[ТВОИ ФИО / Название ИП]</strong> (ИНН: [ТВОЙ ИНН], адрес: [ТВОЙ АДРЕС], email: [ТВОЯ ПОЧТА]), далее — «Оператор», на обработку моих персональных данных на следующих условиях.</p>
+
+    <h2>1. Перечень персональных данных</h2>
+    <p>1.1. Согласие даётся на обработку следующих персональных данных, которые я предоставляю через формы на сайте [ТВОЙ САЙТ]:</p>
+    <ul>
+        <li>Фамилия, имя;</li>
+        <li>Номер телефона;</li>
+        <li>Имя пользователя в Telegram или ссылка на профиль VK;</li>
+        <li>Комментарий к заявке.</li>
+    </ul>
+
+    <h2>2. Цели обработки</h2>
+    <p>2.1. Мои персональные данные обрабатываются в целях:</p>
+    <ul>
+        <li>Связи со мной для уточнения деталей заявки, консультирования, согласования условий заказа;</li>
+        <li>Исполнения обязательств Оператора передо мной (при оформлении заказа).</li>
+    </ul>
+
+    <h2>3. Действия с персональными данными</h2>
+    <p>3.1. Оператор вправе совершать следующие действия с моими персональными данными: сбор, запись, систематизация, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, блокирование, удаление, уничтожение.</p>
+    <p>3.2. Обработка осуществляется как с использованием средств автоматизации, так и без их использования (смешанная обработка).</p>
+
+    <h2>4. Срок действия согласия и порядок отзыва</h2>
+    <p>4.1. Согласие действует до достижения целей обработки, либо до момента его отзыва мною.</p>
+    <p>4.2. Я могу отозвать своё согласие в любой момент, направив письменное уведомление на email Оператора: [ТВОЯ ПОЧТА].</p>
+    <p>4.3. После получения отзыва Оператор обязан прекратить обработку моих персональных данных и уничтожить их в срок, не превышающий 30 дней с момента получения отзыва, если иное не предусмотрено законодательством РФ.</p>
+
+    <h2>5. Подтверждение</h2>
+    <p>5.1. Я подтверждаю, что ознакомлен(а) с Политикой обработки персональных данных Оператора, размещённой по адресу [ТВОЙ САЙТ]/privacy.html, и мне понятны мои права, предусмотренные Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+    <p>5.2. Настоящее согласие оформлено отдельно от иных документов и информации, в соответствии с требованиями законодательства [citation:1][citation:3].</p>
+
+    <p><strong>Дата:</strong> [ДАТА]</p>
+    <p><strong>Субъект персональных данных:</strong> _________________ (подпись / ФИО при электронном подтверждении)</p>
+
+    <a href="/" class="back-btn">← На главную</a>
+</div>
+<script>
+    function toggleTheme() { document.body.classList.toggle('light-theme'); }
+    if (localStorage.getItem('matoff_theme') === 'light') document.body.classList.add('light-theme');
+</script>
+</body>
+</html>
