@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /cart.html
 
-Sitemap: https://matoffpc-jpg.github.io/sitemap.xml
+Sitemap: https://matoffpc.ru/sitemap.xml
