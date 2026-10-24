@@ -19,39 +19,72 @@
         <div class="nav">
             <a href="/">Главная</a>
             <a href="/services.html">Услуги</a>
-            <a href="/builds.html">Сборки</a>
+            <a href="/builds.html">Каталог</a>
+            <a href="/used.html">Б/У</a>
+            <a href="/components.html">Комплектующие</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
-            <div class="theme-toggle" id="themeToggle">
-                <span class="active" data-theme="dark">🌙</span>
-                <span data-theme="light">☀️</span>
-            </div>
-            <div class="manager-wrapper">
-                <button id="managerHeaderBtn" class="manager-header-btn">Связаться</button>
-            </div>
+            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
+            <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
         </div>
     </div>
 </header>
 
 <main>
     <section id="reviews"><div class="container"><h2 class="section-title fade-up">Клиенты <span>о нас</span></h2><div id="reviewsContainer" class="reviews-grid"></div><div class="avito-link"><a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">Смотреть все отзывы на Авито</a></div></div></section>
-    
-    <section id="why-trust">
+
+    <section id="trust-why">
         <div class="container">
             <h2 class="section-title fade-up">Почему нам <span>доверяют</span></h2>
-            <div class="advantages-grid">
-                <div class="advantage-card"><h3>Гарантия 1 год</h3><p>На все сборки и работы. Если что-то пойдёт не так — исправим бесплатно.</p></div>
-                <div class="advantage-card"><h3>Быстрая сборка</h3><p>Соберём и протестируем ПК за 3 дня. Срочные заказы — за 1 день.</p></div>
-                <div class="advantage-card"><h3>Поддержка после покупки</h3><p>Поможем с настройкой, драйверами и ответим на любые вопросы.</p></div>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                    <h3>Гарантия 1 год</h3>
+                    <p>На все сборки и работы. Если что-то пойдёт не так — исправим бесплатно.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                    <h3>Быстрая сборка</h3>
+                    <p>Соберём и протестируем ПК за 3 дня. Срочные заказы — за 1 день.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+                    <h3>Поддержка после покупки</h3>
+                    <p>Поможем с настройкой, драйверами и ответим на любые вопросы.</p>
+                </div>
             </div>
         </div>
     </section>
-    
+
+    <section id="vk-reviews">
+        <div class="container">
+            <h2 class="section-title fade-up">Отзывы из <span>ВКонтакте</span></h2>
+            <div class="vk-widget-wrap">
+                <div id="vk_reviews"></div>
+                <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+                <script type="text/javascript">
+                    VK.init({apiId: 0, onlyWidgets: true});
+                    VK.Widgets.Group("vk_reviews", {mode: 4, width: "auto", height: "400", color1: "0a0a0f", color2: "ededee", color3: "9b4dff"}, 123456789);
+                </script>
+            </div>
+            <p style="text-align:center; color:var(--text-secondary); font-size:0.85rem; margin-top:15px;">Замените apiId и ID группы на свои, чтобы виджет заработал.</p>
+        </div>
+    </section>
+
+    <section id="map-section">
+        <div class="container">
+            <h2 class="section-title fade-up">Мы на <span>карте</span></h2>
+            <div class="map-full">
+                <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" allowfullscreen="true" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
     <section id="leave-review">
         <div class="container" style="text-align: center;">
             <h2 class="section-title fade-up">Оставьте <span>свой отзыв</span></h2>
-            <p style="color: var(--text-secondary); margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">Расскажите о своём опыте работы с Matoff PC. Это поможет нам стать лучше, а другим клиентам — сделать правильный выбор.</p>
+            <p style="color: var(--text-secondary); margin-bottom: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">Расскажите о своём опыте работы с Matoff PC. Это поможет нам стать лучше.</p>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                 <a href="https://t.me/matoffpctg" target="_blank" class="btn">Написать в Telegram</a>
                 <a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn btn-outline">Оставить на Авито</a>
@@ -71,7 +104,7 @@
 </footer>
 
 <button class="scroll-top" id="scrollTopBtn">↑</button>
-<div id="socialModal" class="modal"><div class="modal-content"><h3>Связь с менеджером</h3><div class="modal-socials" id="modalSocials"></div><button id="closeModal" class="modal-close-btn">Закрыть</button></div></div>
+<div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
 
 <script src="/common.js"></script>
 <script>
