@@ -7,11 +7,33 @@ async function loadData() {
         if (!response.ok) throw new Error('Ошибка загрузки data.json: ' + response.status);
         siteData = await response.json();
         console.log('✅ Данные загружены успешно');
+        renderFooterSocials();
         return siteData;
     } catch(e) {
         console.error('❌ Ошибка загрузки:', e);
         return null;
     }
+}
+
+function renderFooterSocials() {
+    const container = document.getElementById('footerSocials');
+    if (!container) return;
+    const s = siteData.socials || {};
+    let html = '';
+    if(s.vk) html += `<a href="${s.vk}" target="_blank" class="vk" title="VK">📱</a>`;
+    if(s.telegram) html += `<a href="${s.telegram}" target="_blank" class="tg" title="Telegram">💬</a>`;
+    if(s.youtube) html += `<a href="${s.youtube}" target="_blank" class="yt" title="YouTube">📺</a>`;
+    if(s.tiktok) html += `<a href="${s.tiktok}" target="_blank" class="tt" title="TikTok">🎵</a>`;
+    if(s.instagram) html += `<a href="${s.instagram}" target="_blank" class="ig" title="Instagram">📷</a>`;
+    container.innerHTML = html;
+}
+
+function highlightActiveNav() {
+    const path = window.location.pathname;
+    document.querySelectorAll('.nav a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === path || (path === '/' && href === '/')) link.classList.add('active-page');
+    });
 }
 
 function initSlider() {
@@ -53,7 +75,7 @@ function animateCounters() {
 }
 
 function renderCounters() { if(!siteData.counters || !siteData.counters.length) return; const container = document.getElementById('countersContainer'); if (container) { container.innerHTML = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.number}">0</div><div class="counter-label">${c.label}</div></div>`).join(''); animateCounters(); } }
-function renderServices() { if(!siteData.services || !siteData.services.length) return; const container = document.getElementById('servicesContainer'); if (container) { container.innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = scrollToOrder); } }
+function renderServices() { if(!siteData.services || !siteData.services.length) return; const container = document.getElementById('servicesContainer'); if (container) { container.innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = () => window.location.href = '/contacts.html'); } }
 function renderSteps() { const container = document.getElementById('stepsContainer'); if (container && siteData.steps && siteData.steps.length) { container.innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join(''); } }
 function renderAdvantages() { const container = document.getElementById('advantagesContainer'); if (container && siteData.advantages && siteData.advantages.length) { container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join(''); } }
 function renderShorts() { const container = document.getElementById('shortsContainer'); if (container && siteData.shorts && siteData.shorts.length) { container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join(''); } }
@@ -87,12 +109,11 @@ function renderBuilds() {
     const container = document.getElementById('buildsContainer');
     if (!container) return;
     if (filtered.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;">🤔 Нет сборок под выбранные фильтры</div>'; return; }
-    container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn btn-buy">💰 Купить</button></div>`).join('');
+    container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">💰 Купить</a></div>`).join('');
     document.querySelectorAll('.build-card').forEach(card => {
         card.onmousemove = (e) => { let r = card.getBoundingClientRect(); let x = e.clientX - r.left, y = e.clientY - r.top; let rx = (y - r.height/2)/35, ry = (r.width/2 - x)/35; card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; };
         card.onmouseleave = () => card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
     });
-    document.querySelectorAll('.btn-buy').forEach(btn => btn.onclick = scrollToOrder);
 }
 
 function initCalculator() {
@@ -115,8 +136,8 @@ function initCalculator() {
         filtered.sort((a,b) => a.price - b.price);
         let selected = filtered[0];
         let resultDiv = document.getElementById('calculatorResult');
-        if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><button class="btn" onclick="scrollToOrder()">📝 Оставить заявку</button></div></div></div>`; }
-        else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><button class="btn" onclick="scrollToOrder()">Связаться</button></div>`; }
+        if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn">📝 Оставить заявку</a></div></div></div>`; }
+        else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><a href="/contacts.html" class="btn">Связаться</a></div>`; }
     };
 }
 
@@ -137,10 +158,6 @@ function createParticles() { const particlesContainer = document.getElementById(
 function checkVisibility() { document.querySelectorAll('.fade-up').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add('visible'); }); }
 function initScrollTop() { let btn = document.getElementById('scrollTopBtn'); if (btn) { window.onscroll = () => btn.classList.toggle('show', window.scrollY > 300); btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); } }
 function initTheme() { let toggle = document.getElementById('themeToggle'); if (!toggle) return; let saved = localStorage.getItem('matoff_theme') || 'dark'; if(saved === 'light') document.body.classList.add('light-theme'); const spans = toggle.querySelectorAll('span'); spans.forEach(span => { span.classList.toggle('active', span.dataset.theme === saved); span.onclick = (e) => { e.stopPropagation(); let theme = span.dataset.theme; if (theme === 'light') document.body.classList.add('light-theme'); else document.body.classList.remove('light-theme'); localStorage.setItem('matoff_theme', theme); spans.forEach(s => s.classList.remove('active')); span.classList.add('active'); }; }); }
-function showAdminLogin() { const overlay = document.getElementById('adminLoginOverlay'); if (overlay) overlay.style.display = 'flex'; }
-function hideAdminLogin() { const overlay = document.getElementById('adminLoginOverlay'); if (overlay) overlay.style.display = 'none'; }
-function showAdminPanel() { const panel = document.getElementById('adminPanel'); if (panel) panel.classList.add('visible'); }
-function hideAdminPanel() { const panel = document.getElementById('adminPanel'); if (panel) panel.classList.remove('visible'); }
 
 function initManagerModal() {
     let modal = document.getElementById('socialModal');
@@ -174,17 +191,6 @@ function initRequestForm() {
     };
 }
 
-function initAdmin() {
-    const adminLink = document.getElementById('adminLink');
-    if (adminLink) adminLink.onclick = showAdminLogin;
-    const loginBtn = document.getElementById('adminLoginBtn');
-    if (loginBtn) loginBtn.onclick = () => { const adminPassword = document.getElementById('adminPassword'); if(adminPassword && adminPassword.value === ADMIN_PASSWORD) { hideAdminLogin(); showAdminPanel(); if (adminPassword) adminPassword.value = ''; } else alert("Неверный пароль!"); };
-    const loginClose = document.getElementById('adminLoginClose');
-    if (loginClose) loginClose.onclick = hideAdminLogin;
-    const logoutBtn = document.getElementById('logoutAdminBtn');
-    if (logoutBtn) logoutBtn.onclick = hideAdminPanel;
-}
-
 function initPromoClose() {
     const promoClose = document.getElementById('promoClose');
     if (promoClose) promoClose.onclick = () => { const promoBar = document.getElementById('promoBar'); if (promoBar) promoBar.style.display = 'none'; };
@@ -196,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initManagerModal();
     initRequestForm();
-    initAdmin();
     initPromoClose();
+    highlightActiveNav();
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
 });
