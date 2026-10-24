@@ -128,4 +128,58 @@
             return;
         }
         let total = getCartTotal();
-        container.innerHTML = cart.map(item => `<div class="cart-item" data
+        container.innerHTML = cart.map(item => `<div class="cart-item" data-id="${item.id}"><img class="cart-item-img" src="${item.image}" onerror="this.src='https://placehold.co/80x80/2a2a35/9b4dff?text=PC'"><div class="cart-item-info"><div class="cart-item-title">${item.name}</div><div class="cart-item-price">${item.priceText}</div></div><div class="cart-item-quantity"><button class="cart-qty-minus" data-id="${item.id}">-</button><span>${item.quantity}</span><button class="cart-qty-plus" data-id="${item.id}">+</button></div><button class="cart-item-remove" data-id="${item.id}">🗑️</button></div>`).join('');
+        container.innerHTML += `<div class="cart-total">Товаров на сумму: <span>${total.toLocaleString()} ₽</span></div>`;
+        if (orderFormContainer) orderFormContainer.style.display = 'block';
+        updateDeliveryAndTotal();
+        document.querySelectorAll('.cart-qty-minus').forEach(btn => { btn.onclick = () => { const item = cart.find(i => i.id === parseInt(btn.dataset.id)); if (item) { item.quantity--; if (item.quantity <= 0) cart = cart.filter(i => i.id !== item.id); saveCart(); renderCartPage(); } }; });
+        document.querySelectorAll('.cart-qty-plus').forEach(btn => { btn.onclick = () => { const item = cart.find(i => i.id === parseInt(btn.dataset.id)); if (item) { item.quantity++; saveCart(); renderCartPage(); } }; });
+        document.querySelectorAll('.cart-item-remove').forEach(btn => { btn.onclick = () => { cart = cart.filter(i => i.id !== parseInt(btn.dataset.id)); saveCart(); renderCartPage(); }; });
+        const deliverySelect = document.getElementById('orderDelivery');
+        if (deliverySelect) deliverySelect.onchange = updateDeliveryAndTotal;
+    }
+    async function submitOrder() {
+        const fio = document.getElementById('orderFio')?.value.trim();
+        const phone = document.getElementById('orderPhone')?.value.trim();
+        const tg = document.getElementById('orderTg')?.value.trim();
+        const city = document.getElementById('orderCity')?.value.trim();
+        const index = document.getElementById('orderIndex')?.value.trim();
+        const address = document.getElementById('orderAddress')?.value.trim();
+        const delivery = document.getElementById('orderDelivery')?.value;
+        const pvz = document.getElementById('orderPvz')?.value.trim();
+        const comment = document.getElementById('orderComment')?.value.trim();
+        if (!fio || !phone || !tg || !city || !address) { alert('Заполните все обязательные поля!'); return; }
+        const cartTotal = getCartTotal();
+        const deliveryCost = deliveryRates[delivery] || 500;
+        const total = cartTotal + deliveryCost;
+        let msg = `🛍️ НОВЫЙ ЗАКАЗ КОМПЛЕКТУЮЩИХ\n\n👤 ФИО: ${fio}\n📞 Телефон: ${phone}\n💬 Telegram: ${tg}\n🏙️ Город: ${city}\n`;
+        if (index) msg += `📮 Индекс: ${index}\n`;
+        msg += `📍 Адрес: ${address}\n📦 ТК: ${delivery}\n`;
+        if (pvz) msg += `🏢 ПВЗ/отделение: ${pvz}\n`;
+        if (comment) msg += `💬 Комментарий: ${comment}\n`;
+        msg += `\n📋 ТОВАРЫ:\n`;
+        cart.forEach(item => { msg += `• ${item.name} x${item.quantity} = ${(item.price * item.quantity).toLocaleString()} ₽\n`; });
+        msg += `\n💰 Стоимость товаров: ${cartTotal.toLocaleString()} ₽\n🚚 Доставка (${delivery}): ${deliveryCost.toLocaleString()} ₽\n💵 ИТОГО К ОПЛАТЕ: ${total.toLocaleString()} ₽\n\n🕐 ${new Date().toLocaleString()}`;
+        const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
+        const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
+        const CHAT_ID = "1065465753";
+        const url = `https://bot-gate.ru/api/v1/bots/${BOT_PUBLIC_ID}/sendMessage`;
+        const btn = document.getElementById('submitOrderBtn');
+        const originalText = btn.textContent;
+        btn.textContent = '⏳ Отправка...'; btn.disabled = true;
+        try {
+            const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${BOTGATE_API_KEY}` }, body: JSON.stringify({ chat_id: CHAT_ID, text: msg }) });
+            const result = await response.json();
+            if (result.ok) { alert('✅ Заказ отправлен! Менеджер свяжется с вами.'); localStorage.removeItem('matoff_cart'); cart = []; renderCartPage(); }
+            else { alert('❌ Ошибка отправки. Напишите нам в Telegram.'); }
+        } catch(e) { alert('❌ Ошибка отправки. Напишите нам в Telegram.'); }
+        finally { btn.textContent = originalText; btn.disabled = false; }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCartPage();
+        const submitBtn = document.getElementById('submitOrderBtn');
+        if (submitBtn) submitBtn.onclick = submitOrder;
+    });
+</script>
+</body>
+</html>
