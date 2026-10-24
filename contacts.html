@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Заявка | Matoff PC</title>
-    <meta name="description" content="Свяжитесь с Matoff PC. Оставить заявку на сборку, ремонт или апгрейд компьютера.">
+    <meta name="description" content="Оставьте заявку на сборку, ремонт или апгрейд компьютера. Свяжемся в ближайшее время.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
     <style>
@@ -13,38 +13,122 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            align-items: stretch;
+            align-items: start;
         }
-        .contacts-layout .order-form {
-            margin: 0;
-            max-width: 100%;
-        }
-        .map-wrapper {
+        .contact-form-block {
             background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            padding: 35px;
             border-radius: 35px;
             border: 1px solid var(--border-color);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 500px;
         }
-        .map-wrapper iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            border: none;
+        .contact-form-block h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .contact-form-block .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
             display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .form-group label .req {
+            color: var(--accent-orange);
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 10px rgba(155,77,255,0.3);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .form-footer {
+            margin-top: 20px;
+        }
+        .form-footer .btn {
+            width: 100%;
+        }
+        .form-docs {
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.5;
+        }
+        .form-docs a {
+            color: var(--accent-purple);
+            text-decoration: underline;
+        }
+        .form-docs a:hover {
+            color: var(--accent-orange);
+        }
+        .side-info {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            padding: 35px;
+            border-radius: 35px;
+            border: 1px solid var(--border-color);
+        }
+        .side-info h3 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-purple);
+        }
+        .side-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .side-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .side-info ul li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .side-info ul li:last-child {
+            border-bottom: none;
+        }
+        .side-info ul li strong {
+            color: var(--text-primary);
         }
         @media (max-width: 1000px) {
-            .contacts-layout {
-                grid-template-columns: 1fr;
-            }
-            .map-wrapper {
-                min-height: 350px;
-            }
-            .map-wrapper iframe {
-                min-height: 350px;
-            }
+            .contacts-layout { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -76,30 +160,64 @@
 <main>
     <section id="order">
         <div class="container">
-            <h2 class="section-title fade-up">Оставить <span>заявку</span></h2>
             <div class="contacts-layout">
-                <div class="order-form">
-                    <div class="contact-type-buttons">
-                        <div class="contact-type-btn active" data-contact="phone">📞 Телефон</div>
-                        <div class="contact-type-btn" data-contact="tg">💬 Telegram</div>
-                        <div class="contact-type-btn" data-contact="vk">📱 VK</div>
-                    </div>
+                <div class="contact-form-block">
+                    <h2>Напишите нам</h2>
+                    <p class="subtitle">Заполните форму, и мы свяжемся с вами в ближайшее время.</p>
                     <form id="requestForm">
-                        <input type="text" id="clientName" placeholder="Ваше имя" required>
-                        <div id="contactFieldContainer"><input type="tel" id="clientContact" placeholder="Номер телефона" required></div>
-                        <textarea id="clientComment" rows="3" placeholder="Что вас интересует? (сборка, апгрейд, ремонт...)"></textarea>
-                        <div class="consent-checkbox">
-                            <label>
-                                <input type="checkbox" id="clientConsent" required>
-                                <span>Я даю <a href="/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="/privacy.html" target="_blank">Политикой обработки персональных данных</a></span>
-                            </label>
+                        <div class="form-group">
+                            <label>Цель обращения <span class="req">*</span></label>
+                            <select id="clientPurpose" required>
+                                <option value="">Выберите цель обращения</option>
+                                <option value="Сборка ПК">Сборка ПК</option>
+                                <option value="Ремонт ПК">Ремонт ПК</option>
+                                <option value="Апгрейд ПК">Апгрейд ПК</option>
+                                <option value="Консультация">Консультация</option>
+                                <option value="Трейд-ин">Трейд-ин</option>
+                                <option value="Выкуп техники">Выкуп техники</option>
+                                <option value="Другое">Другое</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn">📨 Отправить заявку</button>
+                        <div class="form-group">
+                            <label>Ваше имя <span class="req">*</span></label>
+                            <input type="text" id="clientName" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Номер телефона <span class="req">*</span></label>
+                                <input type="tel" id="clientPhone" placeholder="+7 (___) ___-__-__" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telegram / VK</label>
+                                <input type="text" id="clientTg" placeholder="@username или ссылка на ВК">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="clientEmail" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Опишите вашу задачу или задайте вопрос</label>
+                            <textarea id="clientComment" rows="4" placeholder="Опишите вашу задачу или задайте вопрос..."></textarea>
+                        </div>
+                        <div class="form-footer">
+                            <button type="submit" class="btn">📨 Отправить заявку</button>
+                            <div class="form-docs">
+                                Нажимая кнопку, я принимаю условия <a href="/consent.html" target="_blank">Согласия на обработку персональных данных</a> и <a href="/privacy.html" target="_blank">Политики конфиденциальности</a>
+                            </div>
+                        </div>
                     </form>
-                    <p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p>
                 </div>
-                <div class="map-wrapper">
-                    <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" allowfullscreen="true" loading="lazy"></iframe>
+                <div class="side-info">
+                    <h3>Почему стоит выбрать нас</h3>
+                    <ul>
+                        <li><strong>Индивидуальный подход</strong> — подбираем конфигурацию под ваши задачи и бюджет</li>
+                        <li><strong>Гарантия 1 год</strong> — на все сборки и работы</li>
+                        <li><strong>Доставка по РФ</strong> — бережная упаковка и страховка</li>
+                        <li><strong>Поддержка 24/7</strong> — поможем с настройкой и ответим на вопросы</li>
+                        <li><strong>Опыт более 4 лет</strong> — более 500 собранных ПК</li>
+                    </ul>
+                    <p style="margin-top: 20px;">📍 Мастерская в Нижнем Новгороде<br>📞 Связь: ПН-ВС с 10:00 до 22:00</p>
                 </div>
             </div>
         </div>
