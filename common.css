@@ -932,4 +932,169 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
 .component-price { font-size: 1.4rem; font-weight: 800; color: var(--price-color); margin-bottom: 8px; }
 .component-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; flex: 1; line-height: 1.4; }
 .component-card .btn { width: 100%; }
+/* ============================================
+   ЗОНЫ НА ГЛАВНОЙ (визуальное разделение)
+   ============================================ */
 
+.zone {
+    position: relative;
+    padding: 30px 0;
+    margin: 20px 0;
+    transition: background 0.3s;
+}
+.zone-dark {
+    background: linear-gradient(180deg, rgba(155,77,255,0.06) 0%, rgba(10,10,15,0.4) 50%, rgba(155,77,255,0.06) 100%);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: inset 0 0 80px rgba(155,77,255,0.05);
+}
+.zone-accent {
+    background: radial-gradient(ellipse at center, rgba(155,77,255,0.12) 0%, rgba(10,10,15,0.3) 60%, transparent 100%);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+.zone-accent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(230,138,46,0.08) 0%, transparent 40%),
+                      radial-gradient(circle at 80% 20%, rgba(155,77,255,0.1) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+/* ============================================
+   ПРЕИМУЩЕСТВА — КОЛЕСО ВОКРУГ ЦЕНТРА
+   ============================================ */
+
+.advantages-wheel {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .advantages-wheel { height: 480px; }
+}
+
+.advantages-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(155,77,255,0.4), rgba(10,10,15,0.95));
+    border: 2px solid var(--accent-purple);
+    box-shadow: 0 0 50px rgba(155,77,255,0.7), inset 0 0 30px rgba(155,77,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: centerPulse 3s ease-in-out infinite;
+}
+@keyframes centerPulse {
+    0%, 100% { box-shadow: 0 0 50px rgba(155,77,255,0.7), inset 0 0 30px rgba(155,77,255,0.3); }
+    50% { box-shadow: 0 0 80px rgba(155,77,255,1), inset 0 0 40px rgba(155,77,255,0.5); }
+}
+.advantages-center::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 1px dashed rgba(155,77,255,0.4);
+    animation: rotateHex 20s linear infinite;
+}
+.adv-center-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.adv-center-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 10px rgba(155,77,255,0.9));
+}
+.adv-center-text {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #9b4dff, #e68a2e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+}
+
+.advantages-orbit {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+}
+.adv-orbit-item {
+    position: absolute;
+    top: 0; left: 0;
+    width: 220px;
+    margin-left: -110px;
+    margin-top: -50px;
+    transition: transform 0.3s;
+}
+@media (max-width: 768px) {
+    .adv-orbit-item {
+        width: 150px;
+        margin-left: -75px;
+        margin-top: -35px;
+    }
+}
+.adv-orbit-inner {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 14px 16px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+}
+.adv-orbit-inner::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    box-shadow: 0 0 15px var(--accent-purple);
+    opacity: 0;
+}
+.adv-orbit-item:hover .adv-orbit-inner {
+    border-color: var(--accent-purple);
+    box-shadow: 0 10px 25px rgba(155,77,255,0.3);
+    transform: scale(1.05);
+}
+.adv-orbit-inner h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-purple);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+.adv-orbit-inner p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+    .adv-orbit-inner h3 { font-size: 0.75rem; }
+    .adv-orbit-inner p { font-size: 0.68rem; }
+    .advantages-center { width: 120px; height: 120px; }
+    .adv-center-text { font-size: 0.75rem; }
+    .adv-center-icon { font-size: 1.5rem; }
+}
