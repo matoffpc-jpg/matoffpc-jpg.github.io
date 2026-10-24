@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Компьютер | Matoff PC</title>
+    <meta name="description" content="Подробная информация о компьютере Matoff PC.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/common.css">
+</head>
+<body>
+<div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
+<div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
+
+<header class="header">
+    <div class="container">
+        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
+        <div class="nav">
+            <a href="/">Главная</a>
+            <a href="/services.html">Услуги</a>
+            <a href="/builds.html">Каталог</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Заявка</a>
+            <a href="/cart.html" class="cart-link">🛒 <span id="headerCartCount" class="cart-count">0</span></a>
+            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
+            <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="pcContainer"></div>
+</main>
+
+<footer>
+    <div class="footer-copy">© 2026 Matoff PC — магазин компьютеров в Нижнем Новгороде. Все права защищены.</div>
+    <div class="footer-desc">Интернет-магазин компьютерной техники | Продажа и сборка компьютеров на заказ | Игровые и офисные системные блоки | Компьютерные комплектующие | Ремонт и настройка ПК</div>
+    <div class="footer-socials" id="footerSocials"></div>
+    <div class="footer-legal">
+        <a href="/privacy.html">Политика в отношении обработки персональных данных</a>
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn">↑</button>
+<div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
+
+<script src="/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await loadData();
+    if (data) {
+        renderPcPage();
+        renderPromo(); startPromoRotation(); renderManagerModal();
+        setTimeout(() => checkVisibility(), 100);
+    }
+});
+</script>
+</body>
+</html>
