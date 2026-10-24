@@ -66,7 +66,6 @@ body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; heigh
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 html { scroll-behavior: smooth; }
 
-/* ШАПКА */
 .header { background: var(--header-bg); backdrop-filter: blur(30px) saturate(140%); -webkit-backdrop-filter: blur(30px) saturate(140%); position: sticky; top: 0; border-bottom: 1px solid var(--border-color); z-index: 100; padding: 16px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
 .header .container { display: flex; justify-content: space-between; align-items: center; padding: 0 32px; flex-wrap: wrap; gap: 18px; }
 .logo { font-family: 'Orbitron', monospace; font-size: 2.4rem; font-weight: 900; white-space: nowrap; letter-spacing: 3px; transition: transform 0.3s; }
@@ -84,7 +83,6 @@ html { scroll-behavior: smooth; }
 .manager-header-btn { background: var(--btn-bg); border: none; padding: 9px 22px; border-radius: 50px; color: white; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; box-shadow: 0 3px 0 var(--btn-shadow); display: inline-flex; align-items: center; gap: 6px; }
 .manager-header-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
 
-/* КНОПКИ */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--btn-bg); color: white; font-weight: 700; font-size: 0.95rem; padding: 12px 24px; min-height: 48px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s; text-align: center; box-shadow: 0 3px 0 var(--btn-shadow); text-decoration: none; }
 .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--btn-shadow); }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
@@ -211,13 +209,13 @@ section { padding: 70px 0; }
 .consent-checkbox a { color: var(--accent-purple); text-decoration: underline; }
 .consent-checkbox a:hover { color: var(--accent-orange); }
 
-/* МОДАЛКА СВЯЗИ С МЕНЕДЖЕРОМ */
+/* МОДАЛКА */
 .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
-.modal-content { background: #16161c; padding: 35px; border-radius: 35px; text-align: center; min-width: 280px; max-width: 420px; width: 100%; border: 1px solid var(--accent-purple); }
-.modal-content h3 { font-family: 'Orbitron', monospace; font-size: 1.3rem; margin-bottom: 20px; }
+.modal-content { background: #16161c; padding: 35px; border-radius: 35px; text-align: center; min-width: 280px; max-width: 520px; width: 100%; border: 1px solid var(--accent-purple); }
+.modal-content h3 { font-family: 'Orbitron', monospace; font-size: 1.3rem; margin-bottom: 20px; color: var(--text-primary); }
 .modal-socials { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
-.modal-socials a { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; color: white; transition: all 0.3s; }
-.modal-socials a svg { width: 22px; height: 22px; }
+.modal-socials a { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; color: white; transition: all 0.3s; }
+.modal-socials a svg { width: 20px; height: 20px; }
 .modal-socials a.vk { background: #2787F5; }
 .modal-socials a.tg { background: #26A5E4; }
 .modal-socials a.yt { background: #FF0000; }
@@ -255,7 +253,7 @@ body.light-theme footer { background: rgba(240, 242, 245, 0.5); }
 .footer-legal a { color: var(--text-secondary); text-decoration: none; transition: 0.3s; }
 .footer-legal a:hover { color: var(--accent-purple); }
 
-/* НОВАЯ ФОРМА ЗАЯВКИ */
+/* ФОРМА ЗАЯВКИ */
 .contacts-layout { display: grid; grid-template-columns: 1.3fr 1fr; gap: 30px; align-items: start; }
 .contact-form-block { background: var(--card-bg); backdrop-filter: blur(8px); padding: 35px; border-radius: 35px; border: 1px solid var(--border-color); }
 .contact-form-block h2 { font-family: 'Orbitron', monospace; font-size: 1.8rem; margin-bottom: 10px; text-align: left; }
@@ -279,6 +277,41 @@ body.light-theme footer { background: rgba(240, 242, 245, 0.5); }
 .side-info ul li:last-child { border-bottom: none; }
 .side-info ul li strong { color: var(--text-primary); }
 
+/* КАТАЛОГ */
+.catalog-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+.catalog-tab { background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 10px 28px; border-radius: 50px; color: var(--text-primary); cursor: pointer; transition: 0.3s; font-weight: 600; font-size: 0.95rem; }
+.catalog-tab.active, .catalog-tab:hover { background: var(--btn-bg); border-color: var(--accent-purple); color: white; box-shadow: 0 0 15px rgba(155,77,255,0.4); transform: translateY(-2px); }
+.catalog-line-title { font-family: 'Orbitron', monospace; font-size: 1.6rem; margin-bottom: 25px; text-align: center; }
+.catalog-line-title span { background: linear-gradient(120deg, var(--accent-purple), var(--accent-orange)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+
+/* ДОВЕРИЕ */
+.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.trust-item { background: var(--card-bg); border-radius: 28px; padding: 32px 28px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s; display: flex; flex-direction: column; align-items: center; }
+.trust-item:hover { border-color: var(--accent-purple); transform: translateY(-3px); box-shadow: 0 0 20px rgba(155,77,255,0.2); }
+.trust-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(155,77,255,0.15); border: 1px solid var(--accent-purple); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--accent-purple); }
+.trust-icon svg { width: 28px; height: 28px; }
+.trust-item h3 { font-family: 'Orbitron', monospace; font-size: 1.1rem; margin-bottom: 10px; color: var(--text-primary); }
+.trust-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+.vk-widget-wrap { background: var(--card-bg); border-radius: 28px; padding: 20px; border: 1px solid var(--border-color); max-width: 100%; overflow: hidden; }
+.map-full { width: 100%; height: 450px; border-radius: 28px; overflow: hidden; border: 1px solid var(--border-color); }
+.map-full iframe { width: 100%; height: 100%; border: none; }
+
+/* КОМПЛЕКТУЮЩИЕ */
+.component-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 30px; }
+.components-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
+.component-card { background: var(--card-bg); border-radius: 24px; padding: 18px; border: 1px solid var(--border-color); transition: 0.3s; display: flex; flex-direction: column; }
+.component-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); }
+.component-image { width: 100%; height: 150px; object-fit: contain; margin-bottom: 12px; border-radius: 12px; background: rgba(0,0,0,0.2); padding: 8px; }
+.component-card h3 { font-size: 0.9rem; margin-bottom: 6px; }
+.component-price { font-size: 1.3rem; font-weight: 800; color: var(--price-color); margin: 6px 0; }
+.component-condition { display: inline-block; padding: 3px 8px; border-radius: 16px; font-size: 0.65rem; margin: 4px 0; }
+.component-condition.new { background: rgba(0,200,100,0.2); color: #00c864; }
+.component-condition.good { background: rgba(255,170,68,0.2); color: #ffaa44; }
+.component-condition.excellent { background: rgba(155,77,255,0.2); color: #9b4dff; }
+.component-desc { font-size: 0.7rem; color: var(--text-secondary); margin: 6px 0; line-height: 1.3; flex: 1; }
+.component-card .btn { width: 100%; padding: 8px; font-size: 0.8rem; margin-top: 10px; }
+
 @media (max-width: 1000px) {
     .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid, .counters-grid { grid-template-columns: repeat(2, 1fr); }
     .section-title { font-size: 1.8rem; }
@@ -286,18 +319,16 @@ body.light-theme footer { background: rgba(240, 242, 245, 0.5); }
     .social-icon { padding: 10px 20px; min-width: 110px; font-size: 0.85rem; }
     .contacts-layout { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .components-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
-    .team-card-single { padding: 25px 20px; }
-    .team-avatar-single { font-size: 3rem; }
-    .team-card-single h3 { font-size: 1.2rem; }
-    .team-role-item { padding: 5px 12px; font-size: 0.75rem; }
-    .team-footer-single { font-size: 0.8rem; }
     .container { padding: 0 20px; }
+    .header { padding: 12px 0; }
     .header .container { flex-direction: column; padding: 12px 20px; gap: 12px; }
     .nav { justify-content: center; gap: 8px; }
-    .nav a { font-size: 0.8rem; padding: 6px 12px; }
-    .logo { font-size: 1.8rem; }
+    .nav a { font-size: 0.78rem; padding: 7px 14px; }
+    .logo { font-size: 2rem; letter-spacing: 2px; }
     .section-title { font-size: 1.5rem; }
     section { padding: 50px 0; }
     .hero-slider { border-radius: 16px; }
@@ -311,6 +342,22 @@ body.light-theme footer { background: rgba(240, 242, 245, 0.5); }
     .scroll-top { bottom: 20px; left: 20px; width: 40px; height: 40px; font-size: 20px; }
     .pc-image-container { height: 160px; }
     .review-image { height: 140px; }
+    .team-card-single { padding: 25px 20px; }
+    .team-avatar-single { font-size: 3rem; }
+    .team-card-single h3 { font-size: 1.2rem; }
+    .team-role-item { padding: 5px 12px; font-size: 0.75rem; }
+    .team-footer-single { font-size: 0.8rem; }
+    .manager-header-btn { padding: 8px 18px; font-size: 0.8rem; }
+    .contact-form-block { padding: 25px 20px; }
+    .contact-form-block h2 { font-size: 1.5rem; }
+    .form-group input, .form-group select, .form-group textarea { font-size: 0.9rem; padding: 11px 14px; }
+    .side-info { padding: 25px 20px; order: -1; }
+    .side-info h3 { font-size: 1.15rem; }
+    .modal-content { padding: 28px 22px; border-radius: 28px; }
+    .modal-socials a { padding: 12px 16px; font-size: 0.9rem; }
+    .modal-socials a svg { width: 20px; height: 20px; }
+    .components-grid { grid-template-columns: repeat(2, 1fr); }
+    .catalog-tab { padding: 8px 20px; font-size: 0.85rem; }
 }
 @media (max-width: 640px) {
     .services-grid, .builds-grid, .steps-grid, .advantages-grid, .reviews-grid { grid-template-columns: 1fr; }
@@ -322,186 +369,29 @@ body.light-theme footer { background: rgba(240, 242, 245, 0.5); }
     .review-image { height: 120px; }
     .not-found-block { padding: 25px; }
     .not-found-block h3 { font-size: 1.3rem; }
-}
-/* === АДАПТИВ ДЛЯ НОВЫХ ЭЛЕМЕНТОВ === */
-
-@media (max-width: 1000px) {
-    .contacts-layout {
-        grid-template-columns: 1fr;
-    }
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    .side-info {
-        order: -1;
-    }
-    .modal-content {
-        max-width: 380px;
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        padding: 12px 0;
-    }
-    .header .container {
-        flex-direction: column;
-        padding: 0 20px;
-        gap: 14px;
-    }
-    .logo {
-        font-size: 2rem;
-        letter-spacing: 2px;
-    }
-    .nav {
-        justify-content: center;
-        gap: 8px;
-    }
-    .nav a {
-        font-size: 0.78rem;
-        padding: 7px 14px;
-    }
-    .manager-header-btn {
-        padding: 8px 18px;
-        font-size: 0.8rem;
-    }
-    .contact-form-block {
-        padding: 25px 20px;
-    }
-    .contact-form-block h2 {
-        font-size: 1.5rem;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 0.9rem;
-        padding: 11px 14px;
-    }
-    .side-info {
-        padding: 25px 20px;
-    }
-    .side-info h3 {
-        font-size: 1.15rem;
-    }
-    .modal-content {
-        padding: 28px 22px;
-        border-radius: 28px;
-    }
-    .modal-socials a {
-        padding: 12px 16px;
-        font-size: 0.9rem;
-    }
-    .modal-socials a svg {
-        width: 20px;
-        height: 20px;
-    }
-    .builds-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo {
-        font-size: 1.7rem;
-        letter-spacing: 1.5px;
-    }
-    .nav {
-        gap: 6px;
-    }
-    .nav a {
-        font-size: 0.72rem;
-        padding: 6px 10px;
-    }
-    .manager-header-btn {
-        padding: 7px 14px;
-        font-size: 0.75rem;
-    }
-    .theme-toggle span {
-        padding: 4px 8px;
-        font-size: 0.7rem;
-    }
-    .contact-form-block {
-        padding: 20px 16px;
-        border-radius: 24px;
-    }
-    .contact-form-block h2 {
-        font-size: 1.3rem;
-    }
-    .form-group label {
-        font-size: 0.8rem;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        font-size: 0.85rem;
-        padding: 10px 13px;
-        border-radius: 16px;
-    }
-    .form-footer .btn {
-        font-size: 0.9rem;
-        padding: 12px 18px;
-    }
-    .form-docs {
-        font-size: 0.7rem;
-    }
-    .modal {
-        padding: 12px;
-    }
-    .modal-content {
-        padding: 22px 18px;
-        border-radius: 22px;
-    }
-    .modal-content h3 {
-        font-size: 1.1rem;
-    }
-    .modal-socials {
-        gap: 9px;
-    }
-    .modal-socials a {
-        padding: 11px 14px;
-        font-size: 0.85rem;
-    }
-    .modal-socials a svg {
-        width: 18px;
-        height: 18px;
-    }
-    .modal-close-btn {
-        padding: 9px 20px;
-        font-size: 0.85rem;
-    }
-    .section-title {
-        font-size: 1.3rem;
-        margin-bottom: 30px;
-    }
-    .build-card {
-        padding: 16px;
-    }
-    .build-card h3 {
-        font-size: 1.15rem;
-    }
-    .price {
-        font-size: 1.4rem;
-    }
-    .pc-image-container {
-        height: 160px;
-    }
-    .footer-copy {
-        font-size: 0.8rem;
-    }
-    .footer-desc {
-        font-size: 0.7rem;
-    }
-    .footer-socials a {
-        width: 38px;
-        height: 38px;
-    }
-    .footer-socials a svg {
-        width: 17px;
-        height: 17px;
-    }
-    .footer-legal {
-        flex-direction: column;
-        gap: 8px;
-        font-size: 0.7rem;
-    }
+    .trust-grid { grid-template-columns: 1fr; }
+    .map-full { height: 350px; }
+    .components-grid { grid-template-columns: 1fr; }
+    .contact-form-block { padding: 20px 16px; border-radius: 24px; }
+    .contact-form-block h2 { font-size: 1.3rem; }
+    .form-group label { font-size: 0.8rem; }
+    .form-group input, .form-group select, .form-group textarea { font-size: 0.85rem; padding: 10px 13px; border-radius: 16px; }
+    .form-footer .btn { font-size: 0.9rem; padding: 12px 18px; }
+    .form-docs { font-size: 0.7rem; }
+    .modal { padding: 12px; }
+    .modal-content { padding: 22px 18px; border-radius: 22px; }
+    .modal-content h3 { font-size: 1.1rem; }
+    .modal-socials { gap: 9px; }
+    .modal-socials a { padding: 11px 14px; font-size: 0.85rem; }
+    .modal-socials a svg { width: 18px; height: 18px; }
+    .modal-close-btn { padding: 9px 20px; font-size: 0.85rem; }
+    .section-title { font-size: 1.3rem; margin-bottom: 30px; }
+    .build-card { padding: 16px; }
+    .build-card h3 { font-size: 1.15rem; }
+    .price { font-size: 1.4rem; }
+    .footer-copy { font-size: 0.8rem; }
+    .footer-desc { font-size: 0.7rem; }
+    .footer-socials a { width: 38px; height: 38px; }
+    .footer-socials a svg { width: 17px; height: 17px; }
+    .footer-legal { flex-direction: column; gap: 8px; font-size: 0.7rem; }
 }
