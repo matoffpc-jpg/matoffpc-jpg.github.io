@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Контакты | Matoff PC</title>
+    <meta name="description" content="Свяжитесь с Matoff PC. Оставить заявку на сборку, ремонт или апгрейд компьютера.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/common.css">
+    <style>
+        .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .order-form { background: var(--card-bg); backdrop-filter: blur(8px); padding: 35px; border-radius: 35px; border: 1px solid var(--border-color); }
+        .contact-type-buttons { display: flex; gap: 12px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap; }
+        .contact-type-btn { background: var(--bg-secondary); padding: 10px 22px; border-radius: 50px; cursor: pointer; transition: all 0.3s; font-weight: 600; font-size: 0.85rem; border: 1px solid var(--border-color); color: var(--text-primary); }
+        .contact-type-btn.active { background: var(--accent-purple); color: white; box-shadow: 0 0 15px rgba(155,77,255,0.3); }
+        .order-form input, .order-form textarea { width: 100%; padding: 12px 16px; margin-bottom: 15px; background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 28px; font-size: 0.9rem; transition: 0.2s; }
+        .order-form input:focus, .order-form textarea:focus { outline: none; border-color: var(--accent-purple); box-shadow: 0 0 10px rgba(155,77,255,0.3); }
+        .order-form .btn { width: 100%; }
+        .consent-checkbox { margin: 15px 0; text-align: left; }
+        .consent-checkbox label { display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; line-height: 1.4; }
+        .consent-checkbox input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; margin-top: 2px; accent-color: var(--accent-purple); cursor: pointer; }
+        .consent-checkbox a { color: var(--accent-purple); text-decoration: underline; }
+        .consent-checkbox a:hover { color: var(--accent-orange); }
+        .map-container { border-radius: 28px; overflow: hidden; border: 1px solid var(--border-color); }
+        .map-container iframe { width: 100%; height: 400px; border: none; }
+        @media (max-width: 1000px) { .contacts-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
+        <div class="nav">
+            <a href="/">Главная</a>
+            <a href="/builds.html">Сборки</a>
+            <a href="/services.html">Услуги</a>
+            <a href="/components.html">Комплектующие</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Контакты</a>
+            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section>
+        <div class="container">
+            <h1 class="section-title">Связаться <span>с нами</span></h1>
+            <div class="contacts-grid">
+                <div class="order-form">
+                    <div class="contact-type-buttons">
+                        <div class="contact-type-btn active" data-contact="phone">📞 Телефон</div>
+                        <div class="contact-type-btn" data-contact="tg">💬 Telegram</div>
+                        <div class="contact-type-btn" data-contact="vk">📱 VK</div>
+                    </div>
+                    <form id="requestForm">
+                        <input type="text" id="clientName" placeholder="Ваше имя" required>
+                        <div id="contactFieldContainer"><input type="tel" id="clientContact" placeholder="Номер телефона" required></div>
+                        <textarea id="clientComment" rows="3" placeholder="Что вас интересует? (сборка, апгрейд, ремонт...)"></textarea>
+                        <div class="consent-checkbox">
+                            <label>
+                                <input type="checkbox" id="clientConsent" required>
+                                <span>Я даю <a href="/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="/privacy.html" target="_blank">Политикой обработки персональных данных</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn">📨 Отправить заявку</button>
+                    </form>
+                    <p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" width="100%" height="400" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
+    <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
+    <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
+    <div class="legal-links">
+        <a href="/privacy.html">Политика обработки персональных данных</a>
+        |
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+    <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
+    <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
+</footer>
+
+<script src="/common.js"></script>
+<script>
+    // Отправка заявки через BotGate
+    async function sendToTelegram(name, contact, type, comment) {
+        if (!name || !contact) return false;
+        const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
+        const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
+        const CHAT_ID = "1065465753";
+        const url = `https://bot-gate.ru/api/v1/bots/${BOT_PUBLIC_ID}/sendMessage`;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${BOTGATE_API_KEY}` },
+                body: JSON.stringify({ chat_id: CHAT_ID, text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}` })
+            });
+            const result = await response.json();
+            return !!result.ok;
+        } catch (e) { return false; }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        let contactType = 'phone';
+        document.querySelectorAll('.contact-type-btn').forEach(btn => btn.onclick = function() { document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); contactType = this.dataset.contact; let c = document.getElementById('contactFieldContainer'); if(c) { if(contactType === 'phone') c.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; else if(contactType === 'tg') c.innerHTML = '<input type="text" id="clientContact" placeholder="Ваш Telegram (@username)" required>'; else c.innerHTML = '<input type="text" id="clientContact" placeholder="Ссылка на VK" required>'; } });
+        document.getElementById('requestForm').onsubmit = async (e) => {
+            e.preventDefault();
+            let name = document.getElementById('clientName').value, contact = document.getElementById('clientContact').value, comment = document.getElementById('clientComment').value;
+            const consent = document.getElementById('clientConsent');
+            if(!name || !contact) { alert("Заполните имя и контакт!"); return; }
+            if (!consent.checked) { alert("Необходимо дать согласие на обработку персональных данных!"); return; }
+            let btn = e.target.querySelector('button'), orig = btn.textContent;
+            btn.textContent = "Отправка..."; btn.disabled = true;
+            const success = await sendToTelegram(name, contact, contactType, comment);
+            if (success) { alert(`✅ Заявка принята, ${name}! Менеджер свяжется с вами.`); e.target.reset(); document.getElementById('contactFieldContainer').innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; document.querySelector('.contact-type-btn[data-contact="phone"]').classList.add('active'); document.querySelector('.contact-type-btn[data-contact="tg"]').classList.remove('active'); document.querySelector('.contact-type-btn[data-contact="vk"]').classList.remove('active'); contactType = 'phone'; }
+            else { alert('❌ Ошибка отправки. Напишите нам в Telegram: @matoffpcforclientsbot'); }
+            btn.textContent = orig; btn.disabled = false;
+        };
+    });
+</script>
+</body>
+</html>
