@@ -383,100 +383,114 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
 @keyframes lineDotPulse { 0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; } 50% { transform: translateX(-50%) scale(1.4); opacity: 0.7; } }
 
 /* ============================================================
-   МОБИЛЬНАЯ ВЕРСИЯ (≤ 768px)
+   НИЖНЯЯ НАВИГАЦИЯ (по умолчанию скрыта)
+   ============================================================ */
+.mobile-bottom-nav { display: none; }
+
+/* ============================================================
+   МОБИЛЬНАЯ ВЕРСИЯ (≤ 768px): шапка скрыта, навигация внизу
    ============================================================ */
 @media (max-width: 768px) {
+    /* ===== ШАПКА СКРЫТА ===== */
+    .header { display: none !important; }
+
+    /* ===== НИЖНЯЯ НАВИГАЦИЯ ===== */
+    .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 200;
+        background: rgba(10, 10, 15, 0.96);
+        backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        border-top: 1px solid var(--border-color);
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+        justify-content: space-around;
+        align-items: stretch;
+    }
+    .mobile-bottom-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        flex: 1;
+        padding: 6px 2px;
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 0.62rem;
+        font-weight: 500;
+        border-radius: 12px;
+        transition: all 0.2s;
+        position: relative;
+        min-width: 0;
+    }
+    .mobile-bottom-nav a svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: all 0.2s;
+    }
+    .mobile-bottom-nav a.active {
+        color: var(--accent-purple);
+        background: rgba(155,77,255,0.12);
+    }
+    .mobile-bottom-nav a.active svg {
+        stroke: var(--accent-purple);
+        filter: drop-shadow(0 0 6px rgba(155,77,255,0.8));
+        transform: translateY(-1px);
+    }
+    .mbn-label { line-height: 1; white-space: nowrap; }
+    .mbn-count {
+        position: absolute;
+        top: 2px; right: calc(50% - 20px);
+        background: var(--accent-orange);
+        color: #fff;
+        font-size: 0.55rem;
+        font-weight: 700;
+        min-width: 15px;
+        height: 15px;
+        padding: 0 4px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 6px rgba(230,138,46,0.7);
+    }
+
+    /* Отступ снизу, чтобы контент не залезал под навигацию */
+    body { padding-bottom: 70px; }
+
+    /* Промо-бар — компактный */
+    .promo-bar { padding: 8px 12px; }
+    .promo-text { font-size: 0.8rem; }
+    .promo-timer { font-size: 0.8rem; padding: 4px 10px; }
+
     /* Контейнер */
     .container { padding: 0 16px; }
-
-    /* Секции */
     section { padding: 40px 0; }
     .section-title { font-size: 1.5rem; margin-bottom: 30px; }
 
-    /* Промо-бар */
-    .promo-bar { padding: 8px 12px; }
-    .promo-text { font-size: 0.8rem; }
-    .promo-timer { font-size: 0.8rem; padding: 4px 10px; letter-spacing: 1px; }
-
-    /* ===== ШАПКА МОБИЛЬНАЯ (меню вниз) ===== */
-    .header { padding: 12px 0 8px; position: relative; overflow: visible; }
-    .header .container {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-        gap: 10px;
-        padding: 0 16px;
-        align-items: center;
-    }
-    .logo { grid-column: 1; grid-row: 1; font-size: 1.6rem; }
-    .nav {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding: 8px 0 4px;
-        gap: 6px;
-        -webkit-overflow-scrolling: touch;
-    }
-    .nav a { font-size: 0.78rem; padding: 8px 14px; border-radius: 50px; background: var(--bg-secondary); border: 1px solid var(--border-color); }
-    .nav .cart-link { order: -1; }
-    .theme-toggle { grid-column: 2; grid-row: 1; justify-self: end; }
-    .manager-wrapper { grid-column: 2; grid-row: 1; justify-self: end; margin-right: 90px; }
-    .manager-header-btn { padding: 6px 12px; font-size: 0.75rem; }
-    .manager-header-btn::before { width: 6px; height: 6px; }
-    .nav::-webkit-scrollbar { display: none; }
-
-    /* Слайдер */
-    .hero-slider { border-radius: 16px; }
-    .slider-slide img { max-height: 220px; }
-    .slider-btn { width: 30px; height: 30px; font-size: 14px; }
-    .hero-text { margin-top: 20px; padding: 0 8px; }
-    .hero-text .slogan-main { font-size: 1.2rem; }
-    .hero-text .slogan-sub { font-size: 0.85rem; gap: 6px; }
-    .hero-text .slogan-sub::before, .hero-text .slogan-sub::after { width: 18px; }
-
-    /* ВСЕ СЕТКИ — В ОДНУ КОЛОНКУ */
-    .counters-grid,
-    .services-grid,
-    .builds-grid,
-    .steps-grid,
-    .advantages-grid,
-    .reviews-grid,
-    .trust-grid,
-    .components-grid,
+    /* Все сетки — в одну колонку */
+    .counters-grid, .services-grid, .builds-grid, .steps-grid,
+    .advantages-grid, .reviews-grid, .trust-grid, .components-grid,
     .pc-also-grid { grid-template-columns: 1fr !important; gap: 18px; }
 
-    .pc-features { grid-template-columns: 1fr; }
-    .pc-hero { grid-template-columns: 1fr; gap: 20px; }
-    .pc-hero-info h1 { font-size: 1.4rem; }
-    .pc-hero-info .pc-price-big { font-size: 1.6rem; }
-    .pc-hero-image { min-height: 240px; padding: 15px; }
-    .pc-block { padding: 20px; border-radius: 20px; }
-    .pc-block h2 { font-size: 1.15rem; margin-bottom: 16px; }
-    .pc-specs-row { grid-template-columns: 1fr; }
-    .pc-specs-label { padding: 10px 14px; font-size: 0.78rem; }
-    .pc-specs-value { padding: 8px 14px 14px; font-size: 0.85rem; }
-    .pc-description { font-size: 0.88rem; }
-
     /* Карточки */
-    .build-card, .service-card, .component-card, .review-card, .counter-card, .step-card, .advantage-card, .trust-item { padding: 18px; border-radius: 20px; }
-    .counter-number { font-size: 2.2rem; }
-    .counter-label { font-size: 0.85rem; }
-    .build-card h3 { font-size: 1.1rem; }
+    .build-card, .service-card, .component-card, .review-card, .counter-card,
+    .step-card, .advantage-card, .trust-item { padding: 18px; border-radius: 20px; }
     .price { font-size: 1.4rem; }
-    .spec-item { font-size: 0.7rem; padding: 4px 6px; }
+    .counter-number { font-size: 2.2rem; }
+    .build-card h3 { font-size: 1.1rem; }
     .service-card h3 { font-size: 1.1rem; }
-    .service-card p { font-size: 0.85rem; }
     .component-image { height: 150px; }
-    .component-card h3 { font-size: 0.9rem; }
-    .component-price { font-size: 1.15rem; }
-    .review-image { height: 120px; }
-    .trust-item h3 { font-size: 1rem; }
 
-    /* Преимущества — в одну колонку, центр скрыт */
+    /* Преимущества */
     .advantages-split { grid-template-columns: 1fr; gap: 24px; }
     .advantages-center-line { display: none; }
     .advantages-col { gap: 24px; }
@@ -494,13 +508,11 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .map-wrapper { height: 260px; min-height: 260px; border-radius: 20px; }
 
-    /* Вкладки каталога */
-    .catalog-tabs { gap: 8px; margin-bottom: 20px; }
-    .catalog-tab { padding: 10px 18px; font-size: 0.82rem; }
-    .catalog-subtabs { gap: 6px; margin-bottom: 20px; }
-    .catalog-subtab { padding: 6px 14px; font-size: 0.78rem; }
-    .component-filters { gap: 6px; margin-bottom: 20px; }
-    .component-filters .filter-btn { padding: 6px 14px; font-size: 0.75rem; }
+    /* Слайдер */
+    .slider-slide img { max-height: 220px; }
+    .slider-btn { width: 30px; height: 30px; font-size: 14px; }
+    .hero-text .slogan-main { font-size: 1.2rem; }
+    .hero-text .slogan-sub { font-size: 0.85rem; }
 
     /* Корзина */
     .cart-items { padding: 15px; border-radius: 20px; }
@@ -510,8 +522,18 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     .order-form { padding: 20px; border-radius: 20px; }
     .cart-total { font-size: 1.05rem; padding: 12px 0; }
     .cart-total span { font-size: 1.4rem; }
-    .total-price { font-size: 1.1rem; }
-    .total-price span { font-size: 1.4rem; }
+
+    /* ПК */
+    .pc-hero { grid-template-columns: 1fr; gap: 20px; }
+    .pc-hero-info h1 { font-size: 1.4rem; }
+    .pc-hero-info .pc-price-big { font-size: 1.6rem; }
+    .pc-hero-image { min-height: 240px; padding: 15px; }
+    .pc-block { padding: 20px; border-radius: 20px; }
+    .pc-block h2 { font-size: 1.15rem; margin-bottom: 16px; }
+    .pc-specs-row { grid-template-columns: 1fr; }
+    .pc-specs-label { padding: 10px 14px; font-size: 0.78rem; }
+    .pc-specs-value { padding: 8px 14px 14px; font-size: 0.85rem; }
+    .pc-features { grid-template-columns: 1fr; }
 
     /* Футер */
     footer { padding: 30px 16px 20px; margin-top: 30px; }
@@ -520,22 +542,25 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     .footer-socials a { width: 36px; height: 36px; min-width: 36px; min-height: 36px; }
     .footer-legal { gap: 10px; font-size: 0.7rem; }
 
-    /* Кнопка наверх */
-    .scroll-top { bottom: 20px; left: 20px; width: 38px; height: 38px; font-size: 18px; }
-
-    /* Модалки */
-    .modal-content { padding: 20px; border-radius: 20px; }
-    .modal-content h3 { font-size: 1.1rem; }
-    .modal-socials a { font-size: 0.75rem; padding: 6px 12px; }
+    /* Вкладки каталога */
+    .catalog-tabs { gap: 8px; margin-bottom: 20px; }
+    .catalog-tab { padding: 10px 18px; font-size: 0.82rem; }
+    .catalog-subtabs { gap: 6px; margin-bottom: 20px; }
+    .catalog-subtab { padding: 6px 14px; font-size: 0.78rem; }
+    .component-filters { gap: 6px; margin-bottom: 20px; }
+    .component-filters .filter-btn { padding: 6px 14px; font-size: 0.75rem; }
 
     /* Team */
     .team-card-single { padding: 25px 18px; border-radius: 24px; }
     .team-avatar-single { width: 90px; height: 90px; }
     .team-card-single h3 { font-size: 1.2rem; }
-    .team-role-item { font-size: 0.75rem; padding: 6px 12px; }
 
-    /* PC already */
-    .pc-also-card img { height: 110px; }
+    /* Модалки */
+    .modal-content { padding: 20px; border-radius: 20px; }
+    .modal-content h3 { font-size: 1.1rem; }
+
+    /* Кнопка наверх — над навигацией */
+    .scroll-top { bottom: 80px; left: auto; right: 16px; width: 40px; height: 40px; font-size: 18px; }
 
     /* Not-found */
     .not-found-block { padding: 25px 18px; border-radius: 20px; }
@@ -545,8 +570,6 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
 
     /* Shorts */
     .short-card { width: 100%; max-width: 280px; }
-
-    /* Telegram */
     .telegram-block { padding: 20px 16px; border-radius: 20px; }
 }
 
@@ -554,14 +577,14 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
    МАЛЫЕ ЭКРАНЫ (≤ 400px)
    ============================================================ */
 @media (max-width: 400px) {
-    .logo { font-size: 1.35rem; }
-    .nav a { font-size: 0.72rem; padding: 7px 11px; }
     .section-title { font-size: 1.3rem; }
     .hero-text .slogan-main { font-size: 1rem; }
     .counter-number { font-size: 1.8rem; }
     .price { font-size: 1.2rem; }
     .btn { padding: 10px 16px; font-size: 0.85rem; min-height: 42px; }
 }
+
+/* ЧЕКБОКС СОГЛАСИЯ */
 .form-consent {
     display: flex;
     align-items: flex-start;
@@ -581,8 +604,5 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     accent-color: var(--accent-purple);
     cursor: pointer;
 }
-.form-consent a {
-    color: var(--accent-purple);
-    text-decoration: underline;
-}
+.form-consent a { color: var(--accent-purple); text-decoration: underline; }
 .form-consent a:hover { color: var(--accent-orange); }
