@@ -1,84 +1,166 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде</title>
-    <meta name="description" content="Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде. Индивидуальные ПК под любые задачи. Гарантия 1 год.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/common.css">
-</head>
-<body>
-<div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
-<div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
+/* ============================================
+   ЗОНЫ НА ГЛАВНОЙ (визуальное разделение)
+   ============================================ */
 
-<header class="header">
-    <div class="container">
-        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
-        <div class="nav">
-            <a href="/">Главная</a>
-            <a href="/services.html">Услуги</a>
-            <a href="/builds.html">Каталог</a>
-            <a href="/about.html">О нас</a>
-            <a href="/reviews.html">Отзывы</a>
-            <a href="/contacts.html">Заявка</a>
-            <a href="/cart.html" class="cart-link">🛒 <span id="headerCartCount" class="cart-count">0</span></a>
-            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
-            <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
-        </div>
-    </div>
-</header>
+.zone {
+    position: relative;
+    padding: 30px 0;
+    margin: 20px 0;
+    transition: background 0.3s;
+}
+.zone-dark {
+    background: linear-gradient(180deg, rgba(155,77,255,0.06) 0%, rgba(10,10,15,0.4) 50%, rgba(155,77,255,0.06) 100%);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: inset 0 0 80px rgba(155,77,255,0.05);
+}
+.zone-accent {
+    background: radial-gradient(ellipse at center, rgba(155,77,255,0.12) 0%, rgba(10,10,15,0.3) 60%, transparent 100%);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+.zone-accent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(230,138,46,0.08) 0%, transparent 40%),
+                      radial-gradient(circle at 80% 20%, rgba(155,77,255,0.1) 0%, transparent 40%);
+    pointer-events: none;
+}
 
-<main>
-    <section class="hero" style="padding: 40px 0 20px 0;">
-        <div class="container">
-            <div class="hero-slider" id="heroSlider">
-                <div class="slider-container">
-                    <div class="slider-track" id="sliderTrack"></div>
-                    <button class="slider-btn slider-prev" id="sliderPrev">❮</button>
-                    <button class="slider-btn slider-next" id="sliderNext">❯</button>
-                    <div class="slider-dots" id="sliderDots"></div>
-                </div>
-            </div>
-            <div class="hero-text">
-                <div class="slogan-main">Сборка · Ремонт · Апгрейд</div>
-                <div class="slogan-sub">компьютеров в Нижнем Новгороде</div>
-            </div>
-        </div>
-    </section>
+/* ============================================
+   ПРЕИМУЩЕСТВА — КОЛЕСО ВОКРУГ ЦЕНТРА
+   ============================================ */
 
-    <section id="counters"><div class="container"><h2 class="section-title fade-up">Matoff PC <span>в цифрах</span></h2><div class="counters-grid" id="countersContainer"></div></div></section>
-    <section id="services"><div class="container"><h2 class="section-title fade-up">Наши <span>услуги</span></h2><div id="servicesContainer" class="services-grid"></div></div></section>
-    <section id="builds-preview"><div class="container"><h2 class="section-title fade-up">Популярные <span>сборки</span></h2><div id="homeBuildsContainer" class="builds-grid"></div><div style="text-align: center; margin-top: 30px;"><a href="/builds.html" class="btn">Смотреть все сборки</a></div></div></section>
-    <section id="advantages"><div class="container"><h2 class="section-title fade-up">Наши <span>преимущества</span></h2><div id="advantagesContainer" class="advantages-grid"></div></div></section>
-    <section id="reviews"><div class="container"><h2 class="section-title fade-up">Клиенты <span>о нас</span></h2><div id="reviewsContainer" class="reviews-grid"></div><div class="avito-link"><a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">Смотреть все отзывы на Авито</a></div></div></section>
-    <section id="notFound"><div class="container"><div class="not-found-block fade-up"><h3>Не нашли свой идеальный ПК?</h3><p>Соберём компьютер специально под ваши задачи и бюджет</p><a href="/contacts.html" class="btn">Связаться с менеджером</a></div></div></section>
-</main>
+.advantages-wheel {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .advantages-wheel { height: 480px; }
+}
 
-<footer>
-    <div class="footer-copy">© 2026 Matoff PC — магазин компьютеров в Нижнем Новгороде. Все права защищены.</div>
-    <div class="footer-desc">Интернет-магазин компьютерной техники | Продажа и сборка компьютеров на заказ | Игровые и офисные системные блоки | Компьютерные комплектующие | Ремонт и настройка ПК</div>
-    <div class="footer-socials" id="footerSocials"></div>
-    <div class="footer-legal">
-        <a href="/privacy.html">Политика в отношении обработки персональных данных</a>
-        <a href="/consent.html">Согласие на обработку персональных данных</a>
-    </div>
-</footer>
+.advantages-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(155,77,255,0.4), rgba(10,10,15,0.95));
+    border: 2px solid var(--accent-purple);
+    box-shadow: 0 0 50px rgba(155,77,255,0.7), inset 0 0 30px rgba(155,77,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: centerPulse 3s ease-in-out infinite;
+}
+@keyframes centerPulse {
+    0%, 100% { box-shadow: 0 0 50px rgba(155,77,255,0.7), inset 0 0 30px rgba(155,77,255,0.3); }
+    50% { box-shadow: 0 0 80px rgba(155,77,255,1), inset 0 0 40px rgba(155,77,255,0.5); }
+}
+.advantages-center::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    border: 1px dashed rgba(155,77,255,0.4);
+    animation: rotateHex 20s linear infinite;
+}
+.adv-center-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+.adv-center-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 10px rgba(155,77,255,0.9));
+}
+.adv-center-text {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #9b4dff, #e68a2e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+}
 
-<button class="scroll-top" id="scrollTopBtn">↑</button>
-<div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
-
-<script src="/common.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-    const data = await loadData();
-    if (data) {
-        renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantages(); renderReviews();
-        renderPromo(); startPromoRotation(); initSlider(); renderManagerModal();
-        setTimeout(() => checkVisibility(), 100);
+.advantages-orbit {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+}
+.adv-orbit-item {
+    position: absolute;
+    top: 0; left: 0;
+    width: 220px;
+    margin-left: -110px;
+    margin-top: -50px;
+    transition: transform 0.3s;
+}
+@media (max-width: 768px) {
+    .adv-orbit-item {
+        width: 150px;
+        margin-left: -75px;
+        margin-top: -35px;
     }
-});
-</script>
-</body>
-</html>
+}
+.adv-orbit-inner {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 14px 16px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+}
+.adv-orbit-inner::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent-purple);
+    box-shadow: 0 0 15px var(--accent-purple);
+    opacity: 0;
+}
+.adv-orbit-item:hover .adv-orbit-inner {
+    border-color: var(--accent-purple);
+    box-shadow: 0 10px 25px rgba(155,77,255,0.3);
+    transform: scale(1.05);
+}
+.adv-orbit-inner h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    color: var(--accent-purple);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+.adv-orbit-inner p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+@media (max-width: 768px) {
+    .adv-orbit-inner h3 { font-size: 0.75rem; }
+    .adv-orbit-inner p { font-size: 0.68rem; }
+    .advantages-center { width: 120px; height: 120px; }
+    .adv-center-text { font-size: 0.75rem; }
+    .adv-center-icon { font-size: 1.5rem; }
+}
