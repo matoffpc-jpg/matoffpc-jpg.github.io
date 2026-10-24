@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>О нас | Matoff PC</title>
-    <meta name="description" content="Matoff PC — мастерская по сборке и ремонту компьютеров в Нижнем Новгороде.">
+    <title>Matoff PC | Сборка и ремонт компьютеров в Нижнем Новгороде</title>
+    <meta name="description" content="Профессиональная сборка и ремонт компьютеров в Нижнем Новгороде. Индивидуальные ПК под любые задачи. Гарантия 1 год.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
 </head>
@@ -32,31 +32,26 @@
 </header>
 
 <main>
-    <section id="team">
+    <section class="hero" style="padding: 40px 0 20px 0;">
         <div class="container">
-            <h2 class="section-title fade-up">Кто <span>работает</span> над проектом</h2>
-            <div class="team-single">
-                <div class="team-card-single">
-                    <div class="team-avatar-single">🧑‍💻</div>
-                    <h3>Александр (Matoff)</h3>
-                    <div class="team-roles-list">
-                        <div class="team-role-item">🚀 Основатель</div>
-                        <div class="team-role-item">🔧 Сборщик ПК</div>
-                        <div class="team-role-item">🚚 Курьер</div>
-                        <div class="team-role-item">🎬 Монтажёр</div>
-                        <div class="team-role-item">📞 Менеджер</div>
-                        <div class="team-role-item">📱 SMM-менеджер</div>
-                        <div class="team-role-item">💰 Бухгалтер</div>
-                    </div>
-                    <p class="team-footer-single">🤝 <strong>Один человек</strong>, который любит своё дело и делает его качественно!</p>
+            <div class="hero-slider" id="heroSlider">
+                <div class="slider-container">
+                    <div class="slider-track" id="sliderTrack"></div>
+                    <button class="slider-btn slider-prev" id="sliderPrev">❮</button>
+                    <button class="slider-btn slider-next" id="sliderNext">❯</button>
+                    <div class="slider-dots" id="sliderDots"></div>
                 </div>
             </div>
+            <div class="hero-text"><p>✨ Профессиональная сборка, ремонт и апгрейд компьютеров в Нижнем Новгороде ✨</p></div>
         </div>
     </section>
+
+    <section id="counters"><div class="container"><h2 class="section-title fade-up">Matoff PC <span>в цифрах</span></h2><div class="counters-grid" id="countersContainer"></div></div></section>
+    <section id="services"><div class="container"><h2 class="section-title fade-up">Наши <span>услуги</span></h2><div id="servicesContainer" class="services-grid"></div></div></section>
+    <section id="builds-preview"><div class="container"><h2 class="section-title fade-up">Популярные <span>сборки</span></h2><div id="homeBuildsContainer" class="builds-grid"></div><div style="text-align: center; margin-top: 30px;"><a href="/builds.html" class="btn">Смотреть все сборки</a></div></div></section>
     <section id="advantages"><div class="container"><h2 class="section-title fade-up">Наши <span>преимущества</span></h2><div id="advantagesContainer" class="advantages-grid"></div></div></section>
-    <section id="social"><div class="container"><h2 class="section-title fade-up">Мы в <span>соцсетях</span></h2><div class="social-block"><div class="social-icons" id="socialIconsContainer"></div></div></div></section>
-    <section id="shorts"><div class="container"><h2 class="section-title fade-up">Видео <span>обзоры</span></h2><div id="shortsContainer" class="shorts-grid"></div></div></section>
-    <section id="telegram"><div class="container"><h2 class="section-title fade-up">Актуальные <span>комплектующие в наличии</span></h2><div class="telegram-block"><h3>📢 Наш Telegram канал</h3><p style="margin-bottom: 15px;">Подписывайтесь, чтобы быть в курсе актуальных цен на комплектующие, периферию и готовые компьютеры</p><div class="telegram-preview"><img src="https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/telegram-preview.png" alt="Telegram канал Matoff PC" onerror="this.src='https://placehold.co/600x300/1a1a2a/9b4dff?text=Telegram'"></div><a href="https://t.me/matoffpctg?start=site_main_button" target="_blank" class="btn telegram-channel-link" style="display: inline-flex; margin-top: 20px;">📱 Перейти в Telegram канал</a></div></div></section>
+    <section id="reviews"><div class="container"><h2 class="section-title fade-up">Клиенты <span>о нас</span></h2><div id="reviewsContainer" class="reviews-grid"></div><div class="avito-link"><a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">Смотреть все отзывы на Авито</a></div></div></section>
+    <section id="notFound"><div class="container"><div class="not-found-block fade-up"><h3>Не нашли свой идеальный ПК?</h3><p>Соберём компьютер специально под ваши задачи и бюджет</p><a href="/contacts.html" class="btn">Связаться с менеджером</a></div></div></section>
 </main>
 
 <footer>
@@ -77,8 +72,8 @@
     document.addEventListener('DOMContentLoaded', async () => {
         const data = await loadData();
         if (data) {
-            renderAdvantages(); renderSocialBlock(); renderShorts();
-            renderPromo(); startPromoRotation(); renderManagerModal();
+            renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantages(); renderReviews();
+            renderPromo(); startPromoRotation(); initSlider(); renderManagerModal();
             setTimeout(() => checkVisibility(), 100);
         }
     });
