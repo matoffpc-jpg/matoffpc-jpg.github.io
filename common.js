@@ -339,7 +339,9 @@ function initRequestForm() {
         let tg = document.getElementById('clientTg')?.value || '';
         let email = document.getElementById('clientEmail')?.value || '';
         let comment = document.getElementById('clientComment').value;
-        if(!name || !phone) { alert("Заполните имя и телефон!"); return; }
+        const consent = document.getElementById('clientConsent');
+if(!name || !phone) { alert("Заполните имя и телефон!"); return; }
+if(consent && !consent.checked) { alert("Подтвердите согласие на обработку персональных данных."); return; }
         let contactInfo = phone;
         if (tg) contactInfo += ` / ${tg}`;
         if (email) contactInfo += ` / ${email}`;
