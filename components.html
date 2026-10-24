@@ -42,4 +42,54 @@
                 <button class="filter-btn" data-category="cpu">Процессоры</button>
                 <button class="filter-btn" data-category="ram">Оперативная память</button>
                 <button class="filter-btn" data-category="ssd">SSD</button>
-                <button class="filter-btn" data-category="motherboard">Материн
+                <button class="filter-btn" data-category="motherboard">Материнские платы</button>
+                <button class="filter-btn" data-category="psu">Блоки питания</button>
+                <button class="filter-btn" data-category="cooler">Охлаждение</button>
+                <button class="filter-btn" data-category="case">Корпуса</button>
+            </div>
+            <div id="componentsContainer" class="components-grid"></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-copy">© 2026 Matoff PC — магазин компьютеров в Нижнем Новгороде. Все права защищены.</div>
+    <div class="footer-desc">Интернет-магазин компьютерной техники | Продажа и сборка компьютеров на заказ | Игровые и офисные системные блоки | Компьютерные комплектующие | Ремонт и настройка ПК</div>
+    <div class="footer-socials" id="footerSocials"></div>
+    <div class="footer-legal">
+        <a href="/privacy.html">Политика в отношении обработки персональных данных</a>
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn">↑</button>
+<div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
+
+<script src="/common.js"></script>
+<script>
+    function renderComponents() {
+        const container = document.getElementById('componentsContainer');
+        if (!container) return;
+        if (!siteData.components || siteData.components.length === 0) {
+            container.innerHTML = '<p style="text-align:center;color:var(--text-secondary);padding:40px;">Комплектующие скоро появятся</p>';
+            return;
+        }
+        const activeFilter = document.querySelector('#componentFilters .filter-btn.active')?.dataset.category || 'all';
+        let filtered = [...siteData.components];
+        if (activeFilter !== 'all') filtered = filtered.filter(c => c.category === activeFilter);
+        if (filtered.length === 0) { container.innerHTML = '<p style="text-align:center;color:var(--text-secondary);padding:40px;">Нет товаров в этой категории</p>'; return; }
+        container.innerHTML = filtered.map(c => `<div class="component-card"><img class="component-image" src="${c.image}" onerror="this.src='https://placehold.co/300x200/2a2a35/9b4dff?text=${encodeURIComponent(c.name)}'"><h3>${c.name}</h3><div class="component-price">${c.priceText}</div><div class="component-condition ${c.conditionBadge}">${c.condition}</div><div class="component-desc">${c.description||''}</div><a href="/contacts.html" class="btn">Заказать</a></div>`).join('');
+    }
+    document.addEventListener('DOMContentLoaded', async () => {
+        const data = await loadData();
+        if (data) {
+            renderComponents();
+            renderPromo(); startPromoRotation(); renderManagerModal();
+            const filters = document.querySelectorAll('#componentFilters .filter-btn');
+            filters.forEach(btn => btn.onclick = function() { filters.forEach(b => b.classList.remove('active')); this.classList.add('active'); renderComponents(); });
+            setTimeout(() => checkVisibility(), 100);
+        }
+    });
+</script>
+</body>
+</html>
