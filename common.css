@@ -112,6 +112,49 @@ html { scroll-behavior: smooth; }
 .manager-header-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--btn-shadow); }
 
 /* ============================================
+   БУРГЕР И МОБИЛЬНАЯ ШАПКА
+   ============================================ */
+.burger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 40px; height: 40px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+.burger-btn span {
+    display: block;
+    width: 20px; height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    margin: 0 auto;
+    transition: 0.2s;
+}
+.burger-btn.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger-btn.active span:nth-child(2) { opacity: 0; }
+.burger-btn.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.header-cta {
+    display: none;
+    background: var(--btn-bg);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 2px 0 var(--btn-shadow);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ============================================
    КНОПКИ
    ============================================ */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--btn-bg); color: white; font-weight: 700; font-size: 0.95rem; padding: 12px 24px; min-height: 48px; border-radius: 50px; border: none; cursor: pointer; transition: all 0.3s; text-align: center; box-shadow: 0 3px 0 var(--btn-shadow); text-decoration: none; }
@@ -388,11 +431,60 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
 .mobile-bottom-nav { display: none; }
 
 /* ============================================================
-   МОБИЛЬНАЯ ВЕРСИЯ (≤ 768px): шапка скрыта, навигация внизу
+   МОБИЛЬНАЯ ВЕРСИЯ (≤ 768px): шапка с бургером, навигация внизу
    ============================================================ */
 @media (max-width: 768px) {
-    /* ===== ШАПКА СКРЫТА ===== */
-    .header { display: none !important; }
+    /* ===== ШАПКА: бургер слева, лого по центру, CTA справа ===== */
+    .header {
+        position: sticky;
+        top: 0;
+        padding: 10px 0;
+        overflow: visible;
+    }
+    .header .container {
+        display: grid;
+        grid-template-columns: 40px 1fr auto;
+        align-items: center;
+        gap: 10px;
+        padding: 0 16px;
+    }
+    .burger-btn { display: flex; grid-column: 1; }
+    .logo { grid-column: 2; text-align: center; justify-content: center; display: flex; font-size: 1.5rem; }
+    .logo a { justify-content: center; }
+    .header-cta { display: inline-flex; grid-column: 3; justify-self: end; }
+
+    /* Меню — выезжает по бургеру */
+    .nav {
+        position: fixed;
+        top: 60px; left: 0; right: 0;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 12px 16px;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        z-index: 99;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        display: flex;
+    }
+    .nav.open { transform: translateY(0); }
+    .nav a {
+        display: flex;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        border-radius: 14px;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+    }
+    .nav .theme-toggle {
+        align-self: flex-start;
+        margin-top: 6px;
+    }
+    .header .manager-wrapper { display: none !important; }
 
     /* ===== НИЖНЯЯ НАВИГАЦИЯ ===== */
     .mobile-bottom-nav {
