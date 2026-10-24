@@ -20,11 +20,10 @@
             <a href="/">Главная</a>
             <a href="/services.html">Услуги</a>
             <a href="/builds.html">Каталог</a>
-            <a href="/used.html">Б/У</a>
-            <a href="/components.html">Комплектующие</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
+            <a href="/cart.html" class="cart-link">🛒 <span id="headerCartCount" class="cart-count">0</span></a>
             <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
             <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
         </div>
@@ -69,14 +68,14 @@
 
 <script src="/common.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const data = await loadData();
-        if (data) {
-            renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantages(); renderReviews();
-            renderPromo(); startPromoRotation(); initSlider(); renderManagerModal();
-            setTimeout(() => checkVisibility(), 100);
-        }
-    });
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await loadData();
+    if (data) {
+        renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantages(); renderReviews();
+        renderPromo(); startPromoRotation(); initSlider(); renderManagerModal();
+        setTimeout(() => checkVisibility(), 100);
+    }
+});
 </script>
 </body>
 </html>
