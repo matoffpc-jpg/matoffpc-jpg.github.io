@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Готовые сборки ПК | Matoff PC</title>
+    <meta name="description" content="Готовые сборки компьютеров под любые задачи. Игровые ПК, рабочие станции, бюджетные варианты. Гарантия 1 год.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/common.css">
+    <style>
+        .filter-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 30px; }
+        .filter-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 8px 24px; border-radius: 50px; color: var(--text-primary); cursor: pointer; transition: all 0.3s; font-size: 0.85rem; }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent-purple); border-color: var(--accent-purple); color: white; transform: translateY(-2px); }
+        .builds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .build-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 20px; display: flex; flex-direction: column; transition: all 0.3s; border: 1px solid var(--border-color); }
+        .build-card:hover { border-color: var(--accent-purple); transform: translateY(-5px); box-shadow: 0 20px 35px rgba(0,0,0,0.2); }
+        .pc-image-container { position: relative; width: 100%; height: 200px; margin-bottom: 15px; border-radius: 20px; overflow: hidden; background: rgba(0,0,0,0.2); }
+        .pc-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity 0.3s ease; }
+        .pc-image-default { opacity: 1; z-index: 1; }
+        .pc-image-hover { opacity: 0; z-index: 2; }
+        .build-card:hover .pc-image-default { opacity: 0; }
+        .build-card:hover .pc-image-hover { opacity: 1; }
+        .build-card h3 { font-family: 'Orbitron', monospace; font-size: 1.3rem; text-align: center; background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .price { font-size: 1.7rem; font-weight: 800; margin: 12px 0; text-align: center; color: var(--price-color); }
+        .specs-title { font-size: 0.75rem; color: var(--accent-purple); margin: 12px 0 8px; text-align: center; font-weight: 600; letter-spacing: 2px; }
+        .specs-two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+        .spec-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-secondary); background: rgba(155,77,255,0.05); padding: 5px 8px; border-radius: 10px; }
+        .fps-block { background: rgba(0,0,0,0.3); border-radius: 14px; padding: 8px; margin: 8px 0; text-align: center; border: 1px solid rgba(255,170,68,0.3); }
+        .fps-title { font-size: 0.65rem; color: var(--price-color); letter-spacing: 1px; margin-bottom: 3px; }
+        .fps-value { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); }
+        .build-card .btn-buy { margin-top: auto; width: 100%; padding: 10px; font-size: 0.85rem; }
+        .calculator-block { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 35px; text-align: center; border: 1px solid var(--border-color); margin-top: 30px; }
+        .calculator-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 25px 0; }
+        .calc-select { background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px 14px; border-radius: 50px; font-size: 0.85rem; cursor: pointer; width: 100%; }
+        .calculator-result { margin-top: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 20px; border: 1px solid var(--border-color); }
+        @media (max-width: 1000px) { .builds-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .builds-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
+        <div class="nav">
+            <a href="/">Главная</a>
+            <a href="/builds.html">Сборки</a>
+            <a href="/services.html">Услуги</a>
+            <a href="/components.html">Комплектующие</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Контакты</a>
+            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section>
+        <div class="container">
+            <h1 class="section-title">Готовые <span>сборки</span> ПК</h1>
+            <div class="filter-buttons" id="filterGroup">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="low">до 100 000 ₽</button>
+                <button class="filter-btn" data-filter="mid">100 000 – 200 000 ₽</button>
+                <button class="filter-btn" data-filter="high">от 200 000 ₽</button>
+            </div>
+            <div class="filter-buttons" id="gpuFilterGroup">
+                <button class="filter-btn active" data-gpu="all">Все видеокарты</button>
+                <button class="filter-btn" data-gpu="nvidia">NVIDIA</button>
+                <button class="filter-btn" data-gpu="amd">AMD</button>
+            </div>
+            <div id="buildsContainer" class="builds-grid"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Подберите <span>сборку</span></h2>
+            <div class="calculator-block">
+                <h3>🎮 Калькулятор сборки</h3>
+                <p>Ответьте на несколько вопросов, и мы подберём оптимальный ПК</p>
+                <div class="calculator-filters">
+                    <select id="calcPurpose" class="calc-select">
+                        <option value="games">🎮 Для игр</option>
+                        <option value="work">💼 Для работы/офиса</option>
+                        <option value="video">🎬 Для видеомонтажа/3D</option>
+                        <option value="universal">⭐ Универсальная</option>
+                    </select>
+                    <select id="calcCpu" class="calc-select">
+                        <option value="any">🖥️ Любой процессор</option>
+                        <option value="intel">💙 Intel</option>
+                        <option value="amd">❤️ AMD</option>
+                    </select>
+                    <select id="calcGpu" class="calc-select">
+                        <option value="any">🎮 Любая видеокарта</option>
+                        <option value="nvidia">💚 NVIDIA</option>
+                        <option value="amd">🧡 AMD</option>
+                    </select>
+                    <select id="calcBudget" class="calc-select">
+                        <option value="70000">💰 до 70 000 ₽</option>
+                        <option value="90000">💰 70 000 – 90 000 ₽</option>
+                        <option value="120000">💰 90 000 – 120 000 ₽</option>
+                        <option value="160000">💰 120 000 – 160 000 ₽</option>
+                        <option value="200000">💰 160 000 – 200 000 ₽</option>
+                        <option value="260000">💰 200 000 – 260 000 ₽</option>
+                        <option value="999999">💰 260 000+ ₽</option>
+                    </select>
+                </div>
+                <button id="calcButton" class="btn">Подобрать сборку</button>
+                <div id="calculatorResult" class="calculator-result"></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
+    <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
+    <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
+    <div class="legal-links">
+        <a href="/privacy.html">Политика обработки персональных данных</a>
+        |
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+    <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
+    <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
+</footer>
+
+<script src="/common.js"></script>
+<script>
+    let currentFilter = "all", currentGpuFilter = "all";
+
+    function getSpecIcon(spec) {
+        if(spec.includes("CPU")) return "🖥️";
+        if(spec.includes("GPU")) return "🎮";
+        if(spec.includes("RAM")) return "💾";
+        if(spec.includes("SSD")) return "⚡";
+        if(spec.includes("Cooler")) return "🌀";
+        if(spec.includes("PSU")) return "🔌";
+        return "🔧";
+    }
+
+    function renderBuilds() {
+        if(!siteData.builds || !siteData.builds.length) return;
+        let filtered = [...siteData.builds];
+        if(currentFilter !== "all") filtered = filtered.filter(b => b.filterRange === currentFilter);
+        if(currentGpuFilter !== "all") filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
+        const container = document.getElementById('buildsContainer');
+        if (!container) return;
+        if (filtered.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;">🤔 Нет сборок под выбранные фильтры</div>'; return; }
+        container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">🎮 ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">💰 Купить</a></div>`).join('');
+    }
+
+    function initCalculator() {
+        const calcButton = document.getElementById('calcButton');
+        if (!calcButton) return;
+        calcButton.onclick = () => {
+            if (!siteData.builds || siteData.builds.length === 0) { const resultDiv = document.getElementById('calculatorResult'); if (resultDiv) resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>⏳ Данные загружаются...</p></div>`; return; }
+            let purpose = document.getElementById('calcPurpose').value, cpuPref = document.getElementById('calcCpu').value, gpuPref = document.getElementById('calcGpu').value, budget = parseInt(document.getElementById('calcBudget').value);
+            let filtered = [...siteData.builds];
+            if(budget === 70000) filtered = filtered.filter(b => b.price <= 70000);
+            else if(budget === 90000) filtered = filtered.filter(b => b.price > 70000 && b.price <= 90000);
+            else if(budget === 120000) filtered = filtered.filter(b => b.price > 90000 && b.price <= 120000);
+            else if(budget === 160000) filtered = filtered.filter(b => b.price > 120000 && b.price <= 160000);
+            else if(budget === 200000) filtered = filtered.filter(b => b.price > 160000 && b.price <= 200000);
+            else if(budget === 260000) filtered = filtered.filter(b => b.price > 200000 && b.price <= 260000);
+            else filtered = filtered.filter(b => b.price > 260000);
+            if(purpose !== 'any') { let f = filtered.filter(b => b.purpose === purpose); if(f.length) filtered = f; }
+            if(cpuPref !== 'any') { let f = filtered.filter(b => b.cpuType === cpuPref); if(f.length) filtered = f; }
+            if(gpuPref !== 'any') { let f = filtered.filter(b => b.gpuType === gpuPref); if(f.length) filtered = f; }
+            filtered.sort((a,b) => a.price - b.price);
+            let selected = filtered[0];
+            let resultDiv = document.getElementById('calculatorResult');
+            if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">✅ Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">🎮 FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">⚙️ КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn">📝 Оставить заявку</a></div></div></div>`; }
+            else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>🤔 Не нашли подходящую сборку. Напишите нам!</p><a href="/contacts.html" class="btn">Связаться</a></div>`; }
+        };
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const data = await loadData();
+        if (data) {
+            renderBuilds();
+            initCalculator();
+            document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('filterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentFilter = this.dataset.filter; renderBuilds(); });
+            document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(btn => btn.onclick = function() { document.getElementById('gpuFilterGroup').querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); currentGpuFilter = this.dataset.gpu; renderBuilds(); });
+        }
+    });
+</script>
+</body>
+</html>
