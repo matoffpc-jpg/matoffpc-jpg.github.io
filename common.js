@@ -15,7 +15,7 @@ async function loadData() {
     }
 }
 
-ffunction renderFooterSocials() {
+function renderFooterSocials() {
     const container = document.getElementById('footerSocials');
     if (!container) return;
     const s = siteData.socials || {};
