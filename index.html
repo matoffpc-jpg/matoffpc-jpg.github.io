@@ -48,7 +48,7 @@
         </div>
     </section>
 
-    <!-- ===== ЗОНА 1: ЦИФРЫ + УСЛУГИ (выделенный фон) ===== -->
+    <!-- ЗОНА 1: ЦИФРЫ + УСЛУГИ (выделенный фон) -->
     <div class="zone zone-dark">
         <section id="counters">
             <div class="container">
@@ -64,7 +64,7 @@
         </section>
     </div>
 
-    <!-- ===== ЗОНА 2: ПОПУЛЯРНЫЕ СБОРКИ (обычный фон) ===== -->
+    <!-- ЗОНА 2: ПОПУЛЯРНЫЕ СБОРКИ -->
     <section id="builds-preview">
         <div class="container">
             <h2 class="section-title fade-up">Популярные <span>сборки</span></h2>
@@ -75,25 +75,25 @@
         </div>
     </section>
 
-    <!-- ===== ЗОНА 3: ПРЕИМУЩЕСТВА ВОКРУГ ЦЕНТРА (выделенный фон) ===== -->
+    <!-- ЗОНА 3: ПРЕИМУЩЕСТВА — ДВЕ КОЛОНКИ С ЦЕНТРАЛЬНОЙ ЛИНИЕЙ -->
     <div class="zone zone-accent">
-    <section id="advantages">
-        <div class="container">
-            <h2 class="section-title fade-up">Наши <span>преимущества</span></h2>
-            <div class="advantages-split">
-                <div class="advantages-col" id="advantagesLeft"></div>
-                <div class="advantages-center-line">
-                    <div class="adv-line-dot"></div>
-                    <div class="adv-line-dot"></div>
-                    <div class="adv-line-dot"></div>
+        <section id="advantages">
+            <div class="container">
+                <h2 class="section-title fade-up">Наши <span>преимущества</span></h2>
+                <div class="advantages-split">
+                    <div class="advantages-col" id="advantagesLeft"></div>
+                    <div class="advantages-center-line">
+                        <div class="adv-line-dot"></div>
+                        <div class="adv-line-dot"></div>
+                        <div class="adv-line-dot"></div>
+                    </div>
+                    <div class="advantages-col" id="advantagesRight"></div>
                 </div>
-                <div class="advantages-col" id="advantagesRight"></div>
             </div>
-        </div>
-    </section>
-</div>
+        </section>
+    </div>
 
-    <!-- ===== ЗОНА 4: ОТЗЫВЫ (обычный фон) ===== -->
+    <!-- ЗОНА 4: ОТЗЫВЫ -->
     <section id="reviews">
         <div class="container">
             <h2 class="section-title fade-up">Клиенты <span>о нас</span></h2>
@@ -133,44 +133,29 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const data = await loadData();
     if (data) {
-        renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantagesWheel(); renderReviews();
+        renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantagesSplit(); renderReviews();
         renderPromo(); startPromoRotation(); initSlider(); renderManagerModal();
         setTimeout(() => checkVisibility(), 100);
     }
 });
 
-/* ===== ПРЕИМУЩЕСТВА ВОКРУГ ЦЕНТРА ===== */
-function renderAdvantagesWheel() {
-    const container = document.getElementById('advantagesContainer');
-    if (!container || !siteData.advantages || !siteData.advantages.length) return;
+/* ===== ПРЕИМУЩЕСТВА — ДВЕ КОЛОНКИ ===== */
+function renderAdvantagesSplit() {
+    const leftCol = document.getElementById('advantagesLeft');
+    const rightCol = document.getElementById('advantagesRight');
+    if (!leftCol || !rightCol || !siteData.advantages) return;
+
     const items = siteData.advantages;
-    const count = items.length;
-    const angleStep = (Math.PI * 2) / count;
-    const radiusDesktop = 260;
-    const radiusMobile = 160;
+    const mid = Math.ceil(items.length / 2);
 
-    function build() {
-        const isMobile = window.innerWidth < 768;
-        const radius = isMobile ? radiusMobile : radiusDesktop;
-        container.innerHTML = items.map((a, i) => {
-            const angle = i * angleStep - Math.PI / 2;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-            return `<div class="adv-orbit-item" style="transform: translate(${x}px, ${y}px);">
-                <div class="adv-orbit-inner">
-                    <h3>${a.name}</h3>
-                    <p>${a.desc}</p>
-                </div>
-            </div>`;
-        }).join('');
-    }
+    const buildCard = (a) => `
+        <div class="adv-card">
+            <div class="adv-card-title">${a.name}</div>
+            <div class="adv-card-desc">${a.desc}</div>
+        </div>`;
 
-    build();
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(build, 200);
-    });
+    leftCol.innerHTML = items.slice(0, mid).map(buildCard).join('');
+    rightCol.innerHTML = items.slice(mid).map(buildCard).join('');
 }
 </script>
 </body>
