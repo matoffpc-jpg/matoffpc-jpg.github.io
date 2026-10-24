@@ -562,3 +562,27 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     .price { font-size: 1.2rem; }
     .btn { padding: 10px 16px; font-size: 0.85rem; min-height: 42px; }
 }
+.form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 15px;
+    cursor: pointer;
+    text-align: left;
+}
+.form-consent input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 2px;
+    accent-color: var(--accent-purple);
+    cursor: pointer;
+}
+.form-consent a {
+    color: var(--accent-purple);
+    text-decoration: underline;
+}
+.form-consent a:hover { color: var(--accent-orange); }
