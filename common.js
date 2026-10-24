@@ -47,11 +47,21 @@ function initMobileNav() {
     updateMobileCartCount();
 }
 
-/* ===== БУРГЕР-МЕНЮ ===== */
 function initBurger() {
     const burger = document.getElementById('burgerBtn');
     const nav = document.querySelector('.nav');
     if (!burger || !nav) return;
+
+    // Автоматически ставим top = высота шапки
+    const header = document.querySelector('.header');
+    function updateNavTop() {
+        if (header) {
+            const h = header.offsetHeight;
+            nav.style.top = h + 'px';
+        }
+    }
+    updateNavTop();
+    window.addEventListener('resize', updateNavTop);
 
     burger.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -73,7 +83,6 @@ function initBurger() {
         }
     });
 }
-
 /* ===== ЗАГРУЗКА ДАННЫХ ===== */
 async function loadData() {
     try {
