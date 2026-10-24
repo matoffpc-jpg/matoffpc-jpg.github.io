@@ -76,9 +76,12 @@
                                 <textarea id="clientComment" rows="4" placeholder="Опишите вашу задачу или задайте вопрос..."></textarea>
                             </div>
                             <div class="form-footer">
-                                <button type="submit" class="btn">Отправить заявку</button>
-                                <div class="form-docs">Нажимая кнопку, я принимаю условия <a href="/consent.html" target="_blank">Согласия на обработку персональных данных</a> и <a href="/privacy.html" target="_blank">Политики конфиденциальности</a></div>
-                            </div>
+    <label class="form-consent">
+        <input type="checkbox" id="clientConsent" required>
+        <span>Я принимаю условия <a href="consent.html" target="_blank">Согласия на обработку персональных данных</a> и <a href="privacy.html" target="_blank">Политики конфиденциальности</a></span>
+    </label>
+    <button type="submit" class="btn">Отправить заявку</button>
+</div>
                         </form>
                     </div>
                     <div class="side-info">
