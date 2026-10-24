@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Заявка | Matoff PC</title>
-    <meta name="description" content="Оставьте заявку на сборку, ремонт или апгрейд компьютера. Свяжемся в ближайшее время.">
+    <meta name="description" content="Оставьте заявку на сборку, ремонт или апгрейд компьютера.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
 </head>
@@ -19,17 +19,14 @@
         <div class="nav">
             <a href="/">Главная</a>
             <a href="/services.html">Услуги</a>
-            <a href="/builds.html">Сборки</a>
+            <a href="/builds.html">Каталог</a>
+            <a href="/used.html">Б/У</a>
+            <a href="/components.html">Комплектующие</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
-            <div class="theme-toggle" id="themeToggle">
-                <span class="active" data-theme="dark">🌙</span>
-                <span data-theme="light">☀️</span>
-            </div>
-            <div class="manager-wrapper">
-                <button id="managerHeaderBtn" class="manager-header-btn">Связаться</button>
-            </div>
+            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
+            <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
         </div>
     </div>
 </header>
@@ -79,9 +76,7 @@
                         </div>
                         <div class="form-footer">
                             <button type="submit" class="btn">Отправить заявку</button>
-                            <div class="form-docs">
-                                Нажимая кнопку, я принимаю условия <a href="/consent.html" target="_blank">Согласия на обработку персональных данных</a> и <a href="/privacy.html" target="_blank">Политики конфиденциальности</a>
-                            </div>
+                            <div class="form-docs">Нажимая кнопку, я принимаю условия <a href="/consent.html" target="_blank">Согласия на обработку персональных данных</a> и <a href="/privacy.html" target="_blank">Политики конфиденциальности</a></div>
                         </div>
                     </form>
                 </div>
@@ -112,16 +107,14 @@
 </footer>
 
 <button class="scroll-top" id="scrollTopBtn">↑</button>
-<div id="socialModal" class="modal"><div class="modal-content"><h3>Связь с менеджером</h3><div class="modal-socials" id="modalSocials"></div><button id="closeModal" class="modal-close-btn">Закрыть</button></div></div>
+<div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
 
 <script src="/common.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
         const data = await loadData();
         if (data) {
-            renderPromo();
-            startPromoRotation();
-            renderManagerModal();
+            renderPromo(); startPromoRotation(); renderManagerModal();
             setTimeout(() => checkVisibility(), 100);
         }
     });
