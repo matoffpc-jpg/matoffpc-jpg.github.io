@@ -890,3 +890,11 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
 .component-price { font-size: 1.4rem; font-weight: 800; color: var(--price-color); margin-bottom: 8px; }
 .component-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; flex: 1; line-height: 1.4; }
 .component-card .btn { width: 100%; }
+/* ЖЁСТКИЙ СБРОС — перебивает всё */
+html body .header,
+html body header.header {
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+}
