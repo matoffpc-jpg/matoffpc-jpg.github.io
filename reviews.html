@@ -5,22 +5,31 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Отзывы | Matoff PC</title>
+    <meta name="description" content="Отзывы клиентов о Matoff PC. Реальные истории сборки и ремонта компьютеров.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
 </head>
 <body>
 <div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
+<div id="promoBar" class="promo-bar" style="display: none;"><div class="container"><div class="promo-content"><span class="promo-text" id="promoText"></span><span class="promo-timer" id="promoTimer"></span><button class="promo-close" id="promoClose">✕</button></div></div></div>
+
 <header class="header">
     <div class="container">
         <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
         <div class="nav">
+            <a href="/">Главная</a>
             <a href="/services.html">Услуги</a>
             <a href="/builds.html">Сборки</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
-            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
-            <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button></div>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
+            <div class="manager-wrapper">
+                <button id="managerHeaderBtn" class="manager-header-btn">📱 Связаться</button>
+            </div>
         </div>
     </div>
 </header>
@@ -29,12 +38,18 @@
     <section id="reviews"><div class="container"><h2 class="section-title fade-up">Клиенты <span>о нас</span></h2><div id="reviewsContainer" class="reviews-grid"></div><div class="avito-link"><a href="https://www.avito.ru/brands/i175782584/all?sellerId=87fa06f4eb5b06a0808aab70387c951e" target="_blank" class="btn">📱 Смотреть все отзывы на Авито</a></div></div></section>
 </main>
 
-<footer><p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p><div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div><div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div><div class="legal-links"><a href="/privacy.html">Политика обработки персональных данных</a> | <a href="/consent.html">Согласие на обработку персональных данных</a></div><div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div><p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p></footer>
+<footer>
+    <div class="footer-copy">© 2026 Matoff PC — магазин компьютеров в Нижнем Новгороде. Все права защищены.</div>
+    <div class="footer-desc">Интернет-магазин компьютерной техники | Продажа и сборка компьютеров на заказ | Игровые и офисные системные блоки | Компьютерные комплектующие | Ремонт и настройка ПК</div>
+    <div class="footer-socials" id="footerSocials"></div>
+    <div class="footer-legal">
+        <a href="/privacy.html">Политика в отношении обработки персональных данных</a>
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+</footer>
 
 <button class="scroll-top" id="scrollTopBtn">↑</button>
 <div id="socialModal" class="modal"><div class="modal-content"><h3 style="margin-bottom: 20px;">Связь с менеджером</h3><button id="modalVk" class="btn" style="margin: 8px;">📱 VK</button><button id="modalTg" class="btn" style="margin: 8px;">💬 Telegram</button><button id="closeModal" class="btn-outline btn" style="margin: 8px;">Закрыть</button></div></div>
-<div id="adminLoginOverlay" class="admin-login-overlay"><div class="admin-login-box"><h3>🔐 Вход в админ-панель</h3><input type="password" id="adminPassword" placeholder="Введите пароль"><button id="adminLoginBtn" class="btn">Войти</button><button id="adminLoginClose" class="btn-outline btn" style="margin-top: 10px;">Отмена</button></div></div>
-<div id="adminPanel" class="admin-panel"><div class="container"><h3 style="text-align:center; margin-bottom: 25px; color:#9b4dff;">⚙️ АДМИН-ПАНЕЛЬ</h3><div class="admin-form"><p style="margin-bottom: 20px;">📌 <strong>Все данные хранятся в файле data.json в вашем репозитории.</strong></p><p style="margin-bottom: 20px;">🔗 <a href="https://github.com/matoffpc-jpg/matoffpc.github.io/edit/main/data.json" target="_blank" style="color:#9b4dff;">Открыть data.json для редактирования</a></p><button id="logoutAdminBtn" class="btn-outline btn" style="margin-top: 12px; width:100%;">🚪 Выйти из админ-панели</button></div></div></div>
 
 <script src="/common.js"></script>
 <script>
