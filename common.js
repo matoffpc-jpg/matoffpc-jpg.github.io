@@ -372,3 +372,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
 });
+function initMobileNav() {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.mobile-bottom-nav a').forEach(a => {
+        if (a.dataset.page === path) a.classList.add('active');
+    });
+    updateMobileCartCount();
+}
+
+function updateMobileCartCount() {
+    const el = document.getElementById('mobileCartCount');
+    if (!el) return;
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    el.textContent = total;
+    el.style.display = total > 0 ? 'inline-flex' : 'none';
+}
