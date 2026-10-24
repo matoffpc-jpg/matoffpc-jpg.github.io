@@ -20,8 +20,6 @@
             <a href="/">Главная</a>
             <a href="/services.html">Услуги</a>
             <a href="/builds.html">Каталог</a>
-            <a href="/used.html">Б/У</a>
-            <a href="/components.html">Комплектующие</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
@@ -72,15 +70,6 @@
         </div>
     </section>
 
-    <section id="map-section">
-        <div class="container">
-            <h2 class="section-title fade-up">Мы на <span>карте</span></h2>
-            <div class="map-full">
-                <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" allowfullscreen="true" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-
     <section id="leave-review">
         <div class="container" style="text-align: center;">
             <h2 class="section-title fade-up">Оставьте <span>свой отзыв</span></h2>
@@ -108,16 +97,16 @@
 
 <script src="/common.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const data = await loadData();
-        if (data) {
-            renderReviews();
-            renderPromo();
-            startPromoRotation();
-            renderManagerModal();
-            setTimeout(() => checkVisibility(), 100);
-        }
-    });
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await loadData();
+    if (data) {
+        renderReviews();
+        renderPromo();
+        startPromoRotation();
+        renderManagerModal();
+        setTimeout(() => checkVisibility(), 100);
+    }
+});
 </script>
 </body>
 </html>
