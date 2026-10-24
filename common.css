@@ -397,6 +397,61 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
 .component-price { font-size: 1.4rem; font-weight: 800; color: var(--price-color); margin-bottom: 8px; }
 .component-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; flex: 1; line-height: 1.4; }
 .component-card .btn { width: 100%; }
+/* ЛОГО + КОНТАКТЫ В ПОДВАЛЕ */
+.footer-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.footer-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.footer-logo a { text-decoration: none; display: flex; align-items: center; gap: 4px; }
+.footer-logo .logo-matoff { color: var(--accent-purple); text-shadow: 0 0 18px rgba(155,77,255,0.7); }
+.footer-logo .logo-pc { color: var(--accent-orange); text-shadow: 0 0 18px rgba(230,138,46,0.5); }
+
+.footer-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 28px;
+}
+
+.footer-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.footer-contact-item svg {
+    flex-shrink: 0;
+    color: var(--accent-purple);
+}
+.footer-contact-item a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer-contact-item a:hover { color: var(--accent-purple); }
+
+@media (max-width: 768px) {
+    .footer-top { gap: 14px; margin-bottom: 18px; padding-bottom: 18px; }
+    .footer-logo { font-size: 1.4rem; }
+    .footer-contacts { flex-direction: column; align-items: center; gap: 10px; }
+    .footer-contact-item { font-size: 0.8rem; }
+}
 
 /* ЗОНЫ */
 .zone { position: relative; padding: 30px 0; margin: 20px 0; transition: background 0.3s; }
