@@ -486,14 +486,20 @@ section { padding: 70px 0; }
 }
 .team-card-single:hover { border-color: var(--accent-purple); transform: translateY(-3px); }
 .team-avatar-single {
-    width: 120px; height: 120px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     background: linear-gradient(135deg, rgba(155,77,255,0.25), rgba(230,138,46,0.15));
     border: 2px solid var(--accent-purple);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3.5rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 3.2rem;
+    letter-spacing: 2px;
+    color: var(--accent-purple);
+    text-shadow: 0 0 25px rgba(155,77,255,0.8), 0 0 50px rgba(155,77,255,0.4);
     margin-bottom: 22px;
     box-shadow: 0 0 30px rgba(155,77,255,0.4);
     position: relative;
