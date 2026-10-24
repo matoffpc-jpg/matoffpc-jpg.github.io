@@ -115,8 +115,6 @@ function getSpecIcon(spec) {
     return "🔧";
 }
 
-function scrollToOrder() { const orderSection = document.getElementById('order'); if (orderSection) orderSection.scrollIntoView({ behavior: 'smooth' }); }
-
 /* ===== СЧЁТЧИКИ ===== */
 function animateCounters() {
     const counters = document.querySelectorAll('.counter-number');
@@ -135,7 +133,10 @@ function renderHomeBuilds() {
     const container = document.getElementById('homeBuildsContainer');
     if (!container || !siteData.builds || !siteData.builds.length) return;
     const popular = siteData.builds.slice(0, 3);
-    container.innerHTML = popular.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.slice(0,4).map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">Купить</a></div>`).join('');
+    container.innerHTML = popular.map(b => {
+        const idx = siteData.builds.indexOf(b);
+        return `<div class="build-card"><div class="pc-image-container" onclick="window.location.href='/pc.html?id=${idx}'" style="cursor:pointer;"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3 onclick="window.location.href='/pc.html?id=${idx}'" style="cursor:pointer;">${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.slice(0,4).map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/pc.html?id=${idx}" class="btn btn-buy">Подробнее</a></div>`;
+    }).join('');
 }
 
 /* ===== ПРОМО ===== */
@@ -157,21 +158,103 @@ function renderPromo() {
 function startPromoRotation() { if (promoInterval) clearInterval(promoInterval); promoInterval = setInterval(() => { renderPromo(); }, 8000); }
 function startTimer(endDate) { if(!endDate) return; let end = new Date(endDate); function update() { let diff = end - new Date(); if(diff <= 0) { const promoBar = document.getElementById('promoBar'); if (promoBar) promoBar.style.display = 'none'; return; } let d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); const promoTimer = document.getElementById('promoTimer'); if (promoTimer) promoTimer.textContent = `${d}д ${h}ч ${m}м ${s}с`; } update(); setInterval(update, 1000); }
 
-/* ===== ФИЛЬТРЫ СБОРОК ===== */
-let currentFilter = "all", currentGpuFilter = "all";
-function renderBuilds() {
-    if(!siteData.builds || !siteData.builds.length) return;
-    let filtered = [...siteData.builds];
-    if(currentFilter !== "all") filtered = filtered.filter(b => b.filterRange === currentFilter);
-    if(currentGpuFilter !== "all") filtered = filtered.filter(b => b.gpuType === currentGpuFilter);
-    const container = document.getElementById('buildsContainer');
-    if (!container) return;
-    if (filtered.length === 0) { container.innerHTML = '<div style="text-align:center;padding:40px;">Нет сборок под выбранные фильтры</div>'; return; }
-    container.innerHTML = filtered.map(b => `<div class="build-card"><div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3>${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn btn-buy">Купить</a></div>`).join('');
-    document.querySelectorAll('.build-card').forEach(card => {
-        card.onmousemove = (e) => { let r = card.getBoundingClientRect(); let x = e.clientX - r.left, y = e.clientY - r.top; let rx = (y - r.height/2)/35, ry = (r.width/2 - x)/35; card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`; };
-        card.onmouseleave = () => card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-    });
+/* ===== СТРАНИЦА ПК ===== */
+function renderPcPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const container = document.getElementById('pcContainer');
+    if (!container || isNaN(id) || !siteData.builds || !siteData.builds[id]) {
+        if (container) container.innerHTML = '<div class="container" style="text-align:center;padding:60px 20px;"><h1>Компьютер не найден</h1><p style="margin:20px 0;color:var(--text-secondary);">Вернитесь в <a href="/builds.html" style="color:var(--accent-purple);">каталог</a></p></div>';
+        return;
+    }
+    const b = siteData.builds[id];
+
+    const features = b.features || [
+        { icon: "🛡️", text: "1 год гарантия на сборку" },
+        { icon: "🔥", text: "Windows 11 Pro" },
+        { icon: "⚙️", text: "Стресс-тестирование перед отправкой" },
+        { icon: "🚚", text: "Доставка по всей России" }
+    ];
+    const fullSpecs = b.fullSpecs || {};
+    const description = b.description || "Каждый ПК изготавливается на заказ под конкретного клиента, с учетом всех его пожеланий. В конфигурацию можно вносить любые изменения — увеличить объём SSD, ОЗУ, заменить комплектующие на ваш выбор.";
+    const included = b.included || [
+        "Сборка компьютера",
+        "Стресс-тестирование",
+        "Установка Windows",
+        "Настройка и оптимизация работы ПК",
+        "Надёжная упаковка для транспортировки"
+    ];
+    const payment = b.payment || [
+        "Оплата по СБП",
+        "Оплата по счёту ЮрЛица",
+        "Оплата наличкой в магазине"
+    ];
+
+    const specsList = [
+        { label: "Процессор", value: fullSpecs.cpu || (b.specs.find(s => s.startsWith("CPU:")) || "").replace("CPU:", "").trim() },
+        { label: "Видеокарта", value: fullSpecs.gpu || (b.specs.find(s => s.startsWith("GPU:")) || "").replace("GPU:", "").trim() },
+        { label: "Материнская плата", value: fullSpecs.motherboard || "—" },
+        { label: "Оперативная память", value: fullSpecs.ram || (b.specs.find(s => s.startsWith("RAM:")) || "").replace("RAM:", "").trim() },
+        { label: "Накопитель", value: fullSpecs.ssd || (b.specs.find(s => s.startsWith("SSD:")) || "").replace("SSD:", "").trim() },
+        { label: "Блок питания", value: fullSpecs.psu || (b.specs.find(s => s.startsWith("PSU:")) || "").replace("PSU:", "").trim() },
+        { label: "Корпус", value: fullSpecs.case || "Индивидуальный подбор" },
+        { label: "Охлаждение", value: fullSpecs.cooler || (b.specs.find(s => s.startsWith("Cooler:")) || "").replace("Cooler:", "").trim() },
+        { label: "Гарантия", value: fullSpecs.warranty || "Стандартная гарантия 1 год" }
+    ];
+
+    const alsoIndices = siteData.builds.map((_, i) => i).filter(i => i !== id).slice(0, 4);
+
+    container.innerHTML = `
+    <div class="container pc-page">
+        <div class="pc-breadcrumbs"><a href="/">Главная</a> / <a href="/builds.html">Каталог</a> / <span>${b.name}</span></div>
+
+        <div class="pc-hero">
+            <div class="pc-hero-image">
+                <img src="${b.image}" alt="${b.name}" onerror="this.src='https://placehold.co/500x400/2a2a35/9b4dff?text=PC'">
+            </div>
+            <div class="pc-hero-info">
+                <h1>${b.name}</h1>
+                <div class="pc-price-big">${b.priceText}</div>
+                <div class="pc-actions">
+                    <a href="/contacts.html" class="btn">Заказать сборку</a>
+                    <a href="/contacts.html" class="btn btn-outline">Связаться с нами</a>
+                </div>
+                <div class="pc-features">
+                    ${features.map(f => `<div class="pc-feature"><span class="pc-feature-icon">${f.icon}</span><span>${f.text}</span></div>`).join('')}
+                </div>
+                <div class="fps-block" style="margin-top:10px;"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value" style="font-size:1.1rem;">${b.fps || "100+ FPS"}</div></div>
+            </div>
+        </div>
+
+        <div class="pc-block">
+            <h2>Характеристики</h2>
+            <div class="pc-specs-table">
+                ${specsList.map(s => `<div class="pc-specs-row"><div class="pc-specs-label">${s.label}</div><div class="pc-specs-value">${s.value || "—"}</div></div>`).join('')}
+            </div>
+        </div>
+
+        <div class="pc-block">
+            <h2>Описание</h2>
+            <div class="pc-description">
+                <p>${description}</p>
+                <p><strong>В стоимость компьютера входит:</strong></p>
+                <ul>${included.map(i => `<li>${i}</li>`).join('')}</ul>
+                <p><strong>Оплата:</strong></p>
+                <ul>${payment.map(p => `<li>${p}</li>`).join('')}</ul>
+                <p style="font-size:0.8rem;opacity:0.7;margin-top:15px;">* Конфигурация может отличаться от представленной на фото.<br>** Написав нашему менеджеру, вы можете заменить комплектующие на ваш выбор.</p>
+            </div>
+        </div>
+
+        <div class="pc-block">
+            <h2>Смотрят также</h2>
+            <div class="pc-also-grid">
+                ${alsoIndices.map(i => {
+                    const x = siteData.builds[i];
+                    return `<a href="/pc.html?id=${i}" class="pc-also-card"><img src="${x.image}" alt="${x.name}" onerror="this.src='https://placehold.co/300x200/2a2a35/9b4dff?text=PC'"><h4>${x.name}</h4><div class="price">${x.priceText}</div><div class="pc-also-btn">Открыть визитку →</div></a>`;
+                }).join('')}
+            </div>
+        </div>
+    </div>`;
 }
 
 /* ===== КАЛЬКУЛЯТОР ===== */
@@ -195,58 +278,9 @@ function initCalculator() {
         filtered.sort((a,b) => a.price - b.price);
         let selected = filtered[0];
         let resultDiv = document.getElementById('calculatorResult');
-        if(selected && resultDiv) { resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/contacts.html" class="btn">Оставить заявку</a></div></div></div>`; }
+        if(selected && resultDiv) { const idx = siteData.builds.indexOf(selected); resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/pc.html?id=${idx}" class="btn">Подробнее</a></div></div></div>`; }
         else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>Не нашли подходящую сборку. Напишите нам!</p><a href="/contacts.html" class="btn">Связаться</a></div>`; }
     };
-}
-
-/* ===== МОДАЛКА СБОРКИ ===== */
-function openBuildModal(buildIndex) {
-    const build = siteData.builds[buildIndex];
-    if (!build) return;
-    const modal = document.getElementById('buildModal');
-    const body = document.getElementById('buildModalBody');
-    if (!modal || !body) return;
-
-    const usedPrice = build.usedPriceText || build.priceText || '—';
-
-    body.innerHTML = `
-        <div class="build-modal-grid">
-            <div class="build-modal-image">
-                <img src="${build.image}" alt="${build.name}" onerror="this.src='https://placehold.co/500x400/2a2a35/9b4dff?text=PC'">
-            </div>
-            <div class="build-modal-info">
-                <h2>${build.name}</h2>
-                <div class="price">${build.priceText}</div>
-                <div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ (УЛЬТРА)</div><div class="fps-value">${build.fps || "100+ FPS"}</div></div>
-                <div class="specs-title">КОМПЛЕКТУЮЩИЕ</div>
-                <div class="specs-two-columns">${build.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div>
-                <div class="used-price-block">
-                    <div class="used-price-label">💡 Такая же сборка в Б/У</div>
-                    <div class="used-price-value">${usedPrice}</div>
-                    <div class="used-price-note">Цена за Б/У сборку с такой же конфигурацией</div>
-                </div>
-                <div class="build-modal-buttons">
-                    <a href="/contacts.html" class="btn">Купить новую</a>
-                    <a href="/contacts.html" class="btn btn-outline">Купить Б/У</a>
-                </div>
-            </div>
-        </div>
-    `;
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-function closeBuildModal() {
-    const modal = document.getElementById('buildModal');
-    if (modal) modal.style.display = 'none';
-    document.body.style.overflow = '';
-}
-function initBuildModal() {
-    const modal = document.getElementById('buildModal');
-    const close = document.getElementById('buildModalClose');
-    if (close) close.onclick = closeBuildModal;
-    if (modal) modal.onclick = (e) => { if (e.target === modal) closeBuildModal(); };
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBuildModal(); });
 }
 
 /* ===== TELEGRAM ===== */
@@ -331,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initManagerModal();
     initRequestForm();
     initPromoClose();
-    initBuildModal();
     highlightActiveNav();
     renderHeaderCartCount();
     window.addEventListener('scroll', checkVisibility);
