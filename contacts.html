@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Контакты | Matoff PC</title>
-    <meta name="description" content="Свяжитесь с Matoff PC. Оставить заявку на сборку, ремонт или апгрейд компьютера.">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
@@ -28,7 +27,6 @@
     </style>
 </head>
 <body>
-
 <header class="header">
     <div class="container">
         <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
@@ -36,15 +34,10 @@
             <a href="/">Главная</a>
             <a href="/builds.html">Сборки</a>
             <a href="/services.html">Услуги</a>
-            <a href="/components.html">Комплектующие</a>
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Контакты</a>
-            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
-            <div class="theme-toggle" id="themeToggle">
-                <span class="active" data-theme="dark">🌙</span>
-                <span data-theme="light">☀️</span>
-            </div>
+            <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
         </div>
     </div>
 </header>
@@ -74,9 +67,7 @@
                     </form>
                     <p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p>
                 </div>
-                <div class="map-container">
-                    <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" width="100%" height="400" frameborder="0"></iframe>
-                </div>
+                <div class="map-container"><iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" width="100%" height="400" frameborder="0"></iframe></div>
             </div>
         </div>
     </section>
@@ -86,18 +77,13 @@
     <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
     <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
     <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
-    <div class="legal-links">
-        <a href="/privacy.html">Политика обработки персональных данных</a>
-        |
-        <a href="/consent.html">Согласие на обработку персональных данных</a>
-    </div>
+    <div class="legal-links"><a href="/privacy.html">Политика обработки персональных данных</a> | <a href="/consent.html">Согласие на обработку персональных данных</a></div>
     <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
     <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
 </footer>
 
 <script src="/common.js"></script>
 <script>
-    // Отправка заявки через BotGate
     async function sendToTelegram(name, contact, type, comment) {
         if (!name || !contact) return false;
         const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
@@ -105,16 +91,11 @@
         const CHAT_ID = "1065465753";
         const url = `https://bot-gate.ru/api/v1/bots/${BOT_PUBLIC_ID}/sendMessage`;
         try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${BOTGATE_API_KEY}` },
-                body: JSON.stringify({ chat_id: CHAT_ID, text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}` })
-            });
+            const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${BOTGATE_API_KEY}` }, body: JSON.stringify({ chat_id: CHAT_ID, text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}` }) });
             const result = await response.json();
             return !!result.ok;
         } catch (e) { return false; }
     }
-
     document.addEventListener('DOMContentLoaded', () => {
         let contactType = 'phone';
         document.querySelectorAll('.contact-type-btn').forEach(btn => btn.onclick = function() { document.querySelectorAll('.contact-type-btn').forEach(b => b.classList.remove('active')); this.classList.add('active'); contactType = this.dataset.contact; let c = document.getElementById('contactFieldContainer'); if(c) { if(contactType === 'phone') c.innerHTML = '<input type="tel" id="clientContact" placeholder="Номер телефона" required>'; else if(contactType === 'tg') c.innerHTML = '<input type="text" id="clientContact" placeholder="Ваш Telegram (@username)" required>'; else c.innerHTML = '<input type="text" id="clientContact" placeholder="Ссылка на VK" required>'; } });
