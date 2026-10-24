@@ -13,6 +13,7 @@ let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
 function saveCart() {
     localStorage.setItem('matoff_cart', JSON.stringify(cart));
     renderHeaderCartCount();
+    if (typeof updateMobileCartCount === 'function') updateMobileCartCount();
 }
 function renderHeaderCartCount() {
     const el = document.getElementById('headerCartCount');
@@ -22,6 +23,13 @@ function renderHeaderCartCount() {
         el.style.display = total > 0 ? 'inline-flex' : 'none';
     }
 }
+function updateMobileCartCount() {
+    const el = document.getElementById('mobileCartCount');
+    if (!el) return;
+    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    el.textContent = total;
+    el.style.display = total > 0 ? 'inline-flex' : 'none';
+}
 function addToCart(item) {
     const existing = cart.find(c => c.id === item.id);
     if (existing) existing.quantity++;
@@ -30,15 +38,25 @@ function addToCart(item) {
     alert('✅ Товар добавлен в корзину');
 }
 
+/* ===== НИЖНЯЯ НАВИГАЦИЯ ===== */
+function initMobileNav() {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.mobile-bottom-nav a').forEach(a => {
+        if (a.dataset.page === path) a.classList.add('active');
+    });
+    updateMobileCartCount();
+}
+
 /* ===== ЗАГРУЗКА ДАННЫХ ===== */
 async function loadData() {
     try {
-        const response = await fetch('/data.json?t=' + Date.now());
+        const response = await fetch('data.json?t=' + Date.now());
         if (!response.ok) throw new Error('Ошибка загрузки data.json: ' + response.status);
         siteData = await response.json();
         console.log('✅ Данные загружены успешно');
         renderFooterSocials();
         renderHeaderCartCount();
+        updateMobileCartCount();
         return siteData;
     } catch(e) {
         console.error('❌ Ошибка загрузки:', e);
@@ -122,7 +140,7 @@ function animateCounters() {
 }
 
 function renderCounters() { if(!siteData.counters || !siteData.counters.length) return; const container = document.getElementById('countersContainer'); if (container) { container.innerHTML = siteData.counters.map(c => `<div class="counter-card"><div class="counter-number" data-target="${c.number}">0</div><div class="counter-label">${c.label}</div></div>`).join(''); animateCounters(); } }
-function renderServices() { if(!siteData.services || !siteData.services.length) return; const container = document.getElementById('servicesContainer'); if (container) { container.innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = () => window.location.href = '/contacts.html'); } }
+function renderServices() { if(!siteData.services || !siteData.services.length) return; const container = document.getElementById('servicesContainer'); if (container) { container.innerHTML = siteData.services.map(s => `<div class="service-card"><h3>${s.name}</h3><p>${s.desc}</p><button class="btn service-btn">${s.btn}</button></div>`).join(''); document.querySelectorAll('.service-btn').forEach(btn => btn.onclick = () => window.location.href = 'contacts.html'); } }
 function renderSteps() { const container = document.getElementById('stepsContainer'); if (container && siteData.steps && siteData.steps.length) { container.innerHTML = siteData.steps.map(s => `<div class="step-card"><h3>${s.name}</h3><p>${s.desc}</p></div>`).join(''); } }
 function renderAdvantages() { const container = document.getElementById('advantagesContainer'); if (container && siteData.advantages && siteData.advantages.length) { container.innerHTML = siteData.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join(''); } }
 function renderShorts() { const container = document.getElementById('shortsContainer'); if (container && siteData.shorts && siteData.shorts.length) { container.innerHTML = siteData.shorts.map(sh => `<div class="short-card" onclick="window.open('${sh.url}','_blank')"><img src="${sh.preview}" onerror="this.src='https://placehold.co/280x500?text=Video'"><p>${sh.title}</p></div>`).join(''); } }
@@ -135,7 +153,7 @@ function renderHomeBuilds() {
     const popular = siteData.builds.slice(0, 3);
     container.innerHTML = popular.map(b => {
         const idx = siteData.builds.indexOf(b);
-        return `<div class="build-card"><div class="pc-image-container" onclick="window.location.href='/pc.html?id=${idx}'" style="cursor:pointer;"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3 onclick="window.location.href='/pc.html?id=${idx}'" style="cursor:pointer;">${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.slice(0,4).map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/pc.html?id=${idx}" class="btn btn-buy">Подробнее</a></div>`;
+        return `<div class="build-card"><div class="pc-image-container" onclick="window.location.href='pc.html?id=${idx}'" style="cursor:pointer;"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"><img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><h3 onclick="window.location.href='pc.html?id=${idx}'" style="cursor:pointer;">${b.name}</h3><div class="price">${b.priceText}</div><div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${b.specs.slice(0,4).map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="pc.html?id=${idx}" class="btn btn-buy">Подробнее</a></div>`;
     }).join('');
 }
 
@@ -164,7 +182,7 @@ function renderPcPage() {
     const id = parseInt(params.get('id'));
     const container = document.getElementById('pcContainer');
     if (!container || isNaN(id) || !siteData.builds || !siteData.builds[id]) {
-        if (container) container.innerHTML = '<div class="container" style="text-align:center;padding:60px 20px;"><h1>Компьютер не найден</h1><p style="margin:20px 0;color:var(--text-secondary);">Вернитесь в <a href="/builds.html" style="color:var(--accent-purple);">каталог</a></p></div>';
+        if (container) container.innerHTML = '<div class="container" style="text-align:center;padding:60px 20px;"><h1>Компьютер не найден</h1><p style="margin:20px 0;color:var(--text-secondary);">Вернитесь в <a href="builds.html" style="color:var(--accent-purple);">каталог</a></p></div>';
         return;
     }
     const b = siteData.builds[id];
@@ -186,8 +204,8 @@ function renderPcPage() {
     ];
     const payment = b.payment || [
         "Оплата по СБП",
-        "Оплата по счёту ЮрЛица",
-        "Оплата наличкой в магазине"
+        "Оплата наличными в магазине",
+        "Перевод на карту"
     ];
 
     const specsList = [
@@ -206,7 +224,7 @@ function renderPcPage() {
 
     container.innerHTML = `
     <div class="container pc-page">
-        <div class="pc-breadcrumbs"><a href="/">Главная</a> / <a href="/builds.html">Каталог</a> / <span>${b.name}</span></div>
+        <div class="pc-breadcrumbs"><a href="index.html">Главная</a> / <a href="builds.html">Каталог</a> / <span>${b.name}</span></div>
 
         <div class="pc-hero">
             <div class="pc-hero-image">
@@ -216,8 +234,8 @@ function renderPcPage() {
                 <h1>${b.name}</h1>
                 <div class="pc-price-big">${b.priceText}</div>
                 <div class="pc-actions">
-                    <a href="/contacts.html" class="btn">Заказать сборку</a>
-                    <a href="/contacts.html" class="btn btn-outline">Связаться с нами</a>
+                    <a href="contacts.html" class="btn">Заказать сборку</a>
+                    <a href="contacts.html" class="btn btn-outline">Связаться с нами</a>
                 </div>
                 <div class="pc-features">
                     ${features.map(f => `<div class="pc-feature"><span class="pc-feature-icon">${f.icon}</span><span>${f.text}</span></div>`).join('')}
@@ -250,7 +268,7 @@ function renderPcPage() {
             <div class="pc-also-grid">
                 ${alsoIndices.map(i => {
                     const x = siteData.builds[i];
-                    return `<a href="/pc.html?id=${i}" class="pc-also-card"><img src="${x.image}" alt="${x.name}" onerror="this.src='https://placehold.co/300x200/2a2a35/9b4dff?text=PC'"><h4>${x.name}</h4><div class="price">${x.priceText}</div><div class="pc-also-btn">Открыть визитку →</div></a>`;
+                    return `<a href="pc.html?id=${i}" class="pc-also-card"><img src="${x.image}" alt="${x.name}" onerror="this.src='https://placehold.co/300x200/2a2a35/9b4dff?text=PC'"><h4>${x.name}</h4><div class="price">${x.priceText}</div><div class="pc-also-btn">Открыть визитку →</div></a>`;
                 }).join('')}
             </div>
         </div>
@@ -278,8 +296,8 @@ function initCalculator() {
         filtered.sort((a,b) => a.price - b.price);
         let selected = filtered[0];
         let resultDiv = document.getElementById('calculatorResult');
-        if(selected && resultDiv) { const idx = siteData.builds.indexOf(selected); resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="/pc.html?id=${idx}" class="btn">Подробнее</a></div></div></div>`; }
-        else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>Не нашли подходящую сборку. Напишите нам!</p><a href="/contacts.html" class="btn">Связаться</a></div>`; }
+        if(selected && resultDiv) { const idx = siteData.builds.indexOf(selected); resultDiv.innerHTML = `<div style="background:rgba(0,0,0,0.2);border-radius:24px;padding:20px;"><h3 style="color:#9b4dff;text-align:center;">Рекомендуемая сборка</h3><div style="display:flex;flex-wrap:wrap;gap:25px;align-items:flex-start;justify-content:center;"><div><img src="${selected.image}" style="width:400px;border-radius:20px;max-width:100%;" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div><div><h2>${selected.name}</h2><div class="price" style="font-size:1.8rem;">${selected.priceText}</div><div class="fps-block"><div class="fps-title">FPS (УЛЬТРА)</div><div class="fps-value">${selected.fps || "100+ FPS"}</div></div><div class="specs-title">КОМПЛЕКТУЮЩИЕ</div><div class="specs-two-columns">${selected.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div><a href="pc.html?id=${idx}" class="btn">Подробнее</a></div></div></div>`; }
+        else if (resultDiv) { resultDiv.innerHTML = `<div style="text-align:center;padding:30px;"><p>Не нашли подходящую сборку. Напишите нам!</p><a href="contacts.html" class="btn">Связаться</a></div>`; }
     };
 }
 
@@ -298,7 +316,7 @@ async function sendToTelegram(name, contact, type, comment) {
 }
 
 /* ===== УТИЛИТЫ ===== */
-function createParticles() { const particlesContainer = document.getElementById('particles'); if (!particlesContainer) return; for(let i=0;i<50;i++) { let p = document.createElement('div'); p.className = 'particle'; let s = Math.random()*5+2; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`; particlesContainer.appendChild(p); } }
+function createParticles() { const particlesContainer = document.getElementById('particles'); if (!particlesContainer) return; if (window.innerWidth < 768) return; for(let i=0;i<50;i++) { let p = document.createElement('div'); p.className = 'particle'; let s = Math.random()*5+2; p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*15}s;animation-duration:${12+Math.random()*15}s`; particlesContainer.appendChild(p); } }
 function checkVisibility() { document.querySelectorAll('.fade-up').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-80) el.classList.add('visible'); }); }
 function initScrollTop() { let btn = document.getElementById('scrollTopBtn'); if (btn) { window.onscroll = () => btn.classList.toggle('show', window.scrollY > 300); btn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' }); } }
 function initTheme() { let toggle = document.getElementById('themeToggle'); if (!toggle) return; let saved = localStorage.getItem('matoff_theme') || 'dark'; if(saved === 'light') document.body.classList.add('light-theme'); const spans = toggle.querySelectorAll('span'); spans.forEach(span => { span.classList.toggle('active', span.dataset.theme === saved); span.onclick = (e) => { e.stopPropagation(); let theme = span.dataset.theme; if (theme === 'light') document.body.classList.add('light-theme'); else document.body.classList.remove('light-theme'); localStorage.setItem('matoff_theme', theme); spans.forEach(s => s.classList.remove('active')); span.classList.add('active'); }; }); }
@@ -340,8 +358,8 @@ function initRequestForm() {
         let email = document.getElementById('clientEmail')?.value || '';
         let comment = document.getElementById('clientComment').value;
         const consent = document.getElementById('clientConsent');
-if(!name || !phone) { alert("Заполните имя и телефон!"); return; }
-if(consent && !consent.checked) { alert("Подтвердите согласие на обработку персональных данных."); return; }
+        if(!name || !phone) { alert("Заполните имя и телефон!"); return; }
+        if(consent && !consent.checked) { alert("Подтвердите согласие на обработку персональных данных."); return; }
         let contactInfo = phone;
         if (tg) contactInfo += ` / ${tg}`;
         if (email) contactInfo += ` / ${email}`;
@@ -369,21 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPromoClose();
     highlightActiveNav();
     renderHeaderCartCount();
+    initMobileNav();
     window.addEventListener('scroll', checkVisibility);
     checkVisibility();
 });
-function initMobileNav() {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.mobile-bottom-nav a').forEach(a => {
-        if (a.dataset.page === path) a.classList.add('active');
-    });
-    updateMobileCartCount();
-}
-
-function updateMobileCartCount() {
-    const el = document.getElementById('mobileCartCount');
-    if (!el) return;
-    const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-    el.textContent = total;
-    el.style.display = total > 0 ? 'inline-flex' : 'none';
-}
