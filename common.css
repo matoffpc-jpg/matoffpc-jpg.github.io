@@ -489,20 +489,20 @@ section { padding: 70px 0; }
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(155,77,255,0.25), rgba(230,138,46,0.15));
+    background: radial-gradient(circle at 30% 30%, rgba(155,77,255,0.35), rgba(10,10,15,0.9));
     border: 2px solid var(--accent-purple);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Orbitron', monospace;
-    font-weight: 900;
-    font-size: 3.2rem;
-    letter-spacing: 2px;
-    color: var(--accent-purple);
-    text-shadow: 0 0 25px rgba(155,77,255,0.8), 0 0 50px rgba(155,77,255,0.4);
     margin-bottom: 22px;
-    box-shadow: 0 0 30px rgba(155,77,255,0.4);
+    box-shadow: 0 0 30px rgba(155,77,255,0.5), inset 0 0 20px rgba(155,77,255,0.15);
     position: relative;
+    color: var(--accent-purple);
+    filter: drop-shadow(0 0 6px rgba(155,77,255,0.8));
+}
+.team-avatar-single svg {
+    width: 56px;
+    height: 56px;
 }
 .team-avatar-single::after {
     content: "";
