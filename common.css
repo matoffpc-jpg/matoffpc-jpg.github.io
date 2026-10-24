@@ -430,11 +430,11 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     .logo a { justify-content: center; }
     .header-cta { display: inline-flex; grid-column: 3; justify-self: end; }
         /* МЕНЮ ВЫЕЗЖАЕТ СЛЕВА */
-           .nav {
+             .nav {
         position: fixed;
         top: 0;
         left: 0;
-        bottom: 0;
+        bottom: 70px;
         width: 280px;
         max-width: 80vw;
         background: var(--bg-primary);
