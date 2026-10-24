@@ -431,7 +431,7 @@ footer { padding: 40px 20px 30px; text-align: center; border-top: 1px solid var(
     .header-cta { display: inline-flex; grid-column: 3; justify-self: end; }
 
         /* МЕНЮ ВЫЕЗЖАЕТ СЛЕВА */
-    .nav {
+        .nav {
         position: fixed;
         top: 60px;
         left: 0;
