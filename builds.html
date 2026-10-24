@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Каталог | Matoff PC</title>
     <meta name="description" content="Каталог Matoff PC: новые сборки ПК и Б/У комплектующие.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="common.css">
 </head>
 <body>
 <div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
@@ -15,15 +15,15 @@
 
 <header class="header">
     <div class="container">
-        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
+        <div class="logo"><a href="index.html"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
         <div class="nav">
-            <a href="/">Главная</a>
-            <a href="/services.html">Услуги</a>
-            <a href="/builds.html">Каталог</a>
-            <a href="/about.html">О нас</a>
-            <a href="/reviews.html">Отзывы</a>
-            <a href="/contacts.html">Заявка</a>
-            <a href="/cart.html" class="cart-link">🛒 <span id="headerCartCount" class="cart-count">0</span></a>
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="builds.html">Каталог</a>
+            <a href="about.html">О нас</a>
+            <a href="reviews.html">Отзывы</a>
+            <a href="contacts.html">Заявка</a>
+            <a href="cart.html" class="cart-link">🛒 <span id="headerCartCount" class="cart-count">0</span></a>
             <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
             <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
         </div>
@@ -72,22 +72,15 @@
     <div class="footer-desc">Интернет-магазин компьютерной техники | Продажа и сборка компьютеров на заказ | Игровые и офисные системные блоки | Компьютерные комплектующие | Ремонт и настройка ПК</div>
     <div class="footer-socials" id="footerSocials"></div>
     <div class="footer-legal">
-        <a href="/privacy.html">Политика в отношении обработки персональных данных</a>
-        <a href="/consent.html">Согласие на обработку персональных данных</a>
+        <a href="privacy.html">Политика в отношении обработки персональных данных</a>
+        <a href="consent.html">Согласие на обработку персональных данных</a>
     </div>
 </footer>
 
 <button class="scroll-top" id="scrollTopBtn">↑</button>
 <div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
 
-<div id="buildModal" class="modal">
-    <div class="build-modal-content">
-        <button class="build-modal-close" id="buildModalClose">✕</button>
-        <div id="buildModalBody"></div>
-    </div>
-</div>
-
-<script src="/common.js"></script>
+<script src="common.js"></script>
 <script>
 let currentLine = 'Standart';
 
@@ -99,20 +92,20 @@ function renderNewBuilds() {
         container.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Сборки этой линейки скоро появятся</p>';
         return;
     }
-    container.innerHTML = filtered.map((b, idx) => {
+    container.innerHTML = filtered.map((b) => {
         const globalIdx = siteData.builds.indexOf(b);
         return `
         <div class="build-card">
-            <div class="pc-image-container" onclick="openBuildModal(${globalIdx})" style="cursor:pointer;">
+            <div class="pc-image-container" onclick="window.location.href='pc.html?id=${globalIdx}'" style="cursor:pointer;">
                 <img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'">
                 <img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'">
             </div>
-            <h3 onclick="openBuildModal(${globalIdx})" style="cursor:pointer;">${b.name}</h3>
+            <h3 onclick="window.location.href='pc.html?id=${globalIdx}'" style="cursor:pointer;">${b.name}</h3>
             <div class="price">${b.priceText}</div>
             <div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div>
             <div class="specs-title">КОМПЛЕКТУЮЩИЕ</div>
             <div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div>
-            <button class="btn btn-buy" onclick="openBuildModal(${globalIdx})">Подробнее</button>
+            <a href="pc.html?id=${globalIdx}" class="btn btn-buy">Подробнее</a>
         </div>`;
     }).join('');
 }
