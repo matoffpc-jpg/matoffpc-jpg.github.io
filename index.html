@@ -436,8 +436,7 @@
 <div id="chatWindow" class="chat-window"><div class="chat-header"><span>💬 Чат с менеджером</span><button class="chat-close" id="chatClose">×</button></div><div id="chatMessages" class="chat-messages"></div><div class="chat-input-area"><input type="text" id="chatInput" placeholder="Ваше сообщение..."><button id="chatSend">📤</button></div></div>
 
 <script>
-    const TELEGRAM_BOT_TOKEN = "8787519466:AAFzHmOnPd7FFmEMzBs8c-NM9O8SQcvu0s0";
-    const TELEGRAM_CHAT_ID = "1065465753";
+    const FORM_ENDPOINT = "https://matoffpc.flamee228.workers.dev/";
     const ADMIN_PASSWORD = "matoff2025";
     let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [] };
     let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
@@ -624,14 +623,15 @@
 
     async function sendToTelegram(name, contact, type, comment) {
         if (!name || !contact) return false;
-        const message = `🆕 НОВАЯ ЗАЯВКА%0A%0A👤 ${name}%0A📞 ${type}: ${contact}%0A📝 ${comment || "—"}%0A🕐 ${new Date().toLocaleString()}`;
-        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${message}`;
-        try { 
-            const response = await fetch(url);
+        try {
+            const response = await fetch(FORM_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'lead', name, contact, contactType: type, comment: comment || '' })
+            });
             const result = await response.json();
-            if (result.ok) return true;
-            else return false;
-        } catch(e) { return false; }
+            return !!result.ok;
+        } catch (e) { return false; }
     }
 
     function initChat() {
@@ -639,7 +639,7 @@
         let chatWindow = document.getElementById('chatWindow'), chatMessages = document.getElementById('chatMessages'), chatInput = document.getElementById('chatInput');
         if (!chatWindow || !chatMessages || !chatInput) return;
         function render() { chatMessages.innerHTML = messages.map(m => `<div class="message ${m.type}">${m.text.replace(/[&<>]/g, function(m){if(m==='&')return'&amp;';if(m==='<')return'&lt;';if(m==='>')return'&gt;';return m;})}</div>`).join(''); chatMessages.scrollTop = chatMessages.scrollHeight; }
-        function addMsg(text, type) { messages.push({ text, type, time: new Date().toISOString() }); if(messages.length > 50) messages = messages.slice(-50); localStorage.setItem('matoff_chat_messages', JSON.stringify(messages)); render(); if(type === 'user') fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: `👤 Клиент в чате: "${text}"` }) }); }
+        function addMsg(text, type) { messages.push({ text, type, time: new Date().toISOString() }); if(messages.length > 50) messages = messages.slice(-50); localStorage.setItem('matoff_chat_messages', JSON.stringify(messages)); render(); if(type === 'user') fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'chat', text }) }).catch(() => {}); }
         if(messages.length === 0) addMsg("👋 Здравствуйте! Задайте ваш вопрос.", "bot"); else render();
         document.getElementById('chatButton').onclick = () => chatWindow.classList.toggle('open');
         document.getElementById('chatClose').onclick = () => chatWindow.classList.remove('open');
