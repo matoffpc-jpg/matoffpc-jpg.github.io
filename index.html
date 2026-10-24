@@ -126,37 +126,17 @@
 </footer>
 
 <button class="scroll-top" id="scrollTopBtn">↑</button>
-<div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
+<div id="socialModal" class="modal">...</div>
 
-<script src="/common.js"></script>
+<nav class="mobile-bottom-nav">
+    <a href="index.html" data-page="index.html"><span class="mbn-icon">🏠</span><span class="mbn-label">Главная</span></a>
+    <a href="builds.html" data-page="builds.html"><span class="mbn-icon">🖥️</span><span class="mbn-label">Каталог</span></a>
+    <a href="contacts.html" data-page="contacts.html"><span class="mbn-icon">✉️</span><span class="mbn-label">Заявка</span></a>
+    <a href="cart.html" data-page="cart.html"><span class="mbn-icon">🛒</span><span class="mbn-label">Корзина</span><span id="mobileCartCount" class="mbn-count" style="display:none;">0</span></a>
+</nav>
+
+<script src="common.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', async () => {
-    const data = await loadData();
-    if (data) {
-        renderCounters(); renderServices(); renderHomeBuilds(); renderAdvantagesSplit(); renderReviews();
-        renderPromo(); startPromoRotation(); initSlider(); renderManagerModal();
-        setTimeout(() => checkVisibility(), 100);
-    }
-});
-
-/* ===== ПРЕИМУЩЕСТВА — ДВЕ КОЛОНКИ ===== */
-function renderAdvantagesSplit() {
-    const leftCol = document.getElementById('advantagesLeft');
-    const rightCol = document.getElementById('advantagesRight');
-    if (!leftCol || !rightCol || !siteData.advantages) return;
-
-    const items = siteData.advantages;
-    const mid = Math.ceil(items.length / 2);
-
-    const buildCard = (a) => `
-        <div class="adv-card">
-            <div class="adv-card-title">${a.name}</div>
-            <div class="adv-card-desc">${a.desc}</div>
-        </div>`;
-
-    leftCol.innerHTML = items.slice(0, mid).map(buildCard).join('');
-    rightCol.innerHTML = items.slice(mid).map(buildCard).join('');
-}
+...
 </script>
 </body>
-</html>
