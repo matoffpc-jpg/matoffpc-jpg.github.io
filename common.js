@@ -8,6 +8,12 @@ const SOCIAL_ICONS = {
 
 let siteData = { builds: [], services: [], counters: [], steps: [], advantages: [], socials: {}, shorts: [], reviews: [], slides: [], promos: [], components: [] };
 
+/* ===== КОРЗИНА (объявляем сразу, чтобы было доступно везде) ===== */
+let cart = JSON.parse(localStorage.getItem('matoff_cart')) || [];
+function saveCart() {
+    localStorage.setItem('matoff_cart', JSON.stringify(cart));
+}
+
 async function loadData() {
     try {
         const response = await fetch('/data.json?t=' + Date.now());
