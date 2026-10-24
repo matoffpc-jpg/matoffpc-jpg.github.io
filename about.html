@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>О нас | Matoff PC</title>
+    <meta name="description" content="Matoff PC — мастерская по сборке и ремонту компьютеров в Нижнем Новгороде. Один человек, который делает всё качественно.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/common.css">
+    <style>
+        .team-single { display: flex; justify-content: center; margin: 40px 0; }
+        .team-card-single { max-width: 550px; width: 100%; background: var(--card-bg); backdrop-filter: blur(10px); border-radius: 32px; padding: 35px 30px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s; }
+        .team-card-single:hover { border-color: var(--accent-purple); transform: translateY(-5px); box-shadow: 0 0 25px rgba(155,77,255,0.2); }
+        .team-avatar-single { font-size: 4rem; margin-bottom: 15px; }
+        .team-card-single h3 { font-family: 'Orbitron', monospace; font-size: 1.5rem; margin-bottom: 20px; background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .team-roles-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 25px; }
+        .team-role-item { background: rgba(155,77,255,0.15); border: 1px solid rgba(155,77,255,0.3); border-radius: 50px; padding: 8px 18px; font-size: 0.9rem; font-weight: 500; color: var(--text-primary); transition: all 0.2s; }
+        .team-role-item:hover { background: rgba(155,77,255,0.3); transform: translateY(-2px); }
+        .team-footer-single { margin-top: 15px; padding: 15px; background: rgba(155,77,255,0.08); border-radius: 40px; font-size: 0.95rem; color: var(--text-secondary); }
+        .team-footer-single strong { color: var(--accent-purple); }
+        .advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .advantage-card { background: var(--card-bg); backdrop-filter: blur(8px); border-radius: 28px; padding: 28px; text-align: center; display: flex; flex-direction: column; transition: all 0.3s; }
+        .advantage-card:hover { border-color: var(--accent-purple); transform: translateY(-3px); box-shadow: 0 0 20px rgba(155,77,255,0.2); }
+        .advantage-card h3 { font-family: 'Orbitron', monospace; font-size: 1.2rem; margin-bottom: 12px; color: var(--accent-purple); }
+        .advantage-card p { font-size: 0.9rem; flex: 1; color: var(--text-secondary); }
+        @media (max-width: 1000px) { .advantages-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .advantages-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo"><a href="/"><span class="logo-matoff">MATOFF</span><span class="logo-pc"> PC</span></a></div>
+        <div class="nav">
+            <a href="/">Главная</a>
+            <a href="/builds.html">Сборки</a>
+            <a href="/services.html">Услуги</a>
+            <a href="/components.html">Комплектующие</a>
+            <a href="/about.html">О нас</a>
+            <a href="/reviews.html">Отзывы</a>
+            <a href="/contacts.html">Контакты</a>
+            <a href="/cart.html" class="cart-link">🛒 Корзина <span id="headerCartCount" class="cart-count">0</span></a>
+            <div class="theme-toggle" id="themeToggle">
+                <span class="active" data-theme="dark">🌙</span>
+                <span data-theme="light">☀️</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section>
+        <div class="container">
+            <h1 class="section-title">Кто <span>работает</span> над проектом</h1>
+            <div class="team-single">
+                <div class="team-card-single">
+                    <div class="team-avatar-single">🧑‍💻</div>
+                    <h3>Александр (Matoff)</h3>
+                    <div class="team-roles-list">
+                        <div class="team-role-item">🚀 Основатель</div>
+                        <div class="team-role-item">🔧 Сборщик ПК</div>
+                        <div class="team-role-item">🚚 Курьер</div>
+                        <div class="team-role-item">🎬 Монтажёр</div>
+                        <div class="team-role-item">📞 Менеджер</div>
+                        <div class="team-role-item">📱 SMM-менеджер</div>
+                        <div class="team-role-item">💰 Бухгалтер</div>
+                    </div>
+                    <p class="team-footer-single">🤝 <strong>Один человек</strong>, который любит своё дело и делает его качественно!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Наши <span>преимущества</span></h2>
+            <div id="advantagesContainer" class="advantages-grid"></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>📍 Мастерская в Нижнем Новгороде | Matoff PC — профессиональная сборка и ремонт 💜</p>
+    <div class="work-hours">📞 Связь с менеджером: ПН-ВС с 10:00 до 22:00</div>
+    <div class="meta-warning">⚠️ Instagram принадлежит компании Meta, признанной экстремистской на территории РФ</div>
+    <div class="legal-links">
+        <a href="/privacy.html">Политика обработки персональных данных</a>
+        |
+        <a href="/consent.html">Согласие на обработку персональных данных</a>
+    </div>
+    <div class="admin-link" id="adminLink">🔧 Панель управления (админ)</div>
+    <p style="margin-top: 15px; font-size: 13px; opacity: 0.6;">© Matoff PC — ваш надёжный компьютерный мастер</p>
+</footer>
+
+<script src="/common.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        const data = await loadData();
+        if (data && data.advantages) {
+            const container = document.getElementById('advantagesContainer');
+            container.innerHTML = data.advantages.map(a => `<div class="advantage-card"><h3>${a.name}</h3><p>${a.desc}</p></div>`).join('');
+        }
+    });
+</script>
+</body>
+</html>
