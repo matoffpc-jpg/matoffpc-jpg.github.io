@@ -8,6 +8,45 @@
     <meta name="description" content="Свяжитесь с Matoff PC. Оставить заявку на сборку, ремонт или апгрейд компьютера.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
+    <style>
+        .contacts-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: stretch;
+        }
+        .contacts-layout .order-form {
+            margin: 0;
+            max-width: 100%;
+        }
+        .map-wrapper {
+            background: var(--card-bg);
+            border-radius: 35px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 500px;
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: none;
+            display: block;
+        }
+        @media (max-width: 1000px) {
+            .contacts-layout {
+                grid-template-columns: 1fr;
+            }
+            .map-wrapper {
+                min-height: 350px;
+            }
+            .map-wrapper iframe {
+                min-height: 350px;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="animated-bg"><div class="hex-grid"></div><div class="particles" id="particles"></div></div>
@@ -35,15 +74,36 @@
 </header>
 
 <main>
-    <section id="order"><div class="container"><h2 class="section-title fade-up">Оставить <span>заявку</span></h2><div class="order-form"><div class="contact-type-buttons"><div class="contact-type-btn active" data-contact="phone">📞 Телефон</div><div class="contact-type-btn" data-contact="tg">💬 Telegram</div><div class="contact-type-btn" data-contact="vk">📱 VK</div></div><form id="requestForm"><input type="text" id="clientName" placeholder="Ваше имя" required><div id="contactFieldContainer"><input type="tel" id="clientContact" placeholder="Номер телефона" required></div><textarea id="clientComment" rows="3" placeholder="Что вас интересует? (сборка, апгрейд, ремонт...)"></textarea>
-<div class="consent-checkbox">
-    <label>
-        <input type="checkbox" id="clientConsent" required>
-        <span>Я даю <a href="/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="/privacy.html" target="_blank">Политикой обработки персональных данных</a></span>
-    </label>
-</div>
-
-<button type="submit" class="btn">📨 Отправить заявку</button></form><p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p></div></div></section>
+    <section id="order">
+        <div class="container">
+            <h2 class="section-title fade-up">Оставить <span>заявку</span></h2>
+            <div class="contacts-layout">
+                <div class="order-form">
+                    <div class="contact-type-buttons">
+                        <div class="contact-type-btn active" data-contact="phone">📞 Телефон</div>
+                        <div class="contact-type-btn" data-contact="tg">💬 Telegram</div>
+                        <div class="contact-type-btn" data-contact="vk">📱 VK</div>
+                    </div>
+                    <form id="requestForm">
+                        <input type="text" id="clientName" placeholder="Ваше имя" required>
+                        <div id="contactFieldContainer"><input type="tel" id="clientContact" placeholder="Номер телефона" required></div>
+                        <textarea id="clientComment" rows="3" placeholder="Что вас интересует? (сборка, апгрейд, ремонт...)"></textarea>
+                        <div class="consent-checkbox">
+                            <label>
+                                <input type="checkbox" id="clientConsent" required>
+                                <span>Я даю <a href="/consent.html" target="_blank">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен(а) с <a href="/privacy.html" target="_blank">Политикой обработки персональных данных</a></span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn">📨 Отправить заявку</button>
+                    </form>
+                    <p style="font-size: 13px; text-align: center; margin-top: 20px; opacity: 0.7;">Менеджер свяжется с вами в течение 15 минут</p>
+                </div>
+                <div class="map-wrapper">
+                    <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=215291807118" allowfullscreen="true" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 
 <footer>
