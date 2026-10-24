@@ -489,16 +489,52 @@ section { padding: 70px 0; }
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(155,77,255,0.35), rgba(10,10,15,0.9));
+    background: radial-gradient(circle at 30% 30%, rgba(155,77,255,0.3), rgba(10,10,15,0.95));
     border: 2px solid var(--accent-purple);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 22px;
-    box-shadow: 0 0 30px rgba(155,77,255,0.5), inset 0 0 20px rgba(155,77,255,0.15);
+    box-shadow: 0 0 30px rgba(155,77,255,0.5);
     position: relative;
-    color: var(--accent-purple);
-    filter: drop-shadow(0 0 6px rgba(155,77,255,0.8));
+    overflow: visible;
+}
+.avatar-chip {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #9b4dff, #e68a2e);
+    box-shadow: 0 0 20px rgba(155,77,255,0.9), 0 0 40px rgba(230,138,46,0.4);
+    animation: chipPulse 2.5s ease-in-out infinite;
+    position: relative;
+}
+.avatar-chip::before,
+.avatar-chip::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 2px dashed rgba(155,77,255,0.5);
+    border-radius: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: chipRotate 10s linear infinite;
+}
+.avatar-chip::after {
+    width: 90px;
+    height: 90px;
+    border-color: rgba(230,138,46,0.3);
+    animation-direction: reverse;
+    animation-duration: 15s;
+}
+@keyframes chipPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+@keyframes chipRotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 .team-avatar-single svg {
     width: 56px;
