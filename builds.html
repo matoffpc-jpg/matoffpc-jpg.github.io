@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Каталог | Matoff PC</title>
-    <meta name="description" content="Каталог Matoff PC: новые сборки, Б/У компьютеры и комплектующие.">
+    <meta name="description" content="Каталог Matoff PC: новые сборки ПК и Б/У комплектующие.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/common.css">
 </head>
@@ -23,6 +23,7 @@
             <a href="/about.html">О нас</a>
             <a href="/reviews.html">Отзывы</a>
             <a href="/contacts.html">Заявка</a>
+            <a href="/cart.html" class="cart-link">🛒 <span id="headerCartCount" class="cart-count">0</span></a>
             <div class="theme-toggle" id="themeToggle"><span class="active" data-theme="dark">🌙</span><span data-theme="light">☀️</span></div>
             <div class="manager-wrapper"><button id="managerHeaderBtn" class="manager-header-btn">Связаться</button></div>
         </div>
@@ -35,9 +36,8 @@
             <h1 class="section-title fade-up">Каталог</h1>
 
             <div class="catalog-tabs">
-                <button class="catalog-tab active" data-view="new">Новые сборки</button>
-                <button class="catalog-tab" data-view="used">Б/У сборки</button>
-                <button class="catalog-tab" data-view="components">Комплектующие</button>
+                <button class="catalog-tab active" data-view="new">Новые ПК</button>
+                <button class="catalog-tab" data-view="components">Комплектующие Б/У</button>
             </div>
 
             <div id="newBuildsView">
@@ -47,10 +47,6 @@
                     <button class="catalog-subtab" data-line="Master">M.Master</button>
                 </div>
                 <div id="catalogContainer" class="builds-grid"></div>
-            </div>
-
-            <div id="usedBuildsView" style="display:none;">
-                <div id="usedContainer" class="builds-grid"></div>
             </div>
 
             <div id="componentsView" style="display:none;">
@@ -84,6 +80,13 @@
 <button class="scroll-top" id="scrollTopBtn">↑</button>
 <div id="socialModal" class="modal"><div class="modal-content"><h3>Связаться с нами</h3><div class="modal-socials" id="modalSocials"></div><form id="quickRequestForm" style="text-align:left;"><input type="text" id="quickName" placeholder="Ваше имя" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><input type="tel" id="quickPhone" placeholder="Номер телефона" required style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"><textarea id="quickComment" placeholder="Что вас интересует?" rows="2" style="width:100%;padding:12px 16px;margin-bottom:12px;background:var(--input-bg);border:1px solid var(--border-color);color:var(--text-primary);border-radius:20px;font-size:0.9rem;"></textarea><button type="submit" class="btn" style="width:100%;">Отправить заявку</button></form><button id="closeModal" class="modal-close-btn" style="margin-top:12px;">Закрыть</button></div></div>
 
+<div id="buildModal" class="modal">
+    <div class="build-modal-content">
+        <button class="build-modal-close" id="buildModalClose">✕</button>
+        <div id="buildModalBody"></div>
+    </div>
+</div>
+
 <script src="/common.js"></script>
 <script>
 let currentLine = 'Standart';
@@ -91,43 +94,27 @@ let currentLine = 'Standart';
 function renderNewBuilds() {
     const container = document.getElementById('catalogContainer');
     if (!container || !siteData.builds) return;
-    const filtered = siteData.builds.filter(b => b.name.includes(currentLine) && b.condition !== 'used');
+    const filtered = siteData.builds.filter(b => b.name.includes(currentLine));
     if (filtered.length === 0) {
         container.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">Сборки этой линейки скоро появятся</p>';
         return;
     }
-    container.innerHTML = filtered.map(b => `
+    container.innerHTML = filtered.map((b, idx) => {
+        const globalIdx = siteData.builds.indexOf(b);
+        return `
         <div class="build-card">
-            <div class="pc-image-container">
+            <div class="pc-image-container" onclick="openBuildModal(${globalIdx})" style="cursor:pointer;">
                 <img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'">
                 <img class="pc-image pc-image-hover" src="${b.imageHover || b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'">
             </div>
-            <h3>${b.name}</h3>
+            <h3 onclick="openBuildModal(${globalIdx})" style="cursor:pointer;">${b.name}</h3>
             <div class="price">${b.priceText}</div>
             <div class="fps-block"><div class="fps-title">ПРОИЗВОДИТЕЛЬНОСТЬ</div><div class="fps-value">${b.fps || "100+ FPS"}</div></div>
             <div class="specs-title">КОМПЛЕКТУЮЩИЕ</div>
             <div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div>
-            <a href="/contacts.html" class="btn btn-buy">Купить</a>
-        </div>`).join('');
-}
-
-function renderUsedBuilds() {
-    const container = document.getElementById('usedContainer');
-    if (!container || !siteData.builds) return;
-    const used = siteData.builds.filter(b => b.condition === 'used');
-    if (used.length === 0) {
-        container.innerHTML = '<p style="text-align:center;color:var(--text-secondary);padding:40px;">Б/У сборки скоро появятся</p>';
-        return;
-    }
-    container.innerHTML = used.map(b => `
-        <div class="build-card">
-            <div class="pc-image-container"><img class="pc-image pc-image-default" src="${b.image}" onerror="this.src='https://placehold.co/400x300/2a2a35/9b4dff?text=PC'"></div>
-            <h3>${b.name}</h3>
-            <div class="price">${b.priceText}</div>
-            <div class="specs-title">КОМПЛЕКТУЮЩИЕ</div>
-            <div class="specs-two-columns">${b.specs.map(sp => `<div class="spec-item"><span class="spec-icon">${getSpecIcon(sp)}</span><span>${sp}</span></div>`).join('')}</div>
-            <a href="/contacts.html" class="btn btn-buy">Купить</a>
-        </div>`).join('');
+            <button class="btn btn-buy" onclick="openBuildModal(${globalIdx})">Подробнее</button>
+        </div>`;
+    }).join('');
 }
 
 function renderComponentsGrid() {
@@ -146,7 +133,7 @@ function renderComponentsGrid() {
             <h3>${c.name}</h3>
             <div class="component-price">${c.priceText}</div>
             <div class="component-desc">${c.description||''}</div>
-            <a href="/contacts.html" class="btn">Заказать</a>
+            <button class="btn" onclick='addToCart(${JSON.stringify({id:c.id,name:c.name,price:c.price,priceText:c.priceText,image:c.image}).replace(/'/g,"&#39;")})'>В корзину</button>
         </div>`).join('');
 }
 
@@ -155,7 +142,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!data) return;
 
     renderNewBuilds();
-    renderUsedBuilds();
     renderComponentsGrid();
     renderPromo(); startPromoRotation(); renderManagerModal();
 
@@ -165,7 +151,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             this.classList.add('active');
             const view = this.dataset.view;
             document.getElementById('newBuildsView').style.display = view === 'new' ? 'block' : 'none';
-            document.getElementById('usedBuildsView').style.display = view === 'used' ? 'block' : 'none';
             document.getElementById('componentsView').style.display = view === 'components' ? 'block' : 'none';
         };
     });
