@@ -1,9 +1,4 @@
-Понял. В твоём коде есть две проблемы, которые я сейчас исправлю:
-
-1.  **Функция `initChat` всё ещё отправляет сообщения через старый `FORM_ENDPOINT`** (Cloudflare Worker), который блокируется. Из-за этого сообщения из чата на сайте не доходят до Telegram.
-2.  **В `initChat` используется `FORM_ENDPOINT`**, который нужно заменить на прямой вызов BotGate.
-
-Вот полностью исправленный файл. Я заменил `initChat` и убрал неиспользуемую `FORM_ENDPOINT`.
+Вот исправленный файл. Я заменил `sendToTelegram` и `initChat` на правильные версии с адресом `/api/v1/bots/.../sendMessage`.
 
 ```html
 <!DOCTYPE html>
@@ -628,46 +623,64 @@
         };
     }
 
-   async function sendToTelegram(name, contact, type, comment) {
-    if (!name || !contact) return false;
+    async function sendToTelegram(name, contact, type, comment) {
+        if (!name || !contact) return false;
 
-    // Твои данные из BotGate
-    const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
-    const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
-    const CHAT_ID = "1065465753"; // Твой chat_id
+        const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a465";
+        const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
+        const CHAT_ID = "1065465753";
 
-    // Адрес шлюза BotGate. Обрати внимание на /bot{ID}/sendMessage
-    const url = `https://bot-gate.ru/bot${BOT_PUBLIC_ID}/sendMessage`;
+        // ПРАВИЛЬНЫЙ URL из документации
+        const url = `https://bot-gate.ru/api/v1/bots/${BOT_PUBLIC_ID}/sendMessage`;
 
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${BOTGATE_API_KEY}` // Передаем ключ в заголовке
-            },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`
-            })
-        });
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${BOTGATE_API_KEY}`
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: `🆕 НОВАЯ ЗАЯВКА\n\n👤 ${name}\n📞 ${type}: ${contact}\n📝 ${comment || "—"}\n🕐 ${new Date().toLocaleString()}`
+                })
+            });
 
-        const result = await response.json();
-        console.log("Ответ от BotGate:", result);
-        
-        // BotGate возвращает ответ в формате Telegram API, проверяем поле ok
-        return !!result.ok;
-    } catch (e) { 
-        console.error("Ошибка отправки через BotGate:", e);
-        return false; 
+            const result = await response.json();
+            console.log("Ответ от BotGate:", result);
+            return !!result.ok;
+        } catch (e) { 
+            console.error("Ошибка отправки через BotGate:", e);
+            return false; 
+        }
     }
-   }
+
     function initChat() {
         let messages = JSON.parse(localStorage.getItem('matoff_chat_messages')) || [];
         let chatWindow = document.getElementById('chatWindow'), chatMessages = document.getElementById('chatMessages'), chatInput = document.getElementById('chatInput');
         if (!chatWindow || !chatMessages || !chatInput) return;
         function render() { chatMessages.innerHTML = messages.map(m => `<div class="message ${m.type}">${m.text.replace(/[&<>]/g, function(m){if(m==='&')return'&amp;';if(m==='<')return'&lt;';if(m==='>')return'&gt;';return m;})}</div>`).join(''); chatMessages.scrollTop = chatMessages.scrollHeight; }
-        function addMsg(text, type) { messages.push({ text, type, time: new Date().toISOString() }); if(messages.length > 50) messages = messages.slice(-50); localStorage.setItem('matoff_chat_messages', JSON.stringify(messages)); render(); if(type === 'user') fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'chat', text }) }).catch(() => {}); }
+        function addMsg(text, type) { 
+            messages.push({ text, type, time: new Date().toISOString() }); 
+            if(messages.length > 50) messages = messages.slice(-50); 
+            localStorage.setItem('matoff_chat_messages', JSON.stringify(messages)); 
+            render(); 
+            if(type === 'user') {
+                // ПРАВИЛЬНЫЙ URL для чата
+                const chatUrl = `https://bot-gate.ru/api/v1/bots/bot_p2K6nqEK6ydQ/sendMessage`;
+                fetch(chatUrl, { 
+                    method: 'POST', 
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer bg_live_9bb08c0e584707ad677672d1f0f0a465`
+                    }, 
+                    body: JSON.stringify({ 
+                        chat_id: "1065465753", 
+                        text: `👤 Клиент в чате: "${text}"` 
+                    }) 
+                }).catch(() => {});
+            }
+        }
         if(messages.length === 0) addMsg("👋 Здравствуйте! Задайте ваш вопрос.", "bot"); else render();
         document.getElementById('chatButton').onclick = () => chatWindow.classList.toggle('open');
         document.getElementById('chatClose').onclick = () => chatWindow.classList.remove('open');
