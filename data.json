@@ -335,9 +335,9 @@
     { "name": "Василиса", "text": "Эти ребята лучшие!! Доступно объяснили принципы сборки. Спасибо!", "image": "https://raw.githubusercontent.com/matoffpc-jpg/matoffpc.github.io/refs/heads/main/review3.png" }
   ],
   "counters": [
-    { "number": 528, "label": "Собранных ПК" },
-    { "number": 1043, "label": "Довольных клиентов" },
-    { "number": 4, "label": "Года на рынке" }
+    { "number": 500, "label": "Собранных ПК" },
+    { "number": 1000, "label": "Довольных клиентов" },
+    { "number": 3, "label": "Года на рынке" }
   ],
   "promos": [
     { "text": "🎁 Скидка 10% на первую сборку!", "endDate": "2026-06-05", "enabled": true, "priority": 1 },
