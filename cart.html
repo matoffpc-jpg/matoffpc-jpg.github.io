@@ -201,7 +201,6 @@ async function submitOrder() {
     msg += `\n💰 Сумма товаров: ${cartTotal.toLocaleString()} ₽\n`;
     msg += `🚚 Доставка: рассчитывается менеджером индивидуально\n`;
     msg += `\n🕐 ${new Date().toLocaleString()}`;
-    const BOTGATE_API_KEY = "bg_live_9bb08c0e584707ad677672d1f0f0a466";
     const BOT_PUBLIC_ID = "bot_p2K6nqEK6ydQ";
     const CHAT_ID = "1065465753";
     const url = `https://bot-gate.ru/api/v1/bots/${BOT_PUBLIC_ID}/sendMessage`;
